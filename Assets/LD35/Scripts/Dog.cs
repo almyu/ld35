@@ -69,7 +69,11 @@ namespace LD35
         private void HelpFollowLostSheep()
         {
             angle *= -1;
-            _target = Quaternion.AngleAxis(angle, Vector3.up) * transform.position.WithY(0f);
+
+            var planarPos = transform.position.WithY(0f);
+            var radius = planarPos.magnitude;
+
+            _target = Quaternion.AngleAxis(angle * Mathf.PI * 2f / radius, Vector3.up) * planarPos;
         }
 
         private void Run()
