@@ -5,24 +5,12 @@ namespace LD35 {
 
     public class Scare : MonoBehaviour {
 
-        public static List<Scare> list = new List<Scare>(64);
-
-        public static void Register(Scare scare) {
-            list.Add(scare);
-        }
-
-        public static void Unregister(Scare scare) {
-            var index = list.IndexOf(scare);
-            if (index == -1) return;
-
-            list[index] = list[list.Count - 1];
-            list.RemoveAt(list.Count - 1);
-        }
+        public static List<Scare> scareList = new List<Scare>(64);
 
         public static Vector3 GetEscapeVector(Vector3 position) {
             var escape = Vector3.zero;
 
-            foreach (var scare in list) {
+            foreach (var scare in scareList) {
                 var dir = (position - scare.transform.position).WithY(0f);
                 var distSq = dir.sqrMagnitude;
                 if (Mathf.Approximately(distSq, 0f)) continue;
@@ -39,12 +27,12 @@ namespace LD35 {
         public float bounceRadius = 1f, bouncePower = 10f;
         public float sqrBounceRadius { get { return bounceRadius * bounceRadius; } }
 
-        private void OnEnable() {
-            Register(this);
+        protected virtual void OnEnable() {
+            scareList.Add(this);
         }
 
-        private void OnDisable() {
-            Unregister(this);
+        protected virtual void OnDisable() {
+            scareList.SwapRemove(this);
         }
     }
 }
