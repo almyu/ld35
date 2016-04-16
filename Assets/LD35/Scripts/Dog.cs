@@ -7,13 +7,12 @@ namespace LD35
     public class Dog : Scare
     {
         private Camera _camera;
-        private int leftMouseBtn = 0;
+        //private int leftMouseBtn = 0;
         private int rightMouseBtn = 1;
         private LayerMask island;
         private Vector3 _target;
 
         private float runSpeed;
-        private AnimationCurve runCurve;
 
         private Transform _shepherd;
         private bool _isWerewolf = false;
@@ -24,7 +23,6 @@ namespace LD35
             island = LayerMask.GetMask("Island");
             
             runSpeed = Balance.instance.DogMoveSpeed;
-            runCurve = Balance.instance.DogMoveCurve;
             _target = transform.position;
 
             _shepherd = GameObject.Find("Shepherd").transform;
@@ -74,17 +72,14 @@ namespace LD35
         {
             var start = transform.position;
 
-            if (Vector3.Distance(start, _target) <= 0)
+            if (Vector3.Distance(start, _target) == 0)
                 return;
             
-            var distance = Vector3.Distance(start, _target);
-            var currentSpeed = distance / runSpeed;
-            var dir = _target - start;
-            
-            var progress = Time.deltaTime / currentSpeed;
+            transform.position = Vector3.MoveTowards(start, _target, Time.deltaTime * runSpeed);
 
-            transform.position = Vector3.Lerp(start, _target, runCurve.Evaluate(progress));
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir.normalized), progress * 7);
+            var dir = _target - start;  
+            if (dir.sqrMagnitude > 0.015f)
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * runSpeed);
         }
     }
 }
