@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace LD35 {
 
-    public class Sheep : MonoBehaviour {
+    public class Sheep : Scare {
 
         public float speed = 5f;
         public float safeDistance = 5f;
