@@ -65,13 +65,23 @@ namespace LD35
             }
         }
 
+        private float angle = 45f;
+        private void HelpFollowLostSheep()
+        {
+            angle *= -1;
+            _target = Quaternion.AngleAxis(angle, Vector3.up) * transform.position.WithY(0f);
+        }
+
         private void Run()
         {
             var start = transform.position;
 
             if (Vector3.Distance(start, _target) == 0)
+            {
+                HelpFollowLostSheep();
                 return;
-            
+            }
+
             transform.position = Vector3.MoveTowards(start, _target, Time.deltaTime * runSpeed);
 
             var dir = _target - start;  

@@ -4,6 +4,8 @@ namespace LD35 {
 
     public class World : MonoBehaviour {
 
+        public static readonly Vector3 center = Vector3.zero;
+
         public float radius = 20.5f;
 
         private void FixedUpdate() {
@@ -16,7 +18,7 @@ namespace LD35 {
 
         private void OnDrawGizmos() {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(Vector3.zero, radius);
+            Gizmos.DrawWireSphere(center, radius);
         }
     }
 }
