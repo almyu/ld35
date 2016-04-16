@@ -9,6 +9,8 @@ namespace LD35 {
         public static bool active {
             get { return _active; }
             set {
+                if (_active == value) return;
+
                 _active = value;
                 if (value) TimescaleStack.Push(instance.scale);
                 else TimescaleStack.Pop();

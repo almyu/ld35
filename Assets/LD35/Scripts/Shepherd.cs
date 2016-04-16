@@ -22,8 +22,6 @@ namespace LD35 {
                 speed = value ? wolfSpeed : manSpeed;
                 radius = value ? wolfScareRadius : manScareRadius;
                 power = value ? wolfScariness : manScariness;
-
-                BulletTime.active = value;
             }
         }
         private bool _isWolf;
