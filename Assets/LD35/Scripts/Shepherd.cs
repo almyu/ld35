@@ -4,6 +4,10 @@ namespace LD35 {
 
     public class Shepherd : Scare {
 
+        public static Shepherd instance {
+            get { return JamSuite.SingletonHelper<Shepherd>.instance; }
+        }
+
         public float speed = 4f;
 
         public bool isWolf {
@@ -29,7 +33,7 @@ namespace LD35 {
                     camXf.right.WithY(0f).normalized * axes.x +
                     camXf.forward.WithY(0f).normalized * axes.z;
 
-                transform.position += dir * Time.deltaTime;
+                transform.position += speed * Time.deltaTime * dir;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 7f);
             }
 

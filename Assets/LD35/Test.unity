@@ -497,7 +497,7 @@ MonoBehaviour:
   power: 0.5
   bounceRadius: 1
   bouncePower: 10
-  speed: 15
+  speed: 5
 --- !u!4 &1829506149
 Transform:
   m_ObjectHideFlags: 0

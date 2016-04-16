@@ -56,6 +56,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  ManSpeed: 2
+  ManScareRadius: 2
+  ManScariness: 0.5
+  WolfSpeed: 4.5
+  WolfScareRadius: 6
+  WolfScariness: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
