@@ -8,6 +8,7 @@ namespace LD35
     {
         private Camera _camera;
         private int leftMouseBtn = 0;
+        private int rightMouseBtn = 1;
 
         protected void Awake()
         {
@@ -16,11 +17,17 @@ namespace LD35
 
         protected void Update()
         {
-            if (Input.GetMouseButtonUp(leftMouseBtn))
+            if (Input.GetMouseButtonUp(rightMouseBtn))
             {
-                var target = _camera.ScreenToWorldPoint(Input.mousePosition);
-                StopCoroutine("Run");
-                StartCoroutine(Run(target));
+                var ray = _camera.ScreenPointToRay(Input.mousePosition);
+
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    StopCoroutine("Run");
+                    StartCoroutine(Run(hit.point));
+                }
+
             }
         }
 
@@ -30,10 +37,13 @@ namespace LD35
             var runSpeed = Balance.instance.DogMoveSpeed;
             var elapsed = 0f;
 
+            var distance = Vector3.Distance(start, target);
+            var currentSpeed = distance / runSpeed;
+
             while (Vector3.Distance(start, target) > 0)
             {
                 elapsed += Time.deltaTime;
-                transform.position = Vector3.Lerp(start, target, elapsed / runSpeed);
+                transform.position = Vector3.Lerp(start, target, elapsed / currentSpeed);
                 yield return new WaitForEndOfFrame();
             }
 
