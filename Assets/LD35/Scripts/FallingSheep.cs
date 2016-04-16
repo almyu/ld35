@@ -9,7 +9,11 @@ namespace LD35 {
 
         private void Start() {
             var sheep = GetComponent<Sheep>();
-            if (sheep) Destroy(sheep);
+            if (sheep)
+            {
+                SheepCounter.instance.AddLostSheep(1);
+                Destroy(sheep);
+            }
         }
 
         private void FixedUpdate() {
