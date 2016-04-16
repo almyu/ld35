@@ -42,11 +42,17 @@ namespace LD35
 
             var distance = Vector3.Distance(start, target);
             var currentSpeed = distance / runSpeed;
+            var dir = target - start;
 
             while (Vector3.Distance(start, target) > 0)
             {
                 elapsed += Time.deltaTime;
-                transform.position = Vector3.Slerp(start, target, runCurve.Evaluate(elapsed / currentSpeed));
+                var progress = elapsed / currentSpeed;
+
+                transform.position = Vector3.Lerp(start, target, runCurve.Evaluate(progress));
+
+                
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir.normalized), progress * 7);
                 yield return new WaitForEndOfFrame();
             }
 
