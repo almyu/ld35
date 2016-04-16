@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace LD35 {
 
-    public class Shepherd : MonoBehaviour {
+    public class Shepherd : Scare {
 
         public float speed = 4f;
 

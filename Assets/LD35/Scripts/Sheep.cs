@@ -6,10 +6,9 @@ namespace LD35 {
     public class Sheep : Scare {
 
         public float speed = 5f;
-        public float safeDistance = 5f;
 
         private void FixedUpdate() {
-            var vel = Scare.GetEscapeVector(transform.position, safeDistance);
+            var vel = Scare.GetEscapeVector(transform.position);
             transform.position += speed * Time.fixedDeltaTime * vel.WithY(0f);
 
             if (vel != Vector3.zero)
@@ -18,7 +17,7 @@ namespace LD35 {
 
         private void OnDrawGizmos() {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, Scare.GetEscapeVector(transform.position, safeDistance));
+            Gizmos.DrawRay(transform.position, Scare.GetEscapeVector(transform.position));
         }
     }
 }

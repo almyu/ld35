@@ -167,9 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ba5dfc39477f14082181b942dddb81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0.05
+  radius: 1.5
+  power: 0.1
   speed: 5
-  safeDistance: 5
 --- !u!135 &13559932
 SphereCollider:
   m_ObjectHideFlags: 1

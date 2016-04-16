@@ -409,8 +409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4f4a524c7ef3d448e9712c1f47186a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSheep: 20
-  spawnRadius: 5
+  numSheep: 30
+  spawnRadius: 10
   sheepPrefab: {fileID: 11452900, guid: faa16df414aaa6044944c13cbb7546c3, type: 2}
 --- !u!4 &1637097872
 Transform:
@@ -493,6 +493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c525d7891722e42b315d639e92033d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 2
+  power: 0.5
   speed: 15
 --- !u!4 &1829506149
 Transform:

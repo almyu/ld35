@@ -19,19 +19,22 @@ namespace LD35 {
             list.RemoveAt(list.Count - 1);
         }
 
-        public static Vector3 GetEscapeVector(Vector3 position, float radius) {
-            var radiusSq = radius * radius;
+        public static Vector3 GetEscapeVector(Vector3 position) {
             var escape = Vector3.zero;
 
             foreach (var scare in list) {
                 var dir = position - scare.transform.position;
                 var distSq = dir.sqrMagnitude;
-                escape += (1f - Mathf.Clamp01(distSq / radiusSq)) * scare.power * dir.normalized;
+                escape += (1f - Mathf.Clamp01(distSq / scare.sqrRadius)) * scare.power * dir.normalized;
             }
             return escape;
         }
 
-        public float power = 1f;
+        public float radius = 2f, power = 1f;
+
+        public float sqrRadius {
+            get { return radius * radius; }
+        }
 
         private void OnEnable() {
             Register(this);
