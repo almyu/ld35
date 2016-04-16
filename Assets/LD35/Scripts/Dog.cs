@@ -75,13 +75,29 @@ namespace LD35
             }
         }
 
+        private float angle = 45f;
+        private void HelpFollowLostSheep()
+        {
+            angle *= -1;
+            //var lostSheep = Herd.GetLostSheep();
+            var centerOfMass = Herd.GetCenterOfMass();
+            var quat = Quaternion.AngleAxis(angle, Vector3.up);
+            var toDog = transform.position - centerOfMass;
+            toDog = quat * toDog;
+            toDog += centerOfMass;
+            _target = toDog;
+        }
+
         private void Run()
         {
             var start = transform.position;
 
             if (Vector3.Distance(start, _target) == 0)
+            {
+                HelpFollowLostSheep();
                 return;
-            
+            }
+
             transform.position = Vector3.MoveTowards(start, _target, Time.deltaTime * runSpeed);
 
             var dir = _target - start;  
