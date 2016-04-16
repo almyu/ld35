@@ -7,8 +7,7 @@ namespace LD35
     public class Dog : Scare
     {
         public float runSpeed = 6f;
-
-        private Camera _camera;
+        
         private Vector3 _target;
         
         private Shepherd _shepherd;
