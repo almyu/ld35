@@ -19,6 +19,8 @@ namespace LD35 {
                 speed = value ? balance.WolfSpeed : balance.ManSpeed;
                 radius = value ? balance.WolfScareRadius : balance.ManScareRadius;
                 power = value ? balance.WolfScariness : balance.ManScariness;
+
+                if (value) Sheep.JumpAll(30f, 140f);
             }
         }
         private bool _isWolf;
