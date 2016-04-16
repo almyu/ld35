@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numSheep: 30
-  spawnRadius: 3
+  spawnRadius: 7
   sheepPrefab: {fileID: 11452900, guid: faa16df414aaa6044944c13cbb7546c3, type: 2}
 --- !u!4 &1637097872
 Transform:
@@ -495,8 +495,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 2
   power: 0.5
-  bounceRadius: 1
-  bouncePower: 10
   speed: 5
 --- !u!4 &1829506149
 Transform:

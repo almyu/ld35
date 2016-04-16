@@ -24,9 +24,6 @@ namespace LD35 {
         public float radius = 2f, power = 1f;
         public float sqrRadius { get { return radius * radius; } }
 
-        public float bounceRadius = 1f, bouncePower = 10f;
-        public float sqrBounceRadius { get { return bounceRadius * bounceRadius; } }
-
         protected virtual void OnEnable() {
             scareList.Add(this);
         }
