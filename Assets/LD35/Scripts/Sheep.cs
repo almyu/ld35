@@ -1,5 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Sheep : MonoBehaviour {
+namespace LD35 {
+
+    public class Sheep : MonoBehaviour {
+
+        private void FixedUpdate() {
+            //
+        }
+
+        private void OnDrawGizmos() {
+            Gizmos.color = Color.green;
+            Gizmos.DrawRay(transform.position, Scare.GetEscapeVector(transform.position, 10f));
+        }
+    }
 }

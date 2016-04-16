@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Shepherd : MonoBehaviour {
+namespace LD35 {
+
+    public class Shepherd : MonoBehaviour {
+    }
 }

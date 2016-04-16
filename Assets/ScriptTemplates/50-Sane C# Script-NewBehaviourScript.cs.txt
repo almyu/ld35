@@ -1,0 +1,9 @@
+﻿using UnityEngine;
+
+namespace LD35 {
+
+    public class #SCRIPTNAME# : MonoBehaviour {
+
+
+    }
+}
