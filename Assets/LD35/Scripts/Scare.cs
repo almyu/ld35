@@ -24,7 +24,7 @@ namespace LD35 {
             var escape = Vector3.zero;
 
             foreach (var scare in list) {
-                var dir = scare.transform.position - position;
+                var dir = position - scare.transform.position;
                 var distSq = dir.sqrMagnitude;
                 escape += (1f - Mathf.Clamp01(distSq / radiusSq)) * scare.power * dir.normalized;
             }
@@ -32,5 +32,13 @@ namespace LD35 {
         }
 
         public float power = 1f;
+
+        private void OnEnable() {
+            Register(this);
+        }
+
+        private void OnDisable() {
+            Unregister(this);
+        }
     }
 }
