@@ -17,7 +17,7 @@ namespace LD35
 
         protected void Update()
         {
-            if (Input.GetMouseButtonUp(rightMouseBtn))
+            if (Input.GetMouseButtonDown(rightMouseBtn))
             {
                 var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
