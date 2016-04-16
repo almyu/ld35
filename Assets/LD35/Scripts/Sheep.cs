@@ -10,6 +10,7 @@ namespace LD35 {
         public static float groundEpsilon = 0.02f;
         public static float bounceSpeed = 5f;
 
+        public Vector3 planarPosition { get { return transform.position.WithY(0f); } }
         public bool grounded { get { return transform.position.y <= groundEpsilon; } }
         public float speed = 5f;
 
