@@ -6,25 +6,21 @@ namespace LD35
 {
     public class Dog : Scare
     {
-        private Camera _camera;
-        //private int leftMouseBtn = 0;
-        private int rightMouseBtn = 1;
-        private LayerMask island;
-        private Vector3 _target;
+        public float runSpeed = 6f;
 
-        private float runSpeed;
+        private Camera _camera;
+        private Vector3 _target;
         
         private Shepherd _shepherd;
         private bool _gameOver = false; //Remove later
 
+        private static Plane _xz = new Plane(Vector3.up, Vector3.zero);
+
         protected void Awake()
         {
-            _camera = Camera.main;
-            island = LayerMask.GetMask("Island");
-            
             runSpeed = Balance.instance.DogMoveSpeed;
-            _target = transform.position;
 
+            _target = transform.position;
             _shepherd = Shepherd.instance;
         }
 
@@ -42,12 +38,7 @@ namespace LD35
                 StartCoroutine(WaitAndAttackShepherd());
             }
 
-            if (Input.GetMouseButtonDown(rightMouseBtn))
-            {
-                RefreshTarget();
-            }
-            
-            if (Input.GetMouseButton(rightMouseBtn))
+            if (Input.GetButton("Fire2"))
             {
                 RefreshTarget();
             }
@@ -66,12 +57,11 @@ namespace LD35
             if (_shepherd.isWolf)
                 return;
 
-            var ray = _camera.ScreenPointToRay(Input.mousePosition);
-
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, float.PositiveInfinity, island))
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var dist = 0f;
+            if (_xz.Raycast(ray, out dist))
             {
-                _target = hit.point;
+                _target = ray.origin + ray.direction * dist;
             }
         }
 
