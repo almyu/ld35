@@ -10,56 +10,64 @@ namespace LD35
         private int leftMouseBtn = 0;
         private int rightMouseBtn = 1;
         private LayerMask island;
+        private Vector3 _target;
+
+        private float runSpeed;
+        private AnimationCurve runCurve;
 
         protected void Awake()
         {
             _camera = Camera.main;
             island = LayerMask.GetMask("Island");
+            
+            runSpeed = Balance.instance.DogMoveSpeed;
+            runCurve = Balance.instance.DogMoveCurve;
+            _target = transform.position;
         }
 
         protected void Update()
         {
             if (Input.GetMouseButtonDown(rightMouseBtn))
             {
-                var ray = _camera.ScreenPointToRay(Input.mousePosition);
-
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, float.PositiveInfinity, island))
-                {
-                    StopCoroutine("Run");
-                    StartCoroutine(Run(hit.point));
-                }
-
+                RefreshTarget();
             }
+
+            if (Input.GetMouseButton(rightMouseBtn))
+            {
+                RefreshTarget();
+            }
+
+            Run();
         }
 
-        private IEnumerator Run(Vector3 target, Action onComplete = null)
+        private void RefreshTarget()
         {
-            var start = transform.position;
-            var runSpeed = Balance.instance.DogMoveSpeed;
-            var runCurve = Balance.instance.DogMoveCurve;
-            var elapsed = 0f;
+            var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-            var distance = Vector3.Distance(start, target);
-            var currentSpeed = distance / runSpeed;
-            var dir = target - start;
-
-            while (Vector3.Distance(start, target) > 0)
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, float.PositiveInfinity, island))
             {
-                elapsed += Time.deltaTime;
-                var progress = elapsed / currentSpeed;
-
-                transform.position = Vector3.Lerp(start, target, runCurve.Evaluate(progress));
-
-                
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir.normalized), progress * 7);
-                yield return new WaitForEndOfFrame();
+                _target = hit.point;
             }
 
-            transform.position = target;
+            
+        }
 
-            if (onComplete != null)
-                onComplete();
+        private void Run()
+        {
+            var start = transform.position;
+
+            if (Vector3.Distance(start, _target) <= 0)
+                return;
+            
+            var distance = Vector3.Distance(start, _target);
+            var currentSpeed = distance / runSpeed;
+            var dir = _target - start;
+            
+            var progress = Time.deltaTime / currentSpeed;
+
+            transform.position = Vector3.Lerp(start, _target, runCurve.Evaluate(progress));
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir.normalized), progress * 7);
         }
     }
 }
