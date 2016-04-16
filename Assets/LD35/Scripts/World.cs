@@ -15,7 +15,7 @@ namespace LD35 {
 
         public float radius = 20.5f;
 
-        private void FixedUpdate() {
+        private void Update() {
             var radiusSq = radius * radius;
 
             foreach (var sheep in Sheep.sheepList)

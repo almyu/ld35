@@ -336,10 +336,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1.5
   power: 0.1
-  bounceRadius: 1
-  bouncePower: 20
   speed: 5
-  bounceInertia: 0.99
+  bounceSpeed: 5
+  bounceGravity: 5
+  chilloutThreshold: 0.1
+  chilloutTime: 2
+  wanderSpeedup: 0.25
+  wanderRadius: 3
+  wanderIntervalRange: {x: 0.5, y: 5}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -8,14 +8,16 @@ namespace LD35 {
         public static List<Sheep> sheepList = new List<Sheep>(16);
 
         public static float groundEpsilon = 0.02f;
-        public static float bounceSpeed = 5f;
-
-        public static float chilloutThreshold = 0.1f, chilloutTime = 2f;
-        public static float wanderSpeedup = 0.25f, wanderRadius = 3f, minWanderInterval = 0.5f, maxWanderInterval = 5f;
 
         public Vector3 planarPosition { get { return transform.position.WithY(0f); } }
         public bool grounded { get { return transform.position.y <= groundEpsilon; } }
         public float speed = 5f;
+
+        public float bounceSpeed = 1f, bounceGravity = 2f;
+
+        public float chilloutThreshold = 0.1f, chilloutTime = 2f;
+        public float wanderSpeedup = 0.25f, wanderRadius = 3f;
+        public Vector2 wanderIntervalRange = new Vector2(0.5f, 5f);
 
         private float bounce, chilloutTimer;
         private Vector3 waypoint;
@@ -30,13 +32,13 @@ namespace LD35 {
                 bounce = speed;
         }
 
-        private void FixedUpdate() {
+        private void Update() {
             var vel = Scare.GetEscapeVector(transform.position);
 
             var worry = vel.magnitude;
             if (worry > chilloutThreshold) chilloutTimer = chilloutTime;
 
-            chilloutTimer -= Time.fixedDeltaTime;
+            chilloutTimer -= Time.deltaTime;
 
             // Wander
             if (chilloutTimer < 0f) {
@@ -45,22 +47,23 @@ namespace LD35 {
 
                 if (wpDistSq < 0.2f || wpDistSq > wanderRadius * wanderRadius + 1f) {
                     waypoint = planarPosition + wanderRadius * Random.onUnitSphere.WithY(0f);
-                    chilloutTimer = Random.Range(minWanderInterval, maxWanderInterval);
+                    chilloutTimer = Random.Range(wanderIntervalRange.x, wanderIntervalRange.y);
                 }
                 else vel = wanderSpeedup / Mathf.Sqrt(wpDistSq) * toWp;
             }
 
             if (vel != Vector3.zero) {
-                transform.position += speed * Time.fixedDeltaTime * vel.WithY(0f);
+                transform.position += speed * Time.deltaTime * vel.WithY(0f);
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vel), Time.deltaTime * 7f);
 
                 if (grounded) Jump(bounceSpeed * worry);
             }
 
-            var y = Mathf.Max(0f, transform.position.y + bounce * Time.fixedDeltaTime);
-            bounce += Physics.gravity.y;
+            transform.position = transform.position.WithY(Mathf.Max(0f, transform.position.y + bounce * Time.deltaTime));
+        }
 
-            transform.position = transform.position.WithY(y);
+        private void FixedUpdate() {
+            bounce += Physics.gravity.y * bounceGravity * Time.fixedDeltaTime;
         }
 
         private void OnDrawGizmos() {
