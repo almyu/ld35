@@ -495,6 +495,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 2
   power: 0.5
+  bounceRadius: 1
+  bouncePower: 10
   speed: 15
 --- !u!4 &1829506149
 Transform:

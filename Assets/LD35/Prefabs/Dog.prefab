@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 486940}
   - 33: {fileID: 3378084}
-  - 65: {fileID: 6500592}
   - 23: {fileID: 2335618}
   m_Layer: 0
   m_Name: Cube
@@ -41,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.75, y: 0, z: -3.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 486940}
@@ -92,18 +91,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 128908}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6500592
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 128908}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11466828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,6 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 5
   power: 0.5
+  bounceRadius: 1
+  bouncePower: 20
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

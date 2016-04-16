@@ -336,7 +336,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1.5
   power: 0.1
+  bounceRadius: 1
+  bouncePower: 20
   speed: 5
+  bounceInertia: 0.99
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
