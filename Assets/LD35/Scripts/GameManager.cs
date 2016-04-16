@@ -26,7 +26,7 @@ namespace LD35 {
             }
             BulletTime.active = false;
 
-            for (var t = 0f; t < hellTime; t += Time.unscaledDeltaTime) {
+            for (var t = 0f; t <= hellTime; t += Time.unscaledDeltaTime) {
                 yield return null;
                 // break if dead
             }
