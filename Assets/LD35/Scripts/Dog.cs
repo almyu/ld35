@@ -4,7 +4,7 @@ using System;
 
 namespace LD35
 {
-    public class Dog : MonoBehaviour
+    public class Dog : Scare
     {
         private Camera _camera;
         private int leftMouseBtn = 0;
