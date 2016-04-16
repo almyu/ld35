@@ -9,19 +9,24 @@ ModelImporter:
     100002: //RootNode
     100004: ShEyes
     100006: ShHead
+    100008: ShHoofs
     400000: ShBody
     400002: //RootNode
     400004: ShEyes
     400006: ShHead
+    400008: ShHoofs
     2300000: ShBody
     2300002: ShEyes
     2300004: ShHead
+    2300006: ShHoofs
     3300000: ShBody
     3300002: ShEyes
     3300004: ShHead
+    3300006: ShHoofs
     4300000: ShBody
     4300002: ShEyes
     4300004: ShHead
+    4300006: ShHoofs
   materials:
     importMaterials: 0
     materialName: 0
