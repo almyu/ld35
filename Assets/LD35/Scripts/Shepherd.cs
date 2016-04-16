@@ -22,8 +22,6 @@ namespace LD35 {
                 speed = value ? wolfSpeed : manSpeed;
                 radius = value ? wolfScareRadius : manScareRadius;
                 power = value ? wolfScariness : manScariness;
-
-                BulletTime.active = value;
             }
         }
         private bool _isWolf;
@@ -41,9 +39,6 @@ namespace LD35 {
                 transform.position += speed * Time.unscaledDeltaTime * dir;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.unscaledDeltaTime * 7f);
             }
-
-            if (Input.GetButtonDown("Jump"))
-                isWolf = !isWolf;
         }
     }
 }
