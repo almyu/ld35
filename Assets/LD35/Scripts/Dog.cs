@@ -31,20 +31,26 @@ namespace LD35
         {
             if(_shepherd.isWolf)
             {
-                _target = _shepherd.transform.position;
+                StartCoroutine(WaitAndAttackShepherd());
             }
 
             if (Input.GetMouseButtonDown(rightMouseBtn))
             {
                 RefreshTarget();
             }
-
+            
             if (Input.GetMouseButton(rightMouseBtn))
             {
                 RefreshTarget();
             }
 
             Run();
+        }
+
+        private IEnumerator WaitAndAttackShepherd()
+        {
+            yield return new WaitForSeconds(Balance.instance.DogWaitBeforeAttackShepherd);
+            _target = _shepherd.transform.position;
         }
         
         private void RefreshTarget()

@@ -7,6 +7,7 @@ namespace LD35
     {
         [Header("Dogs Properties")]
         public float DogMoveSpeed = 1f;
+        public float DogWaitBeforeAttackShepherd = 1f;
 
         [Header("Man Traits")]
         public float ManSpeed = 15f;
