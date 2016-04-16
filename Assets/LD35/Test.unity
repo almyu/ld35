@@ -468,6 +468,7 @@ MonoBehaviour:
   wolfSpeed: 4.5
   wolfScareRadius: 6
   wolfScariness: 1
+  wolfAttackRadius: 5
   speed: 5
 --- !u!4 &1829506149
 Transform:

@@ -9,7 +9,7 @@ namespace LD35 {
         }
 
         public float manSpeed = 4.5f, manScareRadius = 3f, manScariness = 0.7f;
-        public float wolfSpeed = 4.5f, wolfScareRadius = 6f, wolfScariness = 1f;
+        public float wolfSpeed = 4.5f, wolfScareRadius = 6f, wolfScariness = 1f, wolfAttackRadius = 3f;
 
         [HideInInspector]
         public float speed = 4f;
@@ -44,6 +44,24 @@ namespace LD35 {
 
             if (Input.GetButtonDown("Jump"))
                 isWolf = !isWolf;
+
+            if (Input.GetButton("Fire1") && isWolf)
+            {
+                AttackClosestSheep();
+            }
+            
+        }
+
+        private void AttackClosestSheep()
+        {
+            var closestSheep = GetClosestScare(transform.position, wolfAttackRadius);
+            if (!closestSheep)
+                return;
+
+            transform.position = transform.position.WithXZ(closestSheep.transform.position.x, closestSheep.transform.position.z);
+
+            SheepCounter.instance.AddEatenSheep(1);
+            Destroy(closestSheep.gameObject);
         }
     }
 }

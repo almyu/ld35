@@ -21,6 +21,17 @@ namespace LD35 {
             return escape;
         }
 
+        public static Sheep GetClosestScare(Vector3 shepherdPosition, float distance)
+        {
+            foreach (var sheep in Sheep.sheepList)
+            {
+                if (Vector3.Distance(sheep.transform.position, shepherdPosition) <= distance) 
+                    return sheep;
+            }
+
+            return default(Sheep);
+        }
+
         public float radius = 2f, power = 1f;
         public float sqrRadius { get { return radius * radius; } }
 
