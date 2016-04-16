@@ -5,33 +5,33 @@ namespace LD35 {
 
     public class Sheep : Scare {
 
-        public float speed = 5f;
-        public float bounceInertia = 0.95f;
+        public static float groundEpsilon = 0.02f;
+        public static float bounceSpeed = 5f;
 
-        private Vector3 bounce;
+        public bool grounded { get { return transform.position.y <= groundEpsilon; } }
+        public float speed = 5f;
+
+        private float bounce;
 
         private void FixedUpdate() {
-            Vector3 vel;
-            Scare.GetEscapeVector(transform.position, out vel, out bounce);
+            var vel = Scare.GetEscapeVector(transform.position);
 
             if (vel != Vector3.zero) {
                 transform.position += speed * Time.fixedDeltaTime * vel.WithY(0f);
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vel), Time.deltaTime * 7f);
+
+                if (grounded) bounce = bounceSpeed * vel.magnitude;
             }
 
-            transform.position += Time.deltaTime * bounce.WithY(0f);
-            bounce *= bounceInertia;
+            var y = Mathf.Max(0f, transform.position.y + bounce * Time.fixedDeltaTime);
+            bounce += Physics.gravity.y;
+
+            transform.position = transform.position.WithY(y);
         }
 
         private void OnDrawGizmos() {
-            Vector3 vel, bnc;
-            Scare.GetEscapeVector(transform.position, out vel, out bnc);
-
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, vel);
-
-            Gizmos.color = Color.blue;
-            Gizmos.DrawRay(transform.position, bnc);
+            Gizmos.DrawRay(transform.position, Scare.GetEscapeVector(transform.position));
         }
     }
 }
