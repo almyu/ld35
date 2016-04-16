@@ -1,11 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace LD35 {
 
     public class Shepherd : Scare {
 
         public float speed = 4f;
+
+        public bool isWolf {
+            get { return _isWolf; }
+            set {
+                _isWolf = value;
+
+                var balance = Balance.instance;
+                speed = value ? balance.WolfSpeed : balance.ManSpeed;
+                radius = value ? balance.WolfScareRadius : balance.ManScareRadius;
+                power = value ? balance.WolfScariness : balance.ManScariness;
+            }
+        }
+        private bool _isWolf;
 
         private void Update() {
             var axes = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
@@ -20,6 +32,9 @@ namespace LD35 {
                 transform.position += dir * Time.deltaTime;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 7f);
             }
+
+            if (Input.GetButtonDown("Jump"))
+                isWolf = !isWolf;
         }
     }
 }
