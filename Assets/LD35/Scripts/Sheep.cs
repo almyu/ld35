@@ -12,7 +12,7 @@ namespace LD35 {
             transform.position += speed * Time.fixedDeltaTime * vel.WithY(0f);
 
             if (vel != Vector3.zero)
-                transform.forward = vel.normalized;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vel), Time.deltaTime * 7f);
         }
 
         private void OnDrawGizmos() {
