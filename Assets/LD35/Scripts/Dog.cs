@@ -15,6 +15,7 @@ namespace LD35
         private float runSpeed;
         
         private Shepherd _shepherd;
+        private bool _gameOver = false; //Remove later
 
         protected void Awake()
         {
@@ -31,6 +32,13 @@ namespace LD35
         {
             if(_shepherd.isWolf)
             {
+                if (Vector3.Distance(transform.position, _shepherd.transform.position) <= Balance.instance.DogAttackRange
+                    && _gameOver == false)
+                {
+                    _gameOver = true;
+                    Debug.Log("GAME OVER: you dead, all your friends are dead, your family is dead, your cat is dead..etc");
+                }
+
                 StartCoroutine(WaitAndAttackShepherd());
             }
 
