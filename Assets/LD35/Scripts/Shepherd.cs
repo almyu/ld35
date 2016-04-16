@@ -8,6 +8,10 @@ namespace LD35 {
             get { return JamSuite.SingletonHelper<Shepherd>.instance; }
         }
 
+        public float manSpeed = 4.5f, manScareRadius = 3f, manScariness = 0.7f;
+        public float wolfSpeed = 4.5f, wolfScareRadius = 6f, wolfScariness = 1f;
+
+        [HideInInspector]
         public float speed = 4f;
 
         public bool isWolf {
@@ -15,16 +19,13 @@ namespace LD35 {
             set {
                 _isWolf = value;
 
-                var balance = Balance.instance;
-                speed = value ? balance.WolfSpeed : balance.ManSpeed;
-                radius = value ? balance.WolfScareRadius : balance.ManScareRadius;
-                power = value ? balance.WolfScariness : balance.ManScariness;
-
-                if (value) Sheep.JumpAll(30f, 140f);
+                speed = value ? wolfSpeed : manSpeed;
+                radius = value ? wolfScareRadius : manScareRadius;
+                power = value ? wolfScariness : manScariness;
             }
         }
         private bool _isWolf;
-
+        
         private void Update() {
             var axes = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
             axes.Normalize();

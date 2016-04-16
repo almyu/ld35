@@ -7,9 +7,16 @@ namespace LD35
     public class Dog : Scare
     {
         public float runSpeed = 6f;
+        public float attackDelay = 1f;
+        public float attackRange = 0.5f;
+
+        public Vector3 target {
+            get { return _target; }
+            set { _target = World.Clamp(value); }
+        }
+        private Vector3 _target;
 
         private Camera _camera;
-        private Vector3 _target;
         
         private Shepherd _shepherd;
         private bool _gameOver = false; //Remove later
@@ -18,9 +25,7 @@ namespace LD35
 
         protected void Awake()
         {
-            runSpeed = Balance.instance.DogMoveSpeed;
-
-            _target = transform.position;
+            target = transform.position;
             _shepherd = Shepherd.instance;
         }
 
@@ -28,7 +33,7 @@ namespace LD35
         {
             if(_shepherd.isWolf)
             {
-                if (Vector3.Distance(transform.position, _shepherd.transform.position) <= Balance.instance.DogAttackRange
+                if (Vector3.Distance(transform.position, _shepherd.transform.position) <= attackRange
                     && _gameOver == false)
                 {
                     _gameOver = true;
@@ -48,8 +53,8 @@ namespace LD35
 
         private IEnumerator WaitAndAttackShepherd()
         {
-            yield return new WaitForSeconds(Balance.instance.DogWaitBeforeAttackShepherd);
-            _target = _shepherd.transform.position;
+            yield return new WaitForSeconds(attackDelay);
+            target = _shepherd.transform.position;
         }
         
         private void RefreshTarget()
@@ -60,9 +65,7 @@ namespace LD35
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             var dist = 0f;
             if (_xz.Raycast(ray, out dist))
-            {
-                _target = ray.origin + ray.direction * dist;
-            }
+                target = ray.origin + ray.direction * dist;
         }
 
         private float angle = 45f;
@@ -73,22 +76,22 @@ namespace LD35
             var planarPos = transform.position.WithY(0f);
             var radius = planarPos.magnitude;
 
-            _target = Quaternion.AngleAxis(angle * Mathf.PI * 2f / radius, Vector3.up) * planarPos;
+            target = Quaternion.AngleAxis(angle * Mathf.PI * 2f / radius, Vector3.up) * planarPos;
         }
 
         private void Run()
         {
             var start = transform.position;
 
-            if (Vector3.Distance(start, _target) == 0)
+            if (start == target)
             {
                 HelpFollowLostSheep();
                 return;
             }
 
-            transform.position = Vector3.MoveTowards(start, _target, Time.deltaTime * runSpeed);
+            transform.position = Vector3.MoveTowards(start, target, Time.deltaTime * runSpeed);
 
-            var dir = _target - start;  
+            var dir = target - start;  
             if (dir.sqrMagnitude > 0.015f)
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * runSpeed);
         }
