@@ -13,9 +13,8 @@ namespace LD35
         private Vector3 _target;
 
         private float runSpeed;
-
-        private Transform _shepherd;
-        private bool _isWerewolf = false;
+        
+        private Shepherd _shepherd;
 
         protected void Awake()
         {
@@ -25,14 +24,14 @@ namespace LD35
             runSpeed = Balance.instance.DogMoveSpeed;
             _target = transform.position;
 
-            _shepherd = GameObject.Find("Shepherd").transform;
+            _shepherd = Shepherd.instance;
         }
 
         protected void Update()
         {
-            if(Input.GetKeyDown(KeyCode.F))
+            if(_shepherd.isWolf)
             {
-                OnShepherdShift();
+                _target = _shepherd.transform.position;
             }
 
             if (Input.GetMouseButtonDown(rightMouseBtn))
@@ -47,16 +46,10 @@ namespace LD35
 
             Run();
         }
-
-        public void OnShepherdShift()
-        {
-            _isWerewolf = !_isWerewolf;
-            _target = _shepherd.position;
-        }
-
+        
         private void RefreshTarget()
         {
-            if (_isWerewolf)
+            if (_shepherd.isWolf)
                 return;
 
             var ray = _camera.ScreenPointToRay(Input.mousePosition);
