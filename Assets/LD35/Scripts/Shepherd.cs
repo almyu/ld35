@@ -39,10 +39,7 @@ namespace LD35 {
                 transform.position += speed * Time.unscaledDeltaTime * dir;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.unscaledDeltaTime * 7f);
             }
-
-            if (Input.GetButtonDown("Jump"))
-                isWolf = !isWolf;
-
+            
             if (Input.GetButton("Fire1") && isWolf)
             {
                 AttackClosestSheep();
