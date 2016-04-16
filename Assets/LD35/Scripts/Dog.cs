@@ -16,7 +16,7 @@ namespace LD35
         
         private Shepherd _shepherd;
         private bool _gameOver = false; //Remove later
-
+        private Vector3 worldCenter = Vector3.zero;
         protected void Awake()
         {
             _camera = Camera.main;
@@ -80,11 +80,11 @@ namespace LD35
         {
             angle *= -1;
             //var lostSheep = Herd.GetLostSheep();
-            var centerOfMass = Herd.GetCenterOfMass();
+            //var centerOfMass = Herd.GetCenterOfMass();
             var quat = Quaternion.AngleAxis(angle, Vector3.up);
-            var toDog = transform.position - centerOfMass;
+            var toDog = transform.position - worldCenter;
             toDog = quat * toDog;
-            toDog += centerOfMass;
+            toDog += worldCenter;
             _target = toDog;
         }
 
