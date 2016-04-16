@@ -14,7 +14,10 @@ namespace LD35 {
 
         private void FixedUpdate() {
             velocity += Physics.gravity * Time.fixedDeltaTime;
-            transform.position += velocity * Time.fixedDeltaTime;
+        }
+
+        private void Update() {
+            transform.position += velocity * Time.deltaTime;
         }
     }
 }
