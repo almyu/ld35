@@ -40,7 +40,7 @@ namespace LD35 {
         }
 
         public void Eat() {
-            SheepCounter.instance.AddEatenSheep(1);
+            SheepCounter.instance.EatSheep();
             Destroy(gameObject);
         }
 

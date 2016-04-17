@@ -7,12 +7,15 @@ namespace LD35 {
     public class GameManager : MonoSingleton<GameManager> {
 
         public static Shepherd shepherd { get { return Shepherd.instance; } }
-        public static UIManager ui { get { return UIManager.instance; } }
 
         public float stomach = 1f, hungerTime= 30f;
         public float manualShapeshiftThreshold = 0.5f;
         public bool canShapeshift { get { return stomach <= manualShapeshiftThreshold; } }
         public float bulletTime = 2f, hellTime = 3f;
+
+        private void Start() {
+            UIManager.SetupSheep(Herd.instance.numSheep);
+        }
 
         private void Update() {
             if(!shepherd.gameObject.activeInHierarchy) {
@@ -43,12 +46,12 @@ namespace LD35 {
 
             UIManager.SetShapeshiftAvailable(false);
 
-            var lastEatenSheep = SheepCounter.instance.EatenSheep;
+            var lastEatenSheep = SheepCounter.instance.eatenSheep;
 
             for (var t = 0f; t <= bulletTime; t += Time.unscaledDeltaTime) {
                 UIManager.SetNormalizedTime(t / bulletTime);
                 yield return null;
-                if (SheepCounter.instance.EatenSheep != lastEatenSheep) break;
+                if (SheepCounter.instance.eatenSheep != lastEatenSheep) break;
             }
             BulletTime.active = false;
 
