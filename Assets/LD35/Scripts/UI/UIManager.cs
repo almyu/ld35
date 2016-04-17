@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 
@@ -21,6 +22,7 @@ namespace LD35 {
 
         private void Awake() {
             gameOverWindow.SetActive(false);
+            restartButton.onClick.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
         }
 
         public static void SetStomach(float stomach) {
@@ -93,6 +95,10 @@ namespace LD35 {
                 var graphic = child.GetComponent<Graphic>();
                 if (graphic) graphic.color = instance.lostSheepColor;
             }
+        }
+
+        public void ShowGameOverWindow() {
+            gameOverWindow.SetActive(true);
         }
     }
 }
