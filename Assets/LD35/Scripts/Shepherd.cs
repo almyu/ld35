@@ -78,18 +78,10 @@ namespace LD35 {
         }
 
         private void ShiftShape() {
-            if (isDead) {
-                return;
-            }
+            if (isDead) return;
 
-            if (isWolf) {
-                shepherdGO.SetActive(false);
-                werewolfGO.SetActive(true);
-            }
-            else {
-                shepherdGO.SetActive(true);
-                werewolfGO.SetActive(false);
-            }
+            shepherdGO.SetActive(!isWolf);
+            werewolfGO.SetActive(isWolf);
         }
 
         public bool AttackClosestSheep() {

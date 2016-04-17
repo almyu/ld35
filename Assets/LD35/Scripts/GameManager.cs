@@ -12,20 +12,15 @@ namespace LD35 {
         public float stomach = 1f, hungerTime= 30f;
         public float manualShapeshiftThreshold = 0.5f;
         public bool canShapeshift { get { return stomach <= manualShapeshiftThreshold; } }
-        public float bulletTime = 2f, hellTime = 3f;
+        public float bulletTimeScale = 0.1f, bulletTime = 2f, hellTime = 3f;
         
         private void Start() {
             UIManager.SetupSheep(Herd.instance.numSheep);
         }
 
         private void Update() {
-            if(!shepherd.gameObject.activeInHierarchy) {
-                GameOver();
-            }
-
-            if (SheepCounter.instance.IsAllSheepDead()) {
-                GameOver();
-            }
+            if (!shepherd.gameObject.activeInHierarchy) GameOver();
+            if (SheepCounter.instance.IsAllSheepDead()) GameOver();
 
             if (!shepherd.isWolf) {
                 stomach = Mathf.Clamp01(stomach - Time.deltaTime / hungerTime);
@@ -45,8 +40,12 @@ namespace LD35 {
             }
         }
 
+        private void OnDestroy() {
+            Time.timeScale = 1f;
+        }
+
         private IEnumerator DoShapeshift() {
-            BulletTime.active = true;
+            Time.timeScale = bulletTimeScale;
             shepherd.isWolf = true;
 
             UIManager.SetShapeshiftAvailable(false);
@@ -58,7 +57,7 @@ namespace LD35 {
                 yield return null;
                 if (SheepCounter.instance.eatenSheep != lastEatenSheep) break;
             }
-            BulletTime.active = false;
+            Time.timeScale = 1f;
 
             for (var t = 0f; t <= hellTime; t += Time.unscaledDeltaTime) {
                 UIManager.SetNormalizedTime(t / hellTime);
