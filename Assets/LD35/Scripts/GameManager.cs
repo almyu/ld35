@@ -14,6 +14,7 @@ namespace LD35 {
         public bool canShapeshift { get { return stomach <= manualShapeshiftThreshold; } }
         public float bulletTime = 2f, hellTime = 3f;
 
+        public GameObject GameOverWindow;
         public Button RestartBtn;
 
         private void Start() {
