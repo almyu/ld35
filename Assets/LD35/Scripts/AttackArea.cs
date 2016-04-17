@@ -35,7 +35,7 @@ namespace LD35 {
             if (!victim) return false;
 
             // HACK
-            Shepherd.instance.transform.position = victim.planarPosition.WithY(transform.position.y);
+            Shepherd.instance.transform.position = victim.planarPosition;
 
             victim.Eat();
             return true;
