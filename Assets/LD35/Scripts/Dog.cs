@@ -9,6 +9,7 @@ namespace LD35
         public float runSpeed = 6f;
         public float herdingRadiusPrio = 1f;
         public float herdingDistPrio = 2f;
+        public float herdingExtraRadius = 2f;
         public float attackDelay = 1f;
         public float attackRange = 0.5f;
 
@@ -20,7 +21,6 @@ namespace LD35
 
         private Camera _camera;
         
-        private Shepherd _shepherd;
         private bool _gameOver = false; //Remove later
 
         private static Plane _xz = new Plane(Vector3.up, Vector3.zero);
@@ -28,7 +28,6 @@ namespace LD35
         protected void Awake()
         {
             target = _position = transform.position;
-            _shepherd = Shepherd.instance;
         }
 
         protected void Update()
@@ -90,8 +89,20 @@ namespace LD35
             var polarPosition = World.GetPolar(planarPosition);
             var herdingTarget = HerdingTactics.FindTarget(polarPosition, herdingRadiusPrio, herdingDistPrio);
 
-            polarPosition.x = Mathf.MoveTowards(polarPosition.x, herdingTarget.polarPosition.x += 2f, runSpeed * Time.deltaTime);
-            polarPosition.y = Mathf.MoveTowardsAngle(polarPosition.y, herdingTarget.polarPosition.y, runSpeed / polarPosition.x * Mathf.Rad2Deg * Time.deltaTime);
+            var polarSpeed = new Vector2(
+                Mathf.Abs(herdingTarget.polarPosition.x + herdingExtraRadius - polarPosition.x),
+                World.AngularDistance(polarPosition.y, herdingTarget.polarPosition.y));
+
+            polarSpeed.y *= Mathf.Deg2Rad * polarPosition.x;
+
+            if (polarSpeed.sqrMagnitude > 1.1f)
+                polarSpeed.Normalize();
+
+            polarSpeed.y *= Mathf.Rad2Deg / polarPosition.x;
+            polarSpeed *= runSpeed * Time.deltaTime;
+
+            polarPosition.x = Mathf.MoveTowards(polarPosition.x, herdingTarget.polarPosition.x + herdingExtraRadius, polarSpeed.x);
+            polarPosition.y = Mathf.MoveTowardsAngle(polarPosition.y, herdingTarget.polarPosition.y, polarSpeed.y);
             transform.position = World.GetPlanar(polarPosition);
         }
 
@@ -107,8 +118,15 @@ namespace LD35
             Gizmos.DrawWireSphere(herdingTarget.sheep.planarPosition, 1f);
 
             var polarPos = World.GetPolar(planarPosition);
-            var angularDiff = World.AngularDiff(polarPos.y, herdingTarget.polarPosition.y);
-            UnityEditor.Handles.Label(herdingTarget.sheep.planarPosition.WithY(2.5f), string.Format("{0:n0}°", angularDiff));
+            var angularDiff = Mathf.DeltaAngle(polarPos.y, herdingTarget.polarPosition.y);
+
+            var polarSpeed = new Vector2(
+                Mathf.Abs(herdingTarget.polarPosition.x + herdingExtraRadius - polarPosition.x),
+                World.AngularDistance(polarPosition.y, herdingTarget.polarPosition.y));
+
+            polarSpeed.y *= Mathf.Deg2Rad * polarPosition.x;
+
+            UnityEditor.Handles.Label(herdingTarget.sheep.planarPosition.WithY(2.5f), string.Format("{0:n0}°\n{1}", angularDiff, polarSpeed));
         }
 #endif
     }
