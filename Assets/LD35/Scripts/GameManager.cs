@@ -14,8 +14,13 @@ namespace LD35 {
         public bool canShapeshift { get { return stomach <= manualShapeshiftThreshold; } }
         public float bulletTime = 2f, hellTime = 3f;
 
-        public GameObject GameOverWindow;
-        public Button RestartBtn;
+        //public GameObject GameOverWindow;
+        //public Button RestartBtn;
+
+        private void Awake() {
+            GameOverWindow.SetActive(false);
+            RestartBtn.onClick.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
+        }
 
         private void Start() {
             UIManager.SetupSheep(Herd.instance.numSheep);
@@ -75,7 +80,7 @@ namespace LD35 {
 
         private void GameOver() {
             //Show 'restart' button here
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameOverWindow.SetActive(true);
         }
     }
 }
