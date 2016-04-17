@@ -28,8 +28,8 @@ ModelImporter:
     4300004: ShHead
     4300006: ShHoofs
   materials:
-    importMaterials: 0
-    materialName: 0
+    importMaterials: 1
+    materialName: 1
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
