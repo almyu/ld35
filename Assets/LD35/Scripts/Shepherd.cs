@@ -49,9 +49,9 @@ namespace LD35 {
         private float elapsed = 0f;
         private void Update() {
             if (isDead) {
-                werewolfAnimator.SetTrigger("IsDead");
+                
                 elapsed += Time.unscaledDeltaTime;
-                if (elapsed >= 5f) {
+                if (elapsed >= 8f) {
                     this.gameObject.SetActive(false);
                 }
                 return;
@@ -81,13 +81,13 @@ namespace LD35 {
                 shepherdGO.SetActive(false);
                 werewolfGO.SetActive(true);
                 
-                werewolfAnimator = werewolfGO.GetComponent<Animator>();
+                //werewolfAnimator = werewolfGO.GetComponent<Animator>();
             }
             else {
                 shepherdGO.SetActive(true);
                 werewolfGO.SetActive(false);
 
-                shepherdAnimator = shepherdGO.GetComponent<Animator>();
+                //shepherdAnimator = shepherdGO.GetComponent<Animator>();
             }
         }
 
@@ -97,6 +97,7 @@ namespace LD35 {
 
         public void Die() {
             isDead = true;
+            werewolfAnimator.SetTrigger("IsDead");
         }
     }
 }
