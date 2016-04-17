@@ -1221,7 +1221,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110026}
-  m_LocalRotation: {x: 0.9976055, y: -0.00000004122411, z: -0.00000059462695, w: 0.06916095}
+  m_LocalRotation: {x: 0.99760556, y: -0.000000041224112, z: -0.000000594627, w: 0.06916096}
   m_LocalPosition: {x: -0, y: 0.00419172, z: 0.0061667776}
   m_LocalScale: {x: 1, y: 1, z: 1.0000086}
   m_Children:
@@ -1851,9 +1851,12 @@ MonoBehaviour:
   manSpeed: 4.5
   manScareRadius: 3
   manScariness: 0.7
-  wolfSpeed: 4.5
+  manAnimationSpeed: 1.5
+  wolfSpeed: 5.5
   wolfScareRadius: 6
   wolfScariness: 1
+  wolfAnimationSpeed: 1.5
+  PauseAfterDeadInSec: 5
   attackArea: {fileID: 11412582}
   shepherdGO: {fileID: 154194}
   werewolfGO: {fileID: 167238}

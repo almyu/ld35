@@ -67,7 +67,7 @@ ModelImporter:
     9500000: //RootNode
     13700000: HumBody
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -90,7 +90,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.25
+    globalScale: 0.35
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -277,132 +277,132 @@ ModelImporter:
       scale: {x: 100, y: 100, z: 100}
       transformModified: 1
     - name: Base
-      position: {x: 0.0018459501, y: -7.1072936e-10, z: 0.0054407357}
+      position: {x: 0.0025843303, y: -9.950211e-10, z: 0.00761703}
       rotation: {x: 0.6261528, y: -0.32853127, z: 0.32853127, w: 0.6261526}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Hip.l
-      position: {x: -1.8626439e-10, y: 0.001199408, z: -8.881784e-18}
+      position: {x: -2.6077016e-10, y: 0.0016791711, z: -1.24344974e-17}
       rotation: {x: 0.7200422, y: -0.5420049, z: 0.13998851, w: -0.41008914}
       scale: {x: 1, y: 1, z: 0.99999994}
       transformModified: 1
     - name: Leg1.l
-      position: {x: 5.5879353e-11, y: 0.0017449566, z: -2.1944288e-10}
+      position: {x: 7.8231095e-11, y: 0.0024429392, z: -3.0722003e-10}
       rotation: {x: -0.33196732, y: -0.3155994, z: 0.103679396, w: 0.882862}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Leg2.l
-      position: {x: -1.3969838e-11, y: 0.0021769255, z: -1.2107193e-10}
+      position: {x: -1.9557774e-11, y: 0.0030476956, z: -1.695007e-10}
       rotation: {x: -0.21743889, y: -0.027541088, z: -0.160004, w: 0.96247625}
       scale: {x: 1, y: 0.9999999, z: 0.9999998}
       transformModified: 1
     - name: Foot.l
-      position: {x: -1.2107193e-10, y: 0.0026647588, z: 1.0244548e-10}
+      position: {x: -1.695007e-10, y: 0.0037306624, z: 1.4342368e-10}
       rotation: {x: 0.7400085, y: -0.123113416, z: 0.2951232, w: 0.5917203}
       scale: {x: 0.9999998, y: 0.99999976, z: 0.9999999}
       transformModified: 1
     - name: Foot.l_end
-      position: {x: -0, y: 0.0022061074, z: 0}
+      position: {x: -0, y: 0.0030885502, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Hip.r
-      position: {x: -1.8983694e-10, y: 0.001199408, z: -0.000021658057}
+      position: {x: -2.657717e-10, y: 0.0016791711, z: -0.00003032128}
       rotation: {x: -0.38635823, y: 0.6691258, z: 0.6235261, w: 0.11921912}
       scale: {x: 0.99999994, y: 0.9999998, z: 0.9999999}
       transformModified: 1
     - name: Leg1.r
-      position: {x: 4.4237822e-10, y: 0.0017449568, z: -3.7252902e-11}
+      position: {x: 6.193295e-10, y: 0.0024429394, z: -5.2154062e-11}
       rotation: {x: 0.043324947, y: 0.22540149, z: -0.34507176, w: 0.91007835}
       scale: {x: 1.0000001, y: 1, z: 1.0000001}
       transformModified: 1
     - name: Leg2.r
-      position: {x: 4.6566126e-11, y: 0.0021769267, z: 4.6566126e-11}
+      position: {x: 6.5192574e-11, y: 0.0030476972, z: 6.5192574e-11}
       rotation: {x: -0.21777064, y: 0.0027531588, z: -0.1595521, w: 0.9628663}
       scale: {x: 1, y: 1, z: 0.99999994}
       transformModified: 1
     - name: Foot.r
-      position: {x: 4.6566128e-12, y: 0.0026647588, z: -2.9802322e-10}
+      position: {x: 6.519258e-12, y: 0.0037306624, z: -4.172325e-10}
       rotation: {x: 0.783618, y: -0.19948699, z: 0.16766985, w: 0.56394565}
       scale: {x: 1, y: 1, z: 0.99999994}
       transformModified: 1
     - name: Foot.r_end
-      position: {x: -0, y: 0.0022061074, z: 0}
+      position: {x: -0, y: 0.0030885502, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Torso1
-      position: {x: -1.8626439e-10, y: 0.001199408, z: -8.881784e-18}
+      position: {x: -2.6077016e-10, y: 0.0016791711, z: -1.24344974e-17}
       rotation: {x: -0.3071362, y: -0.63692003, z: -0.30713597, w: 0.6369205}
       scale: {x: 0.99999994, y: 0.9999998, z: 0.9999999}
       transformModified: 1
     - name: Torso2
-      position: {x: -0, y: 0.001517175, z: -1.4901243e-10}
+      position: {x: -0, y: 0.002124045, z: -2.086174e-10}
       rotation: {x: 0.000000007936895, y: 0.99883777, z: 0.048198897, w: -0.0000012686828}
       scale: {x: 1, y: 0.9999998, z: 1}
       transformModified: 1
     - name: Neck
-      position: {x: 1.4210854e-16, y: 0.0011765324, z: -3.7254998e-11}
+      position: {x: 1.9895196e-16, y: 0.0016471453, z: -5.2156997e-11}
       rotation: {x: 0.03804236, y: -0.017412223, z: -0.0035901654, w: 0.999118}
       scale: {x: 1, y: 0.9999999, z: 1}
       transformModified: 1
     - name: Head
-      position: {x: 3.783498e-12, y: 0.0012636783, z: -1.5377737e-10}
+      position: {x: 5.296897e-12, y: 0.0017691496, z: -2.1528831e-10}
       rotation: {x: -0.006812856, y: 0.95261186, z: 0.065983705, w: -0.29686764}
       scale: {x: 0.99999994, y: 1.0000001, z: 0.9999999}
       transformModified: 1
     - name: Head_end
-      position: {x: -0, y: 0.002821918, z: 0}
+      position: {x: -0, y: 0.0039506853, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Shoulder.l
-      position: {x: 1.4210854e-16, y: 0.0011765324, z: -3.7254998e-11}
+      position: {x: 1.9895196e-16, y: 0.0016471453, z: -5.2156997e-11}
       rotation: {x: 0.5037741, y: 0.39803264, z: 0.61359334, w: -0.45965752}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
       transformModified: 1
     - name: Hand1.;
-      position: {x: -0.00005, y: 0.00273, z: 0.00067}
+      position: {x: -0.000069999995, y: 0.003822, z: 0.000938}
       rotation: {x: 0.08755828, y: -0.00415613, z: 0.024505144, w: 0.9958493}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Hand2.l
-      position: {x: -0.000000093451234, y: 0.0024418943, z: -0.000000115255354}
+      position: {x: -0.00000013083172, y: 0.0034186519, z: -0.00000016135749}
       rotation: {x: 0.030956753, y: 0.3091515, z: 0.060896106, w: 0.9485562}
       scale: {x: 1, y: 0.9999999, z: 0.99999994}
       transformModified: 1
     - name: Wrist.l
-      position: {x: 0.000000010159339, y: 0.0025511836, z: -0.0000003251046}
+      position: {x: 0.000000014223074, y: 0.003571657, z: -0.00000045514642}
       rotation: {x: -0.21695901, y: -0.8578241, z: -0.01506199, w: -0.46566063}
       scale: {x: 0.99999994, y: 1, z: 0.99999994}
       transformModified: 1
     - name: Wrist.l_end
-      position: {x: -0, y: 0.0012180873, z: 0}
+      position: {x: -0, y: 0.0017053222, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Shoulder.r
-      position: {x: 0.00002165918, y: 0.0011765324, z: -1.0151036e-12}
+      position: {x: 0.000030322852, y: 0.0016471453, z: -1.421145e-12}
       rotation: {x: 0.4569334, y: -0.33679363, z: 0.6492278, w: 0.5062462}
       scale: {x: 0.99999994, y: 0.9999999, z: 0.9999999}
       transformModified: 1
     - name: Hand1.r
-      position: {x: 0.00032, y: 0.00284, z: -0.00063}
+      position: {x: 0.00044799998, y: 0.003976, z: -0.000882}
       rotation: {x: -0.08823337, y: -0.019201526, z: -0.021950454, w: 0.9956728}
       scale: {x: 1, y: 1.0000001, z: 1}
       transformModified: 1
     - name: Hand2.r
-      position: {x: 4.6566126e-11, y: 0.00244175, z: -0.0000000011920929}
+      position: {x: 6.5192574e-11, y: 0.0034184498, z: -0.00000000166893}
       rotation: {x: 0.046684444, y: 0.99234957, z: -0.030665725, w: 0.110102214}
       scale: {x: 1, y: 1.0000004, z: 1}
       transformModified: 1
     - name: Wrist.r
-      position: {x: 3.7252902e-11, y: 0.0025509994, z: 2.3283064e-10}
+      position: {x: 5.2154062e-11, y: 0.003571399, z: 3.259629e-10}
       rotation: {x: 0.019776542, y: 0.48138082, z: 0.0062671807, w: 0.876266}
       scale: {x: 1.0000001, y: 1, z: 1.0000001}
       transformModified: 1
     - name: Wrist.r_end
-      position: {x: -0, y: 0.0012180873, z: 0}
+      position: {x: -0, y: 0.0017053222, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
