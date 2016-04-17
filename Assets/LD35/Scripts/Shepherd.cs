@@ -54,12 +54,13 @@ namespace LD35 {
             shepherdAnimator.SetFloat("Speed", speed * axes.magnitude);
         }
 
-        public void AttackClosestSheep() {
+        public bool AttackClosestSheep() {
             var target = Sheep.GetAnyInRange(planarPosition, wolfAttackRadius);
-            if (!target) return;
+            if (!target) return false;
 
             target.Eat();
             transform.position = target.planarPosition.WithY(transform.position.y);
+            return true;
         }
     }
 }

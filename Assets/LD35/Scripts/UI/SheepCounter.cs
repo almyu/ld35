@@ -6,8 +6,8 @@ namespace LD35 {
 
     public class SheepCounter : MonoSingleton<SheepCounter> {
 
-        [FormerlySerializedAs("LostSheepsTxt")] public Text LostSheepTxt;
-        [FormerlySerializedAs("EatenSheepsTxt")] public Text EatenSheepTxt;
+        [FormerlySerializedAs("LostSheepsTxt")]
+        public Text DebugText;
 
 
         public void AddEatenSheep(int value)
@@ -20,36 +20,12 @@ namespace LD35 {
             LostSheep += value;
         }
 
-        private int _eatenSheep;
-        public int EatenSheep
-        {
-            get { return _eatenSheep; }
-            set
-            {
-                _eatenSheep = value;
-                RefreshEatenText();
-            }
-        }
+        public int EatenSheep, LostSheep;
 
-        private int _lostSheep;
-        public int LostSheep
+        private void Update()
         {
-            get { return _lostSheep; }
-            set
-            {
-                _lostSheep = value;
-                RefreshLostText();
-            }
-        }
-
-        private void RefreshEatenText()
-        {
-            EatenSheepTxt.text = "Eaten: " + EatenSheep.ToString("00");
-        }
-
-        private void RefreshLostText()
-        {
-            LostSheepTxt.text = "Lost: " + LostSheep.ToString("00");
+            DebugText.text = string.Format("Eaten: {0:d2}\nLost: {1:d2}\nStomach: {2:p}\n{3}",
+                EatenSheep, LostSheep, GameManager.instance.stomach, GameManager.instance.canShapeshift ? "Can shapeshift" : "");
         }
     }
 }

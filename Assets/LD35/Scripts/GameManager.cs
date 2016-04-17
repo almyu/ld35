@@ -9,14 +9,22 @@ namespace LD35 {
             get { return Shepherd.instance; }
         }
 
+        public float stomach = 1f, hungerTime= 30f;
+        public float manualShapeshiftThreshold = 0.5f;
+        public bool canShapeshift { get { return stomach <= manualShapeshiftThreshold; } }
         public float bulletTime = 2f, hellTime = 3f;
 
         private void Update() {
-            if (Input.GetButtonDown("Jump") && !shepherd.isWolf)
-                StartCoroutine(DoShapeshift());
+            if (!shepherd.isWolf) {
+                stomach = Mathf.Clamp01(stomach - Time.deltaTime / hungerTime);
 
-            if (Input.GetButtonDown("Fire1") && shepherd.isWolf)
-                shepherd.AttackClosestSheep();
+                if (stomach == 0f || (canShapeshift && Input.GetButtonDown("Jump")))
+                    StartCoroutine(DoShapeshift());
+            }
+            else if (Input.GetButtonDown("Fire1")) {
+                if (shepherd.AttackClosestSheep())
+                    stomach = 1f;
+            }
         }
 
         private IEnumerator DoShapeshift() {
