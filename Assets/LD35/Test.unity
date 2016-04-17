@@ -320,6 +320,7 @@ MonoBehaviour:
   manualShapeshiftThreshold: 0.5
   bulletTime: 2
   hellTime: 3
+  RestartBtn: {fileID: 0}
 --- !u!4 &1538427298
 Transform:
   m_ObjectHideFlags: 0

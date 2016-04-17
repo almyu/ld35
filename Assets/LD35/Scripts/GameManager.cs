@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace LD35 {
 
@@ -12,6 +13,8 @@ namespace LD35 {
         public float manualShapeshiftThreshold = 0.5f;
         public bool canShapeshift { get { return stomach <= manualShapeshiftThreshold; } }
         public float bulletTime = 2f, hellTime = 3f;
+
+        public Button RestartBtn;
 
         private void Start() {
             UIManager.SetupSheep(Herd.instance.numSheep);
