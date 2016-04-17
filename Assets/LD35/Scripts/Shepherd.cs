@@ -9,7 +9,9 @@ namespace LD35 {
         }
 
         public float manSpeed = 4.5f, manScareRadius = 3f, manScariness = 0.7f;
-        public float wolfSpeed = 4.5f, wolfScareRadius = 6f, wolfScariness = 1f, wolfAttackRadius = 3f;
+        public float wolfSpeed = 4.5f, wolfScareRadius = 6f, wolfScariness = 1f;
+
+        public AttackArea attackArea;
 
         [HideInInspector]
         public float speed = 4f;
@@ -55,12 +57,7 @@ namespace LD35 {
         }
 
         public bool AttackClosestSheep() {
-            var target = Sheep.GetAnyInRange(planarPosition, wolfAttackRadius);
-            if (!target) return false;
-
-            target.Eat();
-            transform.position = target.planarPosition.WithY(transform.position.y);
-            return true;
+            return attackArea.Attack();
         }
     }
 }
