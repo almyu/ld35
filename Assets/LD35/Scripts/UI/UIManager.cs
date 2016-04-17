@@ -79,8 +79,13 @@ namespace LD35 {
             var srcGroupXf = instance.eatenSheepIcons.transform;
             var dstGroupXf = instance.lostSheepIcons.transform;
 
-            if (srcGroupXf.childCount > 0)
-                srcGroupXf.GetChild(srcGroupXf.childCount - 1).SetParent(dstGroupXf, false);
+            if (srcGroupXf.childCount > 0) {
+                var child = srcGroupXf.GetChild(srcGroupXf.childCount - 1);
+                child.SetParent(dstGroupXf, false);
+
+                var graphic = child.GetComponent<Graphic>();
+                if (graphic) graphic.color = instance.lostSheepColor;
+            }
         }
     }
 }
