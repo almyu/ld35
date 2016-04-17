@@ -14,7 +14,14 @@ namespace LD35 {
         public Graphic sheepIconPrefab;
         public LayoutGroup eatenSheepIcons, lostSheepIcons;
 
+        public GameObject gameOverWindow;
+        public Button restartButton;
+
         public Color baseSheepColor = Color.white, eatenSheepColor = Color.red, lostSheepColor = Color.grey;
+
+        private void Awake() {
+            gameOverWindow.SetActive(false);
+        }
 
         public static void SetStomach(float stomach) {
             if (instance && instance.stomachFill)
