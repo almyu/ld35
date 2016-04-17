@@ -1,0 +1,215 @@
+fileFormatVersion: 2
+guid: 03fefd8f7ad2562418dc7f54b993e343
+timeCreated: 1460885011
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: ArmatureWerewolf
+    100004: Base
+    100006: Base 1
+    100008: Bone.017
+    100010: Bone.018
+    100012: Bone.019
+    100014: Bone.020
+    100016: Bone.020_end
+    100018: Collar
+    100020: //RootNode
+    100022: Foot.l
+    100024: Foot.l 1
+    100026: Foot.l_end
+    100028: Foot.l_end 1
+    100030: Foot.r
+    100032: Foot.r 1
+    100034: Foot.r_end
+    100036: Foot.r_end 1
+    100038: Hand1.;
+    100040: Hand1.l
+    100042: Hand1.r
+    100044: Hand2.l
+    100046: Hand2.l 1
+    100048: Hand2.r
+    100050: Head
+    100052: Head 1
+    100054: Head_end
+    100056: Head_end 1
+    100058: Hip.l
+    100060: Hip.l 1
+    100062: Hip.r
+    100064: Hip.r 1
+    100066: HumBody
+    100068: Leg1.l
+    100070: Leg1.l 1
+    100072: Leg1.r
+    100074: Leg1.r 1
+    100076: Leg2.l
+    100078: Leg2.l 1
+    100080: Leg2.r
+    100082: Leg2.r 1
+    100084: Neck
+    100086: Neck 1
+    100088: ShBody
+    100090: ShEyes
+    100092: ShHead
+    100094: ShHoofs
+    100096: Shoulder.l
+    100098: Shoulder.l 1
+    100100: Shoulder.r
+    100102: Torso1
+    100104: Torso1 1
+    100106: Torso2
+    100108: Torso2 1
+    100110: Werewolf
+    100112: Wrist.l
+    100114: Wrist.l 1
+    100116: Wrist.l_end
+    100118: Wrist.l_end 1
+    100120: Wrist.r
+    100122: Wrist.r_end
+    400000: Armature
+    400002: ArmatureWerewolf
+    400004: Base
+    400006: Base 1
+    400008: Bone.017
+    400010: Bone.018
+    400012: Bone.019
+    400014: Bone.020
+    400016: Bone.020_end
+    400018: Collar
+    400020: //RootNode
+    400022: Foot.l
+    400024: Foot.l 1
+    400026: Foot.l_end
+    400028: Foot.l_end 1
+    400030: Foot.r
+    400032: Foot.r 1
+    400034: Foot.r_end
+    400036: Foot.r_end 1
+    400038: Hand1.;
+    400040: Hand1.l
+    400042: Hand1.r
+    400044: Hand2.l
+    400046: Hand2.l 1
+    400048: Hand2.r
+    400050: Head
+    400052: Head 1
+    400054: Head_end
+    400056: Head_end 1
+    400058: Hip.l
+    400060: Hip.l 1
+    400062: Hip.r
+    400064: Hip.r 1
+    400066: HumBody
+    400068: Leg1.l
+    400070: Leg1.l 1
+    400072: Leg1.r
+    400074: Leg1.r 1
+    400076: Leg2.l
+    400078: Leg2.l 1
+    400080: Leg2.r
+    400082: Leg2.r 1
+    400084: Neck
+    400086: Neck 1
+    400088: ShBody
+    400090: ShEyes
+    400092: ShHead
+    400094: ShHoofs
+    400096: Shoulder.l
+    400098: Shoulder.l 1
+    400100: Shoulder.r
+    400102: Torso1
+    400104: Torso1 1
+    400106: Torso2
+    400108: Torso2 1
+    400110: Werewolf
+    400112: Wrist.l
+    400114: Wrist.l 1
+    400116: Wrist.l_end
+    400118: Wrist.l_end 1
+    400120: Wrist.r
+    400122: Wrist.r_end
+    2300000: Collar
+    2300002: ShBody
+    2300004: ShEyes
+    2300006: ShHead
+    2300008: ShHoofs
+    3300000: Collar
+    3300002: ShBody
+    3300004: ShEyes
+    3300006: ShHead
+    3300008: ShHoofs
+    4300000: Collar
+    4300002: Werewolf
+    4300004: HumBody
+    4300006: ShHoofs
+    4300008: ShBody
+    4300010: ShEyes
+    4300012: ShHead
+    9500000: //RootNode
+    13700000: HumBody
+    13700002: Werewolf
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
