@@ -1,53 +1,55 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 namespace LD35 {
 
     public class SheepCounter : MonoSingleton<SheepCounter> {
-        public Text LostSheepsTxt;
-        public Text EatenSheepsTxt;
+
+        [FormerlySerializedAs("LostSheepsTxt")] public Text LostSheepTxt;
+        [FormerlySerializedAs("EatenSheepsTxt")] public Text EatenSheepTxt;
 
 
         public void AddEatenSheep(int value)
         {
-            EatenSheeps += value;
+            EatenSheep += value;
         }
 
         public void AddLostSheep(int value)
         {
-            LostSheeps += value;
+            LostSheep += value;
         }
 
-        private int _eatenSheeps;
-        private int EatenSheeps
+        private int _eatenSheep;
+        public int EatenSheep
         {
-            get { return _eatenSheeps; }
+            get { return _eatenSheep; }
             set
             {
-                _eatenSheeps = value;
+                _eatenSheep = value;
                 RefreshEatenText();
             }
         }
 
-        private int _lostSheeps;
-        private int LostSheeps
+        private int _lostSheep;
+        public int LostSheep
         {
-            get { return _lostSheeps; }
+            get { return _lostSheep; }
             set
             {
-                _lostSheeps = value;
+                _lostSheep = value;
                 RefreshLostText();
             }
         }
 
         private void RefreshEatenText()
         {
-            EatenSheepsTxt.text = "Eaten: " + EatenSheeps.ToString("00");
+            EatenSheepTxt.text = "Eaten: " + EatenSheep.ToString("00");
         }
 
         private void RefreshLostText()
         {
-            LostSheepsTxt.text = "Lost: " + LostSheeps.ToString("00");
+            LostSheepTxt.text = "Lost: " + LostSheep.ToString("00");
         }
     }
 }

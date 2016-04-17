@@ -14,15 +14,20 @@ namespace LD35 {
         private void Update() {
             if (Input.GetButtonDown("Jump") && !shepherd.isWolf)
                 StartCoroutine(DoShapeshift());
+
+            if (Input.GetButtonDown("Fire1") && shepherd.isWolf)
+                shepherd.AttackClosestSheep();
         }
 
         private IEnumerator DoShapeshift() {
             BulletTime.active = true;
             shepherd.isWolf = true;
 
+            var lastEatenSheep = SheepCounter.instance.EatenSheep;
+
             for (var t = 0f; t <= bulletTime; t += Time.unscaledDeltaTime) {
                 yield return null;
-                // check count, break if sheep eaten
+                if (SheepCounter.instance.EatenSheep != lastEatenSheep) break;
             }
             BulletTime.active = false;
 

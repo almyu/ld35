@@ -9,7 +9,6 @@ namespace LD35 {
 
         public static float groundEpsilon = 0.02f;
 
-        public Vector3 planarPosition { get { return transform.position.WithY(0f); } }
         public bool grounded { get { return transform.position.y <= groundEpsilon; } }
         public float speed = 5f;
 
@@ -22,6 +21,14 @@ namespace LD35 {
         private float bounce, chilloutTimer;
         private Vector3 waypoint;
 
+        public static Sheep GetAnyInRange(Vector3 point, float range) {
+            foreach (var sheep in Sheep.sheepList)
+                if (Vector3.Distance(sheep.planarPosition, point) <= range)
+                    return sheep;
+
+            return null;
+        }
+
         public static void JumpAll(float minSpeed, float maxSpeed) {
             foreach (var sheep in sheepList)
                 sheep.Jump(Random.Range(minSpeed, maxSpeed));
@@ -30,6 +37,11 @@ namespace LD35 {
         public void Jump(float speed) {
             if (bounce < speed)
                 bounce = speed;
+        }
+
+        public void Eat() {
+            SheepCounter.instance.AddEatenSheep(1);
+            Destroy(gameObject);
         }
 
         private void Update() {
@@ -53,7 +65,7 @@ namespace LD35 {
             }
 
             if (vel != Vector3.zero) {
-                transform.position += speed * Time.deltaTime * vel.WithY(0f);
+                transform.position += speed * Time.deltaTime * vel;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vel), Time.deltaTime * 7f);
 
                 if (grounded) Jump(bounceSpeed * worry);

@@ -8,10 +8,11 @@ namespace LD35 {
         public static List<Scare> scareList = new List<Scare>(64);
 
         public static Vector3 GetEscapeVector(Vector3 position) {
+            position.y = 0f;
             var escape = Vector3.zero;
 
             foreach (var scare in scareList) {
-                var dir = (position - scare.transform.position).WithY(0f);
+                var dir = position - scare.planarPosition;
                 var distSq = dir.sqrMagnitude;
                 if (Mathf.Approximately(distSq, 0f)) continue;
 
@@ -21,16 +22,7 @@ namespace LD35 {
             return escape;
         }
 
-        public static Sheep GetClosestScare(Vector3 shepherdPosition, float distance)
-        {
-            foreach (var sheep in Sheep.sheepList)
-            {
-                if (Vector3.Distance(sheep.transform.position, shepherdPosition) <= distance) 
-                    return sheep;
-            }
-
-            return default(Sheep);
-        }
+        public Vector3 planarPosition { get { return transform.position.WithY(0f); } }
 
         public float radius = 2f, power = 1f;
         public float sqrRadius { get { return radius * radius; } }
