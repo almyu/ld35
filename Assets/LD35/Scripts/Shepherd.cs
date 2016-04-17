@@ -11,7 +11,8 @@ namespace LD35 {
 
         public float manSpeed = 4.5f, manScareRadius = 3f, manScariness = 0.7f, manAnimationSpeed = 1f; 
         public float wolfSpeed = 4.5f, wolfScareRadius = 6f, wolfScariness = 1f, wolfAnimationSpeed = 1f;
-        
+        public float PauseAfterDeadInSec = 5f;
+
         public AttackArea attackArea;
 
         public GameObject shepherdGO;
@@ -51,7 +52,7 @@ namespace LD35 {
             if (isDead) {
                 
                 elapsed += Time.unscaledDeltaTime;
-                if (elapsed >= 8f) {
+                if (elapsed >= PauseAfterDeadInSec) {
                     this.gameObject.SetActive(false);
                 }
                 return;
@@ -77,6 +78,10 @@ namespace LD35 {
         }
 
         private void ShiftShape() {
+            if (isDead) {
+                return;
+            }
+
             if (isWolf) {
                 shepherdGO.SetActive(false);
                 werewolfGO.SetActive(true);
