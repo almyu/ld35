@@ -10,19 +10,24 @@ namespace LD35 {
 
         public float manSpeed = 4.5f, manScareRadius = 3f, manScariness = 0.7f;
         public float wolfSpeed = 4.5f, wolfScareRadius = 6f, wolfScariness = 1f;
-
+        
         public AttackArea attackArea;
+
+        public GameObject shepherdGO;
+        public GameObject werewolfGO;
 
         [HideInInspector]
         public float speed = 4f;
-
-        private GameObject shepherdGO;
+        
         private Animator shepherdAnimator;
-        private GameObject wolfGO;
+        private Animator werewolfAnimator;
 
         protected void Awake() {
-            shepherdGO = transform.FindChild("Shepherd_Model").gameObject;
+            werewolfGO.SetActive(false);
+            //shepherdGO.SetActive(false);
+
             shepherdAnimator = shepherdGO.GetComponent<Animator>();
+            werewolfAnimator = werewolfGO.GetComponent<Animator>();
         }
 
         public bool isWolf {
@@ -33,6 +38,8 @@ namespace LD35 {
                 speed = value ? wolfSpeed : manSpeed;
                 radius = value ? wolfScareRadius : manScareRadius;
                 power = value ? wolfScariness : manScariness;
+
+                ShiftShape();
             }
         }
         private bool _isWolf;
@@ -51,7 +58,21 @@ namespace LD35 {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.unscaledDeltaTime * 7f);
             }
 
-            shepherdAnimator.SetFloat("Speed", speed * axes.magnitude);
+            if(isWolf)
+                werewolfAnimator.SetFloat("Speed", speed * axes.magnitude);
+            else
+                shepherdAnimator.SetFloat("Speed", speed * axes.magnitude);
+        }
+
+        private void ShiftShape() {
+            if (isWolf) {
+                shepherdGO.SetActive(false);
+                werewolfGO.SetActive(true);
+            }
+            else {
+                shepherdGO.SetActive(true);
+                werewolfGO.SetActive(false);
+            }
         }
 
         public bool AttackClosestSheep() {
