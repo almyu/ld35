@@ -85,19 +85,19 @@ namespace LD35 {
             if (isWolf) {
                 shepherdGO.SetActive(false);
                 werewolfGO.SetActive(true);
-                
-                //werewolfAnimator = werewolfGO.GetComponent<Animator>();
             }
             else {
                 shepherdGO.SetActive(true);
                 werewolfGO.SetActive(false);
-
-                //shepherdAnimator = shepherdGO.GetComponent<Animator>();
             }
         }
 
         public bool AttackClosestSheep() {
-            return attackArea.Attack();
+            var hit = attackArea.Attack();
+            if (hit) {
+                werewolfAnimator.SetTrigger("Punch");
+            }
+            return hit;
         }
 
         public void Die() {

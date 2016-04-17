@@ -34,8 +34,8 @@ namespace LD35 {
         public bool Attack() {
             if (!victim) return false;
 
-            // HACK
-            Shepherd.instance.transform.position = victim.planarPosition;
+            // HACK ?
+            //Shepherd.instance.transform.position = victim.planarPosition;
 
             victim.Eat();
             return true;
