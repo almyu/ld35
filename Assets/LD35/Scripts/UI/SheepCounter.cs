@@ -15,5 +15,9 @@ namespace LD35 {
             ++lostSheep;
             UIManager.LoseSheep();
         }
+
+        public bool IsAllSheepDead() {
+            return Herd.instance.numSheep == (eatenSheep + lostSheep);
+        }
     }
 }

@@ -22,6 +22,10 @@ namespace LD35 {
                 GameOver();
             }
 
+            if (SheepCounter.instance.IsAllSheepDead()) {
+                GameOver();
+            }
+
             if (!shepherd.isWolf) {
                 stomach = Mathf.Clamp01(stomach - Time.deltaTime / hungerTime);
                 UIManager.SetStomach(stomach);
@@ -31,7 +35,7 @@ namespace LD35 {
                 if (stomach == 0f || (canShapeshift && Input.GetButtonDown("Jump")))
                     StartCoroutine(DoShapeshift());
             }
-            else if (Input.GetButtonDown("Fire1")) {
+            else if (Input.GetButtonDown("Jump")) {
                 if (shepherd.AttackClosestSheep()) {
                     stomach = 1f;
                     UIManager.SetStomach(stomach);

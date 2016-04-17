@@ -45,7 +45,7 @@ namespace LD35
                 StartCoroutine(WaitAndAttackShepherd());
             }
 
-            if (Input.GetButton("Fire2"))
+            if (Input.GetButton("Fire2") || Input.GetButton("Fire1"))
             {
                 RefreshTarget();
             }
