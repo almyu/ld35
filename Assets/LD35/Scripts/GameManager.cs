@@ -18,8 +18,8 @@ namespace LD35 {
         //public Button RestartBtn;
 
         private void Awake() {
-            GameOverWindow.SetActive(false);
-            RestartBtn.onClick.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
+            //GameOverWindow.SetActive(false);
+            //RestartBtn.onClick.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
         }
 
         private void Start() {
@@ -80,7 +80,7 @@ namespace LD35 {
 
         private void GameOver() {
             //Show 'restart' button here
-            GameOverWindow.SetActive(true);
+            //GameOverWindow.SetActive(true);
         }
     }
 }
