@@ -1,31 +1,26 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Serialization;
 
 namespace LD35 {
 
     public class SheepCounter : MonoSingleton<SheepCounter> {
 
-        [FormerlySerializedAs("LostSheepsTxt")]
-        public Text DebugText;
-
-
         public void AddEatenSheep(int value)
         {
             EatenSheep += value;
+            UpdateStats();
         }
 
         public void AddLostSheep(int value)
         {
             LostSheep += value;
+            UpdateStats();
         }
 
         public int EatenSheep, LostSheep;
 
-        private void Update()
+        public void UpdateStats()
         {
-            DebugText.text = string.Format("Eaten: {0:d2}\nLost: {1:d2}\nStomach: {2:p}\n{3}",
-                EatenSheep, LostSheep, GameManager.instance.stomach, GameManager.instance.canShapeshift ? "Can shapeshift" : "");
+            UIManager.SetSheepStats(EatenSheep, LostSheep, Herd.instance.numSheep);
         }
     }
 }
