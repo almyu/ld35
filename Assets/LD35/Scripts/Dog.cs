@@ -18,9 +18,7 @@ namespace LD35
             set { _target = World.Clamp(value); }
         }
         private Vector3 _target, _position;
-
-        private Camera _camera;
-        
+                
         private bool _gameOver = false; //Remove later
 
         private static Plane _xz = new Plane(Vector3.up, Vector3.zero);
@@ -32,12 +30,16 @@ namespace LD35
 
         protected void Update()
         {
-            if(Shepherd.instance.isWolf)
+            if (_gameOver)
+                return;
+
+            if (Shepherd.instance.isWolf)
             {
-                if (Vector3.Distance(planarPosition, Shepherd.instance.planarPosition) <= attackRange && !_gameOver)
+                if (WerewolfKilledByDog())
                 {
+                    Shepherd.instance.Die();
                     _gameOver = true;
-                    Debug.Log("GAME OVER: you dead, all your friends are dead, your family is dead, your cat is dead..etc");
+                    return;
                 }
 
                 StartCoroutine(WaitAndAttackShepherd());
@@ -49,6 +51,10 @@ namespace LD35
             }
 
             Run();
+        }
+
+        private bool WerewolfKilledByDog() {
+            return Vector3.Distance(planarPosition, Shepherd.instance.planarPosition) <= attackRange;
         }
 
         private IEnumerator WaitAndAttackShepherd()

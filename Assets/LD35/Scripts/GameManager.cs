@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 namespace LD35 {
 
@@ -15,6 +16,10 @@ namespace LD35 {
         public float bulletTime = 2f, hellTime = 3f;
 
         private void Update() {
+            if(!shepherd.gameObject.activeInHierarchy) {
+                GameOver();
+            }
+
             if (!shepherd.isWolf) {
                 stomach = Mathf.Clamp01(stomach - Time.deltaTime / hungerTime);
 
@@ -44,6 +49,11 @@ namespace LD35 {
                 // break if dead
             }
             shepherd.isWolf = false;
+        }
+
+        private void GameOver() {
+            //Show 'restart' button here
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

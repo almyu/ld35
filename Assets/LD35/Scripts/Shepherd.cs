@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace LD35 {
 
@@ -8,8 +9,8 @@ namespace LD35 {
             get { return JamSuite.SingletonHelper<Shepherd>.instance; }
         }
 
-        public float manSpeed = 4.5f, manScareRadius = 3f, manScariness = 0.7f;
-        public float wolfSpeed = 4.5f, wolfScareRadius = 6f, wolfScariness = 1f;
+        public float manSpeed = 4.5f, manScareRadius = 3f, manScariness = 0.7f, manAnimationSpeed = 1f; 
+        public float wolfSpeed = 4.5f, wolfScareRadius = 6f, wolfScariness = 1f, wolfAnimationSpeed = 1f;
         
         public AttackArea attackArea;
 
@@ -22,9 +23,10 @@ namespace LD35 {
         private Animator shepherdAnimator;
         private Animator werewolfAnimator;
 
+        private bool isDead;
+
         protected void Awake() {
             werewolfGO.SetActive(false);
-            //shepherdGO.SetActive(false);
 
             shepherdAnimator = shepherdGO.GetComponent<Animator>();
             werewolfAnimator = werewolfGO.GetComponent<Animator>();
@@ -43,8 +45,18 @@ namespace LD35 {
             }
         }
         private bool _isWolf;
-        
+
+        private float elapsed = 0f;
         private void Update() {
+            if (isDead) {
+                werewolfAnimator.SetTrigger("IsDead");
+                elapsed += Time.unscaledDeltaTime;
+                if (elapsed >= 5f) {
+                    this.gameObject.SetActive(false);
+                }
+                return;
+            }
+
             var axes = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
             axes.Normalize();
 
@@ -58,25 +70,33 @@ namespace LD35 {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.unscaledDeltaTime * 7f);
             }
 
-            if(isWolf)
-                werewolfAnimator.SetFloat("Speed", speed * axes.magnitude);
+            if (isWolf)
+                werewolfAnimator.SetFloat("Speed", wolfAnimationSpeed * axes.magnitude);
             else
-                shepherdAnimator.SetFloat("Speed", speed * axes.magnitude);
+                shepherdAnimator.SetFloat("Speed", manAnimationSpeed * axes.magnitude);
         }
 
         private void ShiftShape() {
             if (isWolf) {
                 shepherdGO.SetActive(false);
                 werewolfGO.SetActive(true);
+                
+                werewolfAnimator = werewolfGO.GetComponent<Animator>();
             }
             else {
                 shepherdGO.SetActive(true);
                 werewolfGO.SetActive(false);
+
+                shepherdAnimator = shepherdGO.GetComponent<Animator>();
             }
         }
 
         public bool AttackClosestSheep() {
             return attackArea.Attack();
+        }
+
+        public void Die() {
+            isDead = true;
         }
     }
 }
