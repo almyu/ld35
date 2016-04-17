@@ -16,7 +16,9 @@ namespace LD35 {
         private void Update() {
             if (!shepherd.isWolf) {
                 stomach = Mathf.Clamp01(stomach - Time.deltaTime / hungerTime);
-                if (ui) ui.SetStomach(stomach);
+                UIManager.SetStomach(stomach);
+                UIManager.SetShapeshiftAvailable(canShapeshift);
+                UIManager.SetNormalizedTime(1f);
 
                 if (stomach == 0f || (canShapeshift && Input.GetButtonDown("Jump")))
                     StartCoroutine(DoShapeshift());
@@ -24,7 +26,8 @@ namespace LD35 {
             else if (Input.GetButtonDown("Fire1")) {
                 if (shepherd.AttackClosestSheep()) {
                     stomach = 1f;
-                    if (ui) ui.SetStomach(stomach);
+                    UIManager.SetStomach(stomach);
+                    UIManager.SetShapeshiftAvailable(canShapeshift);
                 }
             }
         }
@@ -33,21 +36,23 @@ namespace LD35 {
             BulletTime.active = true;
             shepherd.isWolf = true;
 
+            UIManager.SetShapeshiftAvailable(false);
+
             var lastEatenSheep = SheepCounter.instance.EatenSheep;
 
             for (var t = 0f; t <= bulletTime; t += Time.unscaledDeltaTime) {
-                if (ui) ui.SetNormalizedTime(t / bulletTime);
+                UIManager.SetNormalizedTime(t / bulletTime);
                 yield return null;
                 if (SheepCounter.instance.EatenSheep != lastEatenSheep) break;
             }
             BulletTime.active = false;
 
             for (var t = 0f; t <= hellTime; t += Time.unscaledDeltaTime) {
-                if (ui) ui.SetNormalizedTime(t / hellTime);
+                UIManager.SetNormalizedTime(t / hellTime);
                 yield return null;
                 // break if dead
             }
-            if (ui) ui.SetNormalizedTime(0f);
+            UIManager.SetNormalizedTime(1f);
 
             shepherd.isWolf = false;
         }

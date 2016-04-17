@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 473978}
   - 114: {fileID: 11423036}
+  - 114: {fileID: 11465210}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -39,6 +40,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54552169ad6bfb84c85178a47607caa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stomach: 1
+  hungerTime: 30
+  manualShapeshiftThreshold: 0.5
+  bulletTime: 2
+  hellTime: 3
+--- !u!114 &11465210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6018b361173c83418d8aa52b4a9d4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EatenSheep: 0
+  LostSheep: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

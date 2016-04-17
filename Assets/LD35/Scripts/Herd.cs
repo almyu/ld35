@@ -2,7 +2,7 @@
 
 namespace LD35 {
 
-    public class Herd : MonoBehaviour {
+    public class Herd : MonoSingleton<Herd> {
 
         public static Vector3 GetCenterOfMass() {
             var com = Vector3.zero;
