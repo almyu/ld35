@@ -67,6 +67,7 @@ ModelImporter:
     100118: Wrist.l_end 1
     100120: Wrist.r
     100122: Wrist.r_end
+    100124: Dog
     400000: Armature
     400002: ArmatureWerewolf
     400004: Base
@@ -129,16 +130,19 @@ ModelImporter:
     400118: Wrist.l_end 1
     400120: Wrist.r
     400122: Wrist.r_end
+    400124: Dog
     2300000: Collar
     2300002: ShBody
     2300004: ShEyes
     2300006: ShHead
     2300008: ShHoofs
+    2300010: Dog
     3300000: Collar
     3300002: ShBody
     3300004: ShEyes
     3300006: ShHead
     3300008: ShHoofs
+    3300010: Dog
     4300000: Collar
     4300002: Werewolf
     4300004: HumBody
@@ -146,11 +150,12 @@ ModelImporter:
     4300008: ShBody
     4300010: ShEyes
     4300012: ShHead
+    4300014: Dog
     9500000: //RootNode
     13700000: HumBody
     13700002: Werewolf
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -173,7 +178,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.25
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
