@@ -20,8 +20,6 @@ namespace LD35 {
         private Animator shepherdAnimator;
         private GameObject wolfGO;
 
-        private float directionDampTime = .25f;
-
         protected void Awake() {
             shepherdGO = transform.FindChild("Shepherd_Model").gameObject;
             shepherdAnimator = shepherdGO.GetComponent<Animator>();
