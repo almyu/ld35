@@ -22,6 +22,19 @@ namespace LD35 {
             return new Vector3(Mathf.Cos(polar.y) * polar.x, 0f, Mathf.Sin(polar.y) * polar.x);
         }
 
+        public static float WrapAngle(float a) {
+            return (a + 360f) % 360f;
+        }
+
+        public static float AngularDiff(float from, float to) {
+            var diff = WrapAngle(to) - WrapAngle(from);
+            return diff <= 180f ? diff : diff - 360f;
+        }
+
+        public static float AngularDistance(float a, float b) {
+            return Mathf.Abs(AngularDiff(a, b));
+        }
+
 
         public float radius = 20.5f;
 

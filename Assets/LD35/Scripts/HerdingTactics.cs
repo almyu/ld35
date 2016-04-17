@@ -12,23 +12,23 @@ namespace LD35 {
 
     public class HerdingTactics {
 
-        public static HerdingTarget FindTarget(Vector2 currentPolarPos) {
+        public static HerdingTarget FindTarget(Vector2 currentPolarPos, float radiusPrio = 1f, float anglePrio = 1f) {
             if (Sheep.sheepList.Count == 0) return HerdingTarget.none;
 
             var target = new HerdingTarget();
-            var maxRadiusSq = 0f;
+            var maxWeight = 0f;
 
             foreach (var sheep in Sheep.sheepList) {
-                var radiusSq = sheep.planarPosition.sqrMagnitude;
-                if (radiusSq < maxRadiusSq) continue;
+                var polarPos = World.GetPolar(sheep.planarPosition);
+                var angularDist = World.AngularDistance(currentPolarPos.y, polarPos.y);
 
-                maxRadiusSq = radiusSq;
+                var weight = polarPos.x * radiusPrio + (1f - angularDist / 180f) * anglePrio;
+                if (weight < maxWeight) continue;
+
+                maxWeight = weight;
                 target.sheep = sheep;
+                target.polarPosition = polarPos;
             }
-
-            target.polarPosition = World.GetPolar(target.sheep.planarPosition);
-            target.polarPosition.x += 2f;
-
             return target;
         }
     }

@@ -105,6 +105,8 @@ MonoBehaviour:
   radius: 5
   power: 1.5
   runSpeed: 6
+  herdingRadiusPrio: 1
+  herdingDistPrio: 2
   attackDelay: 1
   attackRange: 0.5
 --- !u!1001 &100100000
