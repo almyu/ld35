@@ -35,19 +35,22 @@ namespace LD35 {
                 instance.portrait.SetActive(really);
         }
 
-        public static void SetSheepStats(int eaten, int lost, int total) {
+        public static void SetSheepStats(int eaten, int lost) {
             if (!instance) return;
 
             if (instance.eatenSheepText) instance.eatenSheepText.text = eaten.ToString();
             if (instance.lostSheepText) instance.lostSheepText.text = lost.ToString();
-            if (instance.totalSheepText) instance.totalSheepText.text = total.ToString();
         }
 
         public static void SetupSheep(int numSheep) {
-            if (!instance || !instance.eatenSheepIcons || !instance.lostSheepIcons) return;
+            if (!instance) return;
+
+            if (instance.totalSheepText)
+                instance.totalSheepText.text = numSheep.ToString();
+            
+            if (!instance.eatenSheepIcons || !instance.lostSheepIcons) return;
 
             var eatenXf = instance.eatenSheepIcons.transform;
-            var lostXf = instance.lostSheepIcons.transform;
 
             for (int i = numSheep; i-- > 0; ) {
                 var child = Instantiate(instance.sheepIconPrefab);
@@ -77,7 +80,7 @@ namespace LD35 {
             var dstGroupXf = instance.lostSheepIcons.transform;
 
             if (srcGroupXf.childCount > 0)
-                srcGroupXf.GetChild(srcGroupXf.childCount - 1);
+                srcGroupXf.GetChild(srcGroupXf.childCount - 1).SetParent(dstGroupXf, false);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace LD35 {
             var sheep = GetComponent<Sheep>();
             if (sheep)
             {
-                SheepCounter.instance.AddLostSheep(1);
+                SheepCounter.instance.LoseSheep();
                 Destroy(sheep);
             }
         }

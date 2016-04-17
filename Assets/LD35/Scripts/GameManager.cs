@@ -13,6 +13,10 @@ namespace LD35 {
         public bool canShapeshift { get { return stomach <= manualShapeshiftThreshold; } }
         public float bulletTime = 2f, hellTime = 3f;
 
+        private void Start() {
+            UIManager.SetupSheep(Herd.instance.numSheep);
+        }
+
         private void Update() {
             if(!shepherd.gameObject.activeInHierarchy) {
                 GameOver();
@@ -42,12 +46,12 @@ namespace LD35 {
 
             UIManager.SetShapeshiftAvailable(false);
 
-            var lastEatenSheep = SheepCounter.instance.EatenSheep;
+            var lastEatenSheep = SheepCounter.instance.eatenSheep;
 
             for (var t = 0f; t <= bulletTime; t += Time.unscaledDeltaTime) {
                 UIManager.SetNormalizedTime(t / bulletTime);
                 yield return null;
-                if (SheepCounter.instance.EatenSheep != lastEatenSheep) break;
+                if (SheepCounter.instance.eatenSheep != lastEatenSheep) break;
             }
             BulletTime.active = false;
 
