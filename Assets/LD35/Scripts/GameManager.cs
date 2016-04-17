@@ -7,7 +7,6 @@ namespace LD35 {
     public class GameManager : MonoSingleton<GameManager> {
 
         public static Shepherd shepherd { get { return Shepherd.instance; } }
-        public static UIManager ui { get { return UIManager.instance; } }
 
         public float stomach = 1f, hungerTime= 30f;
         public float manualShapeshiftThreshold = 0.5f;
