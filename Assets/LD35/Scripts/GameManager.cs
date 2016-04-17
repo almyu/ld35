@@ -14,6 +14,9 @@ namespace LD35 {
         private void Update() {
             if (Input.GetButtonDown("Jump") && !shepherd.isWolf)
                 StartCoroutine(DoShapeshift());
+
+            if (Input.GetButtonDown("Fire1") && shepherd.isWolf)
+                shepherd.AttackClosestSheep();
         }
 
         private IEnumerator DoShapeshift() {

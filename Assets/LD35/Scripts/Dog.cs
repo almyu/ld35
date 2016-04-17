@@ -73,10 +73,8 @@ namespace LD35
         {
             angle *= -1;
 
-            var planarPos = transform.position.WithY(0f);
-            var radius = planarPos.magnitude;
-
-            target = Quaternion.AngleAxis(angle * Mathf.PI * 2f / radius, Vector3.up) * planarPos;
+            var radius = planarPosition.magnitude;
+            target = Quaternion.AngleAxis(angle * Mathf.PI * 2f / radius, Vector3.up) * planarPosition;
         }
 
         private void Run()

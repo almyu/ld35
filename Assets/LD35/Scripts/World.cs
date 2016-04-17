@@ -12,6 +12,16 @@ namespace LD35 {
             return lenSq > radiusSq ? pos * radiusSq / lenSq : pos;
         }
 
+        public static Vector2 GetPolar(Vector3 planar) {
+            planar = planar.WithY(0f);
+            return new Vector2(planar.magnitude, Mathf.Atan2(planar.z, planar.x) * Mathf.Rad2Deg);
+        }
+
+        public static Vector3 GetPlanar(Vector2 polar) {
+            polar.y *= Mathf.Deg2Rad;
+            return new Vector3(Mathf.Cos(polar.y) * polar.x, 0f, Mathf.Sin(polar.y) * polar.x);
+        }
+
 
         public float radius = 20.5f;
 

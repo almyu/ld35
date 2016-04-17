@@ -38,25 +38,15 @@ namespace LD35 {
 
                 transform.position += speed * Time.unscaledDeltaTime * dir;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.unscaledDeltaTime * 7f);
-            }
-            
-            if (Input.GetButtonDown("Fire1") && isWolf)
-            {
-                AttackClosestSheep();
-            }
-            
+            }   
         }
 
-        private void AttackClosestSheep()
-        {
-            var closestSheep = GetClosestScare(transform.position, wolfAttackRadius);
-            if (!closestSheep)
-                return;
+        public void AttackClosestSheep() {
+            var target = Sheep.GetAnyInRange(planarPosition, wolfAttackRadius);
+            if (!target) return;
 
-            transform.position = transform.position.WithXZ(closestSheep.transform.position.x, closestSheep.transform.position.z);
-
-            SheepCounter.instance.AddEatenSheep(1);
-            Destroy(closestSheep.gameObject);
+            target.Eat();
+            transform.position = target.planarPosition.WithY(transform.position.y);
         }
     }
 }
