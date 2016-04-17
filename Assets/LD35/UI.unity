@@ -115,7 +115,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -70, y: -240}
+  m_AnchoredPosition: {x: -50, y: -240}
   m_SizeDelta: {x: 90, y: 217}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &146369244
@@ -325,7 +325,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -70, y: 20}
+  m_AnchoredPosition: {x: -50, y: 20}
   m_SizeDelta: {x: 90, y: 217}
   m_Pivot: {x: 1, y: 0}
 --- !u!1 &987234666
@@ -545,7 +545,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -70, y: -20}
+  m_AnchoredPosition: {x: -50, y: -20}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &1196871376
@@ -581,7 +581,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50, y: 0}
+  m_AnchoredPosition: {x: -30, y: 0}
   m_SizeDelta: {x: 15, y: -40}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1196871378

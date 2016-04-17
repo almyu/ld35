@@ -143,9 +143,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 41
-  orthographic: 0
-  orthographic size: 5
+  field of view: 32
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -165,8 +165,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1220841635}
-  m_LocalRotation: {x: 0.4107448, y: 0.35436746, z: -0.17725524, w: 0.8211535}
-  m_LocalPosition: {x: -17.525908, y: 26.767967, z: -16.582417}
+  m_LocalRotation: {x: 0.3281605, y: 0.27482063, z: -0.10041048, w: 0.89816594}
+  m_LocalPosition: {x: -12.07, y: 21.26, z: -21.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -301,8 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6018b361173c83418d8aa52b4a9d4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EatenSheep: 0
-  LostSheep: 0
+  eatenSheep: 0
+  lostSheep: 0
 --- !u!114 &1538427297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,7 +532,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 420028, guid: 2b6bca76a617a2f4b84338b20b20c193, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b6bca76a617a2f4b84338b20b20c193, type: 2}
