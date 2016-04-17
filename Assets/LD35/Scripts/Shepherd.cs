@@ -14,6 +14,17 @@ namespace LD35 {
         [HideInInspector]
         public float speed = 4f;
 
+        private GameObject shepherdGO;
+        private Animator shepherdAnimator;
+        private GameObject wolfGO;
+
+        private float directionDampTime = .25f;
+
+        protected void Awake() {
+            shepherdGO = transform.FindChild("Shepherd_Model").gameObject;
+            shepherdAnimator = shepherdGO.GetComponent<Animator>();
+        }
+
         public bool isWolf {
             get { return _isWolf; }
             set {
@@ -35,10 +46,12 @@ namespace LD35 {
                 var dir =
                     camXf.right.WithY(0f).normalized * axes.x +
                     camXf.forward.WithY(0f).normalized * axes.z;
-
+                
                 transform.position += speed * Time.unscaledDeltaTime * dir;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.unscaledDeltaTime * 7f);
-            }   
+            }
+
+            shepherdAnimator.SetFloat("Speed", speed * axes.magnitude);
         }
 
         public void AttackClosestSheep() {
