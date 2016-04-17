@@ -13,7 +13,7 @@ namespace LD35 {
 
         public void LoseSheep() {
             ++lostSheep;
-            UIManager.EatSheep();
+            UIManager.LoseSheep();
         }
     }
 }
