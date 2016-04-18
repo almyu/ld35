@@ -48,10 +48,10 @@ namespace JamSuite.Audio {
             var lastPlay = 0f;
             var everPlayed = lastPlays.TryGetValue(clip, out lastPlay);
 
-            if (lastPlay + throttle > Time.timeSinceLevelLoad) return null;
+            if (lastPlay + throttle > Time.realtimeSinceStartup) return null;
 
-            if (everPlayed) lastPlays[clip] = Time.timeSinceLevelLoad;
-            else lastPlays.Add(clip, Time.timeSinceLevelLoad);
+            if (everPlayed) lastPlays[clip] = Time.realtimeSinceStartup;
+            else lastPlays.Add(clip, Time.realtimeSinceStartup);
 
             return clip;
         }
