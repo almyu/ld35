@@ -22,20 +22,11 @@ namespace LD35 {
 
         public Color baseSheepColor = Color.white, eatenSheepColor = Color.red, lostSheepColor = Color.grey;
 
-        public GameObject WindCalm;
-
         private void Awake() {
             gameOverWindow.SetActive(false);
             restartButton.onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
 
             wolfPortrait.color = wolfPortrait.color.WithA(0f);
-
-            if (ModID.Wind.IsModActive()) {
-                //Instantiate(NotCalmWind);
-            }
-            else {
-                Instantiate(WindCalm);
-            }
         }
 
         private float blinkTimer = 0f;
