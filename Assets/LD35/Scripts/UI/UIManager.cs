@@ -15,6 +15,8 @@ namespace LD35 {
         public Graphic sheepIconPrefab;
         public LayoutGroup eatenSheepIcons, lostSheepIcons;
 
+        public Image wolfPortrait;
+
         public GameObject gameOverWindow;
         public Button restartButton;
 
