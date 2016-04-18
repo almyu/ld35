@@ -11,7 +11,7 @@ namespace JamSuite.Audio {
             public string name;
 
             [Range(0f, 1f)]
-            public float volumeScale;
+            public float volumeScale = 1f;
 
             public AudioClip clip;
             public AudioClip[] extraClips;
