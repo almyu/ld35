@@ -1030,6 +1030,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 1436610999}
+  - 222: {fileID: 1436611000}
   m_Layer: 5
   m_Name: ChallengeMessage
   m_TagString: Untagged
@@ -1056,6 +1057,12 @@ RectTransform:
   m_AnchoredPosition: {x: 90, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1436611000
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436610998}
 --- !u!1 &1460693119
 GameObject:
   m_ObjectHideFlags: 0
