@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LD35 {
 
-    [RequireComponent(typeof(MeshRenderer))]
+    [RequireComponent(typeof(Renderer))]
     public class WolfVisionMaterials : MonoBehaviour {
 
         public static List<WolfVisionMaterials> list = new List<WolfVisionMaterials>();
@@ -17,14 +17,14 @@ namespace LD35 {
 
         [ContextMenu("Swap Materials")]
         public void Swap() {
-            var ren = GetComponent<MeshRenderer>();
+            var ren = GetComponent<Renderer>();
             var tmp = ren.sharedMaterials;
             ren.sharedMaterials = materials;
             materials = tmp;
         }
 
         private void Reset() {
-            materials = (Material[]) GetComponent<MeshRenderer>().sharedMaterials.Clone();
+            materials = (Material[]) GetComponent<Renderer>().sharedMaterials.Clone();
         }
 
         private void OnEnable() {

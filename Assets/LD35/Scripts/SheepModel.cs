@@ -31,7 +31,10 @@ namespace LD35 {
         }
 
         public void PaintSheep(Material material) {
-            body.gameObject.GetComponent<Renderer>().material = material;
+            body.GetComponent<Renderer>().sharedMaterial = material;
+
+            var swapper = body.GetComponent<WolfVisionMaterials>();
+            if (swapper) swapper.enabled = false;
         }
     }
 }
