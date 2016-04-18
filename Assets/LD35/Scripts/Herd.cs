@@ -79,8 +79,17 @@ namespace LD35 {
             var pos = transform.position + Random.insideUnitSphere.WithY(0f) * spawnRadius;
             return Instantiate(sheepPrefab, pos, Quaternion.AngleAxis(Random.value * 360f, Vector3.up)) as Sheep;
         }
+
+        private void SpawnDeadSheep(Vector3 position) {
+            var spawnedDeath = Instantiate(sheepDeathPrefab);
+            spawnedDeath.transform.position = position;
+
+            Destroy(spawnedDeath.gameObject, 6f);
+        }
         
         public void OnSheepKilled(Sheep sheep) {
+            SpawnDeadSheep(sheep.gameObject.transform.position);
+
             if (sheep == RedSheep && (SheepCounter.instance.eatenSheep <= numSheep - 1)) {
                 var simpleSheep = Sheep.sheepList.FirstOrDefault(s => s != BlackSheep && s != YellowSheep && s != RedSheep);
 
