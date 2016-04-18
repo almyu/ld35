@@ -68,7 +68,7 @@ namespace LD35 {
             }
 
             if (ModID.Wind.IsModActive())
-                vel += Mods.Wind.windSpeed;
+                vel += Mods.Wind.GetWindVelocity();
 
             if (vel != Vector3.zero) {
                 transform.position += speed * Time.deltaTime * vel;
