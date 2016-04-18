@@ -21,8 +21,8 @@ namespace LD35 {
                 var currentScarePower = scare.power;
                 var currentScareRadius = scare.sqrRadius;
                 if (ModID.Scarier.IsModActive()) {
-                    currentScarePower *= 2;
-                    currentScareRadius *= 2;
+                    currentScarePower *= Mods.Scarier.factor;
+                    currentScareRadius *= Mods.Scarier.factor;
                 }
 
                 escape += (1f - Mathf.Clamp01(distSq / currentScareRadius)) * currentScarePower * dir;

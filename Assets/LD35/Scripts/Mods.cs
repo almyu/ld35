@@ -94,6 +94,11 @@ namespace LD35 {
         }
 
         public class Scarier : Mod {
+            public static int factor = 2;
+        }
+
+        public class Faster : Mod {
+            public static int factor = 2;
         }
     }
 }

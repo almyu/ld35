@@ -31,6 +31,10 @@ namespace LD35 {
 
             shepherdAnimator = shepherdGO.GetComponent<Animator>();
             werewolfAnimator = werewolfGO.GetComponent<Animator>();
+
+            if (ModID.Faster.IsModActive()) {
+                speed *= Mods.Faster.factor;
+            }
         }
 
         public bool isWolf {
@@ -41,6 +45,10 @@ namespace LD35 {
                 speed = value ? wolfSpeed : manSpeed;
                 radius = value ? wolfScareRadius : manScareRadius;
                 power = value ? wolfScariness : manScariness;
+
+                if (ModID.Faster.IsModActive()) {
+                    speed *= Mods.Faster.factor;
+                }
 
                 ShiftShape();
             }
@@ -92,6 +100,10 @@ namespace LD35 {
 
             transform.rotation = Quaternion.LookRotation(dir);
             werewolfAnimator.SetTrigger("Punch");
+
+            //dirty hack to increase scary on eating
+            power *= 1.5f;
+
             return true;
         }
 

@@ -42,6 +42,10 @@ namespace LD35 {
             toogle.onValueChanged.AddListener((value) => mod.active = value);
 
             toogle.isOn = mod.active;
+            toogle.interactable = mod.unlocked;
+#if UNITY_EDITOR
+            toogle.interactable = true;
+#endif
         }
 
         protected override void Update() {

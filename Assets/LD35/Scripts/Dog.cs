@@ -32,6 +32,9 @@ namespace LD35
         {
             target = planarPosition;
             _lastPosition = planarPosition;
+
+            if (ModID.Faster.IsModActive())
+                runSpeed *= Mods.Faster.factor;
         }
 
         protected void Update()
