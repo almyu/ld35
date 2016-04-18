@@ -98,6 +98,7 @@ namespace LD35 {
             werewolfGO.SetActive(isWolf);
 
             WolfVisionMaterials.SwapAll();
+            UIFlash.Activate();
         }
 
         public bool AttackClosestSheep() {
