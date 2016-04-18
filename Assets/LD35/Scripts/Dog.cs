@@ -15,7 +15,10 @@ namespace LD35
 
         public Vector3 target {
             get { return _target; }
-            set { _target = World.Clamp(value); }
+            set {
+                _target = World.Clamp(value);
+                _position = planarPosition;
+            }
         }
         private Vector3 _target, _position;
                 
@@ -25,7 +28,7 @@ namespace LD35
 
         protected void Awake()
         {
-            target = _position = transform.position;
+            target = planarPosition;
         }
 
         protected void Update()
@@ -70,10 +73,8 @@ namespace LD35
 
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             var dist = 0f;
-            if (_xz.Raycast(ray, out dist)) {
-                _position = planarPosition;
+            if (_xz.Raycast(ray, out dist))
                 target = ray.origin + ray.direction * dist;
-            }
         }
 
         private void Run()
