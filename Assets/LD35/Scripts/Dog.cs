@@ -14,6 +14,8 @@ namespace LD35
         public float attackDelay = 1f;
         public float attackRange = 0.5f;
 
+        public GameObject AngryDogIcon;
+
         private float aggroTimer;
 
         public Vector3 target
