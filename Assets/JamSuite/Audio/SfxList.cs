@@ -10,7 +10,7 @@ namespace JamSuite.Audio {
         public class ClipBinding {
             public string name;
 
-            [Range(0f, 1f)]
+            [Range(0f, 4f)]
             public float volumeScale = 1f;
 
             public AudioClip clip;
