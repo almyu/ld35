@@ -35,14 +35,45 @@ namespace LD35 {
         public float spawnRadius = 5f;
         public Sheep sheepPrefab;
 
+        public Material RedSheepMaterial;
+        public Material BlackSheepMaterial;
+        public Material YellowSheepMaterial;
+
+        [HideInInspector]
+        public Sheep RedSheep;
+        [HideInInspector]
+        public Sheep BlackSheep;
+        [HideInInspector]
+        public Sheep YellowSheep;
+
         private void Awake() {
-            for (int i = 0; i < numSheep; ++i)
-                SpawnSheep();
+            for (int i = 0; i < numSheep; ++i) {
+                var spawnedSheep = SpawnSheep();
+
+                if(i == 0) {
+                    RedSheep = PaintSheep(spawnedSheep, RedSheepMaterial);
+                }
+
+                if (i == numSheep / 2) {
+                    YellowSheep = PaintSheep(spawnedSheep, YellowSheepMaterial);
+                }
+
+                if (i == numSheep-1) {
+                    BlackSheep = PaintSheep(spawnedSheep, BlackSheepMaterial);
+                }
+            }
         }
 
-        public void SpawnSheep() {
+        private Sheep PaintSheep(Sheep spawnedSheep, Material material) {
+            var sheepModel = spawnedSheep.GetComponentInChildren<SheepModel>();
+            sheepModel.PaintSheep(material);
+
+            return spawnedSheep;
+        }
+
+        public Sheep SpawnSheep() {
             var pos = transform.position + Random.insideUnitSphere.WithY(0f) * spawnRadius;
-            Instantiate(sheepPrefab, pos, Quaternion.AngleAxis(Random.value * 360f, Vector3.up));
+            return Instantiate(sheepPrefab, pos, Quaternion.AngleAxis(Random.value * 360f, Vector3.up)) as Sheep;
         }
     }
 }

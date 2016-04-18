@@ -29,5 +29,9 @@ namespace LD35 {
             combinedMesh.CombineMeshes(submeshes, true, true);
             body.sharedMesh = combinedMesh;
         }
+
+        public void PaintSheep(Material material) {
+            body.gameObject.GetComponent<Renderer>().material = material;
+        }
     }
 }
