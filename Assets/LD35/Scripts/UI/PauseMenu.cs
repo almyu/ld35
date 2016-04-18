@@ -40,6 +40,7 @@ namespace LD35 {
         }
 
         public Text labelPaused, labelDied, labelGameOver;
+        public Button buttonResume;
 
         private void OnEnable() {
             Time.timeScale = 0f;
@@ -47,6 +48,8 @@ namespace LD35 {
             if (labelPaused) labelPaused.gameObject.SetActive(mode == Mode.Pause);
             if (labelDied) labelDied.gameObject.SetActive(mode == Mode.Death);
             if (labelGameOver) labelGameOver.gameObject.SetActive(mode == Mode.GameOver);
+
+            if (buttonResume) buttonResume.interactable = mode == Mode.Pause;
         }
 
         private void OnDisable() {

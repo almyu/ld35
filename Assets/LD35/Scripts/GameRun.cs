@@ -48,11 +48,15 @@ namespace LD35 {
                     Fail(trial);
                     continue;
                 }
-                if (trial.type == SheepType.Red && trial.evt == evt && trial.type != type) {
+                if (trial.type == SheepType.Red && (trial.evt == evt) != (trial.type == type)) {
                     Fail(trial);
                     continue;
                 }
-                if (trial.evt == evt && trial.type == SheepType.Any || trial.type == type)
+                if (trial.type == SheepType.Yellow && trial.evt != evt && trial.type == type) {
+                    Fail(trial);
+                    continue;
+                }
+                if (trial.evt == evt && (trial.type == SheepType.Any || trial.type == type))
                     ++trial.current;
 
                 if (trial.current >= trial.max) {
