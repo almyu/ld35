@@ -67,15 +67,15 @@ namespace LD35 {
             }
         }
 
-        public static bool UnlockNext() {
+        public static Mod UnlockNext() {
             foreach (var mod in modList) {
                 if (mod.unlocked) continue;
 
                 mod.unlocked = true;
                 Save();
-                return true;
+                return mod;
             }
-            return false;
+            return null;
         }
 
 
