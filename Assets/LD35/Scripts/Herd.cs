@@ -80,8 +80,7 @@ namespace LD35 {
         }
         
         public void OnSheepKilled(Sheep sheep) {
-            if (sheep == RedSheep &&
-               (SheepCounter.instance.eatenSheep <= numSheep - 1)) {
+            if (sheep == RedSheep && (SheepCounter.instance.eatenSheep <= numSheep - 1)) {
                 var simpleSheep = Sheep.sheepList.FirstOrDefault(s => s != BlackSheep && s != YellowSheep && s != RedSheep);
 
                 if (simpleSheep != null) {
@@ -97,7 +96,11 @@ namespace LD35 {
             }
 
             if (sheep == BlackSheep) {
-                Shepherd.instance.power = 1000f;
+                var scareEmAll = new GameObject();
+                scareEmAll.transform.position = Vector3.zero;
+                var scare = scareEmAll.AddComponent<Scare>();
+                scare.power = 3f;
+                scare.radius = 100f;
             }
         }
     }
