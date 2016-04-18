@@ -39,12 +39,9 @@ namespace LD35 {
             wolfPortrait.canvasRenderer.SetAlpha(0f);
         }
 
-        private float elapsed = 0f;
         protected void Update() {
-            elapsed -= Time.unscaledDeltaTime;
-            if (messagesQueue.Count > 0 && elapsed <= 0) {
+            if (!messageInProgress && messagesQueue.Count > 0) {
                 messagesQueue.Dequeue()();
-                elapsed = messageShowTime * 2.5f;
             }
             
             if (Shepherd.instance.isWolf) {
@@ -134,6 +131,7 @@ namespace LD35 {
         }
 
         private Queue<Action> messagesQueue = new Queue<Action>();
+        private bool messageInProgress = false;
         public void SpawnMessage(string text) {
             var msgText = challengeMessage.GetComponentInChildren<Text>();
             var txt = text;
@@ -142,6 +140,7 @@ namespace LD35 {
         }
 
         private IEnumerator ShowMessage(Text messageText, string msgText) {
+            messageInProgress = true;
             messageText.text = msgText;
 
             var elapsed = 0f;
@@ -158,6 +157,8 @@ namespace LD35 {
                 yield return new WaitForEndOfFrame();
             }
 
+            messageText.color = target;
+
             elapsed = 0f;
             start = messageText.color;
             target = messageText.color.WithA(0f);
@@ -172,7 +173,8 @@ namespace LD35 {
                 yield return new WaitForEndOfFrame();
             }
 
-
+            messageText.color = target;
+            messageInProgress = false;
         }
     }
 }
