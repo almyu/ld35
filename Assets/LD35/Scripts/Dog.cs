@@ -47,7 +47,8 @@ namespace LD35
 
             if (Input.GetButton("Fire2") || Input.GetButton("Fire1"))
             {
-                RefreshTarget();
+                if (!ModID.UndertrainedDog.IsModActive())
+                    RefreshTarget();
             }
 
             Run();
