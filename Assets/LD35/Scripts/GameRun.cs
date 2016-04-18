@@ -87,6 +87,7 @@ namespace LD35 {
         }
 
         public void Notify(string format, params object[] args) {
+            UIManager.instance.SpawnMessage(string.Format(format, args));
             Debug.LogFormat(format, args);
         }
     }

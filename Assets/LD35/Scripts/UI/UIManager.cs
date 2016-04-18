@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
@@ -26,6 +29,8 @@ namespace LD35 {
         private float blinkTimer, blinkInterval;
 
         public GameObject challengeMessage;
+        public float messageShowTime = 10f;
+        public float messageFadeSpeed = 0.05f;
 
         private void Awake() {
             gameOverWindow.SetActive(false);
@@ -34,7 +39,18 @@ namespace LD35 {
             wolfPortrait.canvasRenderer.SetAlpha(0f);
         }
 
+        private float elapsed = 0f;
         protected void Update() {
+            elapsed -= Time.unscaledDeltaTime;
+            if (messagesQueue.Count > 0 && elapsed <= 0) {
+                messagesQueue.Dequeue()();
+                elapsed = messageShowTime * 2.5f;
+            }
+
+            if (Input.GetKeyDown(KeyCode.M)) {
+                SpawnMessage("WHATA FUCK!&&!&!" + Time.deltaTime);
+            }
+
             if (Shepherd.instance.isWolf) {
                 return;
             }
@@ -119,6 +135,48 @@ namespace LD35 {
 
         public void ShowGameOverWindow() {
             gameOverWindow.SetActive(true);
+        }
+
+        private Queue<Action> messagesQueue = new Queue<Action>();
+        public void SpawnMessage(string text) {
+            var msgText = challengeMessage.GetComponentInChildren<Text>();
+            var txt = text;
+
+            messagesQueue.Enqueue(() => StartCoroutine(ShowMessage(msgText, txt)));            
+        }
+
+        private IEnumerator ShowMessage(Text messageText, string msgText) {
+            messageText.text = msgText;
+
+            var elapsed = 0f;
+            var start = messageText.color;
+            var target = messageText.color.WithA(1f);
+
+            while(elapsed < messageShowTime) {
+
+                var process = elapsed * messageFadeSpeed / Time.unscaledDeltaTime;
+                messageText.color = Color.Lerp(start, target, process);
+
+                elapsed += Time.unscaledDeltaTime;
+
+                yield return new WaitForEndOfFrame();
+            }
+
+            elapsed = 0f;
+            start = messageText.color;
+            target = messageText.color.WithA(0f);
+
+            while (elapsed < messageShowTime) {
+
+                var process = elapsed * messageFadeSpeed / Time.unscaledDeltaTime;
+                messageText.color = Color.Lerp(start, target, process);
+
+                elapsed += Time.unscaledDeltaTime;
+
+                yield return new WaitForEndOfFrame();
+            }
+
+
         }
     }
 }
