@@ -35,7 +35,7 @@ namespace LD35 {
 
         public static void JumpAll(float minSpeed, float maxSpeed) {
             foreach (var sheep in sheepList)
-                sheep.Jump(Random.Range(minSpeed, maxSpeed));
+                sheep.Jump(Random.Range(minSpeed, maxSpeed), false);
         }
 
         public void Eat() {

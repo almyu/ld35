@@ -106,6 +106,18 @@ namespace LD35 {
             GameRun.OnEaten(InferType(sheep));
             SpawnDeadSheep(sheep.gameObject.transform.position);
 
+            if (sheep == YellowSheep) {
+                Sheep.JumpAll(5f, 10f);
+            }
+
+            if (sheep == BlackSheep) {
+                var scareEmAll = new GameObject();
+                scareEmAll.transform.position = Vector3.zero;
+                var scare = scareEmAll.AddComponent<Scare>();
+                scare.power = 3f;
+                scare.radius = 100f;
+            }
+
             if (sheep == RedSheep && (SheepCounter.instance.eatenSheep <= numSheep - 1)) {
                 var simpleSheep = Sheep.sheepList.FirstOrDefault(s => s != BlackSheep && s != YellowSheep && s != RedSheep);
 
@@ -119,18 +131,6 @@ namespace LD35 {
 
                 PaintSheep(RedSheep, DefautSheepMaterial);
                 alwaysKilledRedSheep = false;
-            }
-
-            if (sheep == YellowSheep) {
-                Sheep.JumpAll(5f, 10f);
-            }
-
-            if (sheep == BlackSheep) {
-                var scareEmAll = new GameObject();
-                scareEmAll.transform.position = Vector3.zero;
-                var scare = scareEmAll.AddComponent<Scare>();
-                scare.power = 3f;
-                scare.radius = 100f;
             }
         }
     }
