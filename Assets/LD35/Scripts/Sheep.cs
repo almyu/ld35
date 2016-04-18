@@ -3,22 +3,17 @@ using System.Collections.Generic;
 
 namespace LD35 {
 
-    public class Sheep : Scare {
+    public class Sheep : BouncyScare {
 
         public static List<Sheep> sheepList = new List<Sheep>(16);
 
-        public static float groundEpsilon = 0.02f;
-
-        public bool grounded { get { return transform.position.y <= groundEpsilon; } }
         public float speed = 5f;
-
-        public float bounceSpeed = 1f, bounceGravity = 2f;
 
         public float chilloutThreshold = 0.1f, chilloutTime = 2f;
         public float wanderSpeedup = 0.25f, wanderRadius = 3f;
         public Vector2 wanderIntervalRange = new Vector2(0.5f, 5f);
 
-        private float bounce, chilloutTimer;
+        private float chilloutTimer;
         private Vector3 waypoint;
 
         public static Sheep GetAnyInRange(Vector3 point, float range) {
@@ -32,11 +27,6 @@ namespace LD35 {
         public static void JumpAll(float minSpeed, float maxSpeed) {
             foreach (var sheep in sheepList)
                 sheep.Jump(Random.Range(minSpeed, maxSpeed));
-        }
-
-        public void Jump(float speed) {
-            if (bounce < speed)
-                bounce = speed;
         }
 
         public void Eat() {
@@ -71,14 +61,8 @@ namespace LD35 {
                 transform.position += speed * Time.deltaTime * vel;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vel), Time.deltaTime * 7f);
 
-                if (grounded) Jump(bounceSpeed * worry);
+                Jump(worry);
             }
-
-            transform.position = transform.position.WithY(Mathf.Max(0f, transform.position.y + bounce * Time.deltaTime));
-        }
-
-        private void FixedUpdate() {
-            bounce += Physics.gravity.y * bounceGravity * Time.fixedDeltaTime;
         }
 
         private void OnDrawGizmos() {

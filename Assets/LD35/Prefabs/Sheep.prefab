@@ -336,9 +336,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1.5
   power: 0.3
-  speed: 5
-  bounceSpeed: 5
+  bounciness: 5
   bounceGravity: 5
+  speed: 5
   chilloutThreshold: 0.1
   chilloutTime: 2
   wanderSpeedup: 0.25

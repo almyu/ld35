@@ -4,7 +4,7 @@ using System;
 
 namespace LD35
 {
-    public class Dog : Scare
+    public class Dog : BouncyScare
     {
         public float runSpeed = 6f;
         public float herdingRadiusPrio = 1f;
@@ -13,14 +13,16 @@ namespace LD35
         public float attackDelay = 1f;
         public float attackRange = 0.5f;
 
-        public Vector3 target {
+        public Vector3 target
+        {
             get { return _target; }
-            set {
+            set
+            {
                 _target = World.Clamp(value);
                 _position = planarPosition;
             }
         }
-        private Vector3 _target, _position;
+        private Vector3 _target, _position, _lastPosition;
                 
         private bool _gameOver = false; //Remove later
 
@@ -29,6 +31,7 @@ namespace LD35
         protected void Awake()
         {
             target = planarPosition;
+            _lastPosition = planarPosition;
         }
 
         protected void Update()
@@ -57,7 +60,17 @@ namespace LD35
             Run();
         }
 
-        private bool WerewolfKilledByDog() {
+        protected override void LateUpdate()
+        {
+            if (grounded && planarPosition != _lastPosition)
+                Jump((planarPosition - _lastPosition).magnitude / (runSpeed * Time.deltaTime));
+
+            _lastPosition = planarPosition;
+            base.LateUpdate();
+        }
+
+        private bool WerewolfKilledByDog()
+        {
             return Vector3.Distance(planarPosition, Shepherd.instance.planarPosition) <= attackRange;
         }
 
