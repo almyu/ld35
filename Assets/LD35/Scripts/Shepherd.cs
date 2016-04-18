@@ -51,6 +51,8 @@ namespace LD35 {
                     speed *= Mods.Faster.factor;
                 }
 
+                UIManager.instance.RefreshPortrait();
+
                 ShiftShape();
             }
         }

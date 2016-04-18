@@ -35,7 +35,6 @@ namespace LD35 {
         private float minBlinkInterval = 1f;
         protected void Update() {
             if (Shepherd.instance.isWolf) {
-                wolfPortrait.color = wolfPortrait.color.WithA(1f);
                 return;
             }
 
@@ -43,12 +42,15 @@ namespace LD35 {
                 return;
 
             if (blinkTimer < 0f)
-                blinkTimer = blinkInterval = Mathf.Lerp(maxBlinkInterval, minBlinkInterval, GameManager.instance.stomach * 2);
-
-            blinkInterval = Mathf.Clamp(blinkInterval, 0.5f, 5f);
+                blinkTimer = blinkInterval = Mathf.Lerp(maxBlinkInterval, minBlinkInterval, GameManager.instance.stomach * 2);                      
 
             wolfPortrait.color = wolfPortrait.color.WithA(blinkTimer / blinkInterval);
-            blinkTimer -= Time.unscaledDeltaTime;
+            blinkTimer -= Time.unscaledDeltaTime / 2;
+        }
+
+        public void RefreshPortrait() {
+            var alpha = Shepherd.instance.isWolf ? 1f : 0f;
+            wolfPortrait.color = wolfPortrait.color.WithA(alpha);
         }
         
         public static void SetStomach(float stomach) {
