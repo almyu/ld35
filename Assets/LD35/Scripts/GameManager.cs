@@ -27,7 +27,7 @@ namespace LD35 {
         }
 
         private void Update() {
-            if (!shepherd.gameObject.activeInHierarchy) GameOver();
+            if (!shepherd.enabled) GameOver();
             if (SheepCounter.instance.IsAllSheepDead()) GameOver();
 
             if (!shepherd.isWolf) {

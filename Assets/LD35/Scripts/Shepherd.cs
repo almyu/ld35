@@ -64,7 +64,8 @@ namespace LD35 {
                 
                 elapsed += Time.unscaledDeltaTime;
                 if (elapsed >= PauseAfterDeadInSec) {
-                    this.gameObject.SetActive(false);
+                    enabled = false;
+                    //this.gameObject.SetActive(false);
                 }
                 return;
             }
