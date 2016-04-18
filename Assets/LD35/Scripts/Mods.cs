@@ -53,7 +53,7 @@ namespace LD35 {
 
         public static void Save() {
             var bits = new string(System.Array.ConvertAll(modList, mod =>
-                mod.unlocked ? mod.active ? '2' : '1' : '0'));
+                mod.unlocked ? mod.active ? 'a' : 'u' : '-'));
 
             PlayerPrefs.SetString("Mods", bits);
         }
@@ -62,8 +62,8 @@ namespace LD35 {
             var bits = PlayerPrefs.GetString("Mods", "");
 
             for (int i = 0, n = Mathf.Min(bits.Length, ModID.MaxID); i < n; ++i) {
-                modList[i].unlocked = bits[i] > '0';
-                modList[i].active = bits[i] > '1';
+                modList[i].active = bits[i] == 'a';
+                modList[i].unlocked = bits[i] == 'u' || modList[i].active;
             }
         }
 
