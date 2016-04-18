@@ -43,5 +43,12 @@ namespace LD35 {
 
             toogle.isOn = mod.active;
         }
+
+        protected override void Update() {
+            base.Update();
+
+            if (Input.GetKeyDown(KeyCode.BackQuote) && Input.GetKey(KeyCode.LeftControl))
+                PlayerPrefs.DeleteAll();
+        }
     }
 }
