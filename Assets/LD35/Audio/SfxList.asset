@@ -14,22 +14,53 @@ MonoBehaviour:
   reserveMissing: 1
   clips:
   - name: ShepherdSteps
+    volumeScale: 1
     clip: {fileID: 8300000, guid: 2fcfef4db2107594a90b72d8fd6f8f81, type: 3}
-  - name: baa1
-    clip: {fileID: 8300000, guid: 6fee3bcdd8c64054b8c73556d9392d02, type: 3}
-  - name: baa2
-    clip: {fileID: 8300000, guid: 0e68486d00d7e5c4d90a04192bbbac8c, type: 3}
-  - name: baa3
-    clip: {fileID: 8300000, guid: 792c95ad144c0cd45a1e403235667a1a, type: 3}
+    extraClips:
+    - {fileID: 8300000, guid: c2a7d121f1a91254c9560d989c9eb96a, type: 3}
+    - {fileID: 8300000, guid: ece6e08713f405e49bf904005ba0f0d5, type: 3}
+    - {fileID: 8300000, guid: 9d48adabc271f9c4fb11f2212fdf59ac, type: 3}
+    - {fileID: 8300000, guid: 3f8040cfa0035674caa69346fecac6d8, type: 3}
   - name: ShapeShiftRoar
+    volumeScale: 1
     clip: {fileID: 8300000, guid: 35d65393b59d8a94189404e0ff23d604, type: 3}
+    extraClips: []
   - name: WolfPunches
+    volumeScale: 1
     clip: {fileID: 8300000, guid: 130296c18248e704fba24969a047ad28, type: 3}
+    extraClips:
+    - {fileID: 8300000, guid: dc71586038725e1479fd90a9d411962f, type: 3}
+    - {fileID: 8300000, guid: 565bf9b6fcd1043478adbd828c0a1ad3, type: 3}
+    - {fileID: 8300000, guid: af53e4acb5b788641b50c4bb0a822cd5, type: 3}
   - name: SheepGetsEaten
+    volumeScale: 1
     clip: {fileID: 8300000, guid: 1ea97a4866f548e488c01d66d488259d, type: 3}
+    extraClips:
+    - {fileID: 8300000, guid: dfee4bd3eae3bff4bb2007b462bf79ca, type: 3}
+    - {fileID: 8300000, guid: 5cb9ceb8d777a8649b738fa7b90f35c0, type: 3}
+    - {fileID: 8300000, guid: 9b4bdcee359ebab4487dab1e8b361acd, type: 3}
   - name: DogGetsAngry
+    volumeScale: 1
     clip: {fileID: 8300000, guid: d892dbdd2d9208241b7976142aa369d4, type: 3}
+    extraClips:
+    - {fileID: 8300000, guid: af9950037b25bdb40a8a5c28663336f2, type: 3}
+    - {fileID: 8300000, guid: c4b66866aa78fe3449903d5b161e606e, type: 3}
+    - {fileID: 8300000, guid: 7eb630f786986324f8c95a28a1d44660, type: 3}
+    - {fileID: 8300000, guid: f27e01ab0541afb47a32ecd27a82b699, type: 3}
   - name: SheepFalls
+    volumeScale: 1
     clip: {fileID: 8300000, guid: fab694f7f839fec41af664dea9c82aca, type: 3}
+    extraClips:
+    - {fileID: 8300000, guid: 598ade11f6855c84f915f868040e790b, type: 3}
   - name: ShepherdDied
+    volumeScale: 1
     clip: {fileID: 8300000, guid: 395077522920249458f43c979656827d, type: 3}
+    extraClips: []
+  - name: SheepBleats
+    volumeScale: 1
+    clip: {fileID: 8300000, guid: 6fee3bcdd8c64054b8c73556d9392d02, type: 3}
+    extraClips:
+    - {fileID: 8300000, guid: 42780dd1bf8ad4d419512cd5a151f9cd, type: 3}
+    - {fileID: 8300000, guid: 0e02b33bcf9d8c140a56ee4b4ceab1f6, type: 3}
+    - {fileID: 8300000, guid: 0e68486d00d7e5c4d90a04192bbbac8c, type: 3}
+    - {fileID: 8300000, guid: 792c95ad144c0cd45a1e403235667a1a, type: 3}
