@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using JamSuite.Audio;
 
 namespace LD35
 {
@@ -54,9 +55,13 @@ namespace LD35
                 }
 
                 aggroTimer -= Time.deltaTime;
-
-                if (aggroTimer < 0f)
+                
+                if (aggroTimer < 0f) {
+                    if (aggroTimer + Time.deltaTime >= 0f) {
+                        Sfx.Play("DogGetsAngry");
+                    }
                     target = Shepherd.instance.planarPosition;
+                }
             }
             else aggroTimer = attackDelay;
 

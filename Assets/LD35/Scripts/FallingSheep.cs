@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using JamSuite.Audio;
 
 namespace LD35 {
 
@@ -12,6 +13,7 @@ namespace LD35 {
             if (sheep)
             {
                 SheepCounter.instance.LoseSheep();
+                Sfx.Play("SheepFalls");
                 Destroy(sheep);
             }
         }

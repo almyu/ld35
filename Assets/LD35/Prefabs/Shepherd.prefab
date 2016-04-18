@@ -404,6 +404,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416222}
   - 95: {fileID: 9532092}
+  - 114: {fileID: 11463748}
   m_Layer: 0
   m_Name: Shepherd_Model
   m_TagString: Untagged
@@ -1062,7 +1063,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181392}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071069, y: 0, z: -0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100.00001, z: 100.00001}
   m_Children: []
@@ -1302,7 +1303,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111484}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071069, y: 0, z: -0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100.00001, z: 100.00001}
   m_Children: []
@@ -1523,7 +1524,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192544}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071069, y: 0, z: -0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100.00001, z: 100.00001}
   m_Children: []
@@ -1559,7 +1560,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100532}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071069, y: 0, z: -0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100.00001, z: 100.00001}
   m_Children:
@@ -1572,7 +1573,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194748}
-  m_LocalRotation: {x: -0.026069567, y: -0.6395903, z: 0.7661858, w: -0.056602515}
+  m_LocalRotation: {x: -0.026069568, y: -0.6395904, z: 0.7661859, w: -0.05660252}
   m_LocalPosition: {x: -2.1187588e-11, y: 0.003178953, z: -9.518116e-10}
   m_LocalScale: {x: 1, y: 0.99999964, z: 0.9999999}
   m_Children:
@@ -1689,7 +1690,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141278}
-  m_LocalRotation: {x: 0.0055009252, y: -0.7070864, z: 0.005500917, w: 0.70708436}
+  m_LocalRotation: {x: 0.0055009257, y: -0.70708644, z: 0.0055009173, w: 0.7070844}
   m_LocalPosition: {x: 2.1853945e-10, y: 0.005848533, z: -1.11155404e-10}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children:
@@ -1950,6 +1951,20 @@ MonoBehaviour:
   shepherdGO: {fileID: 136552}
   werewolfGO: {fileID: 116766}
   speed: 5
+--- !u!114 &11463748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136552}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff5bf944ed59674a87ff21d8f422b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 0
+  playAtPosition: 0
+  clipName: ShepherdSteps
 --- !u!137 &13730078
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -442,6 +442,7 @@ MonoBehaviour:
   BlackSheepMaterial: {fileID: 2100000, guid: b6c0a40417e0f134e9877905c8f6d19a, type: 2}
   YellowSheepMaterial: {fileID: 2100000, guid: a4ba34548f60b1b499fb94dabe620583, type: 2}
   RedSheep: {fileID: 0}
+  alwaysKilledRedSheep: 1
   BlackSheep: {fileID: 0}
   YellowSheep: {fileID: 0}
 --- !u!4 &1637097872

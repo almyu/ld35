@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JamSuite.Audio;
+using System.Collections;
 using UnityEngine;
 
 namespace LD35 {
@@ -88,18 +89,23 @@ namespace LD35 {
         private void ShiftShape() {
             if (isDead) return;
 
+            Sfx.Play("ShapeShiftRoar");
+
             shepherdGO.SetActive(!isWolf);
             werewolfGO.SetActive(isWolf);
         }
 
         public bool AttackClosestSheep() {
+            werewolfAnimator.SetTrigger("Punch");
+            Sfx.Play("WolfPunches");
+
             if (!attackArea.victim) return false;
 
             var dir = attackArea.victim.planarPosition - planarPosition;
             if (!attackArea.Attack()) return false;
 
             transform.rotation = Quaternion.LookRotation(dir);
-            werewolfAnimator.SetTrigger("Punch");
+            
 
             //dirty hack to increase scary on eating
             power *= 1.5f;
@@ -109,6 +115,7 @@ namespace LD35 {
 
         public void Die() {
             isDead = true;
+            Sfx.Play("ShepherdDied");
             werewolfAnimator.SetTrigger("IsDead");
         }
     }
