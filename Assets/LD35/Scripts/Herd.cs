@@ -99,6 +99,9 @@ namespace LD35 {
                 }
             }
             else {
+                if (RedSheep == null)
+                    return;
+
                 PaintSheep(RedSheep, DefautSheepMaterial);
                 alwaysKilledRedSheep = false;
             }
