@@ -622,9 +622,9 @@ MonoBehaviour:
   lostSheepIcons: {fileID: 689632038}
   gameOverWindow: {fileID: 465549121}
   restartButton: {fileID: 1180986002}
-  baseSheepColor: {r: 1, g: 1, b: 1, a: 1}
-  eatenSheepColor: {r: 1, g: 0, b: 0, a: 1}
-  lostSheepColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  baseSheepColor: {r: 0.65882355, g: 0.654902, b: 0.6745098, a: 0.5882353}
+  eatenSheepColor: {r: 0.5411765, g: 0.11764706, b: 0.1764706, a: 0.5882353}
+  lostSheepColor: {r: 0.19215687, g: 0.2627451, b: 0.29411766, a: 1}
   WindCalm: {fileID: 143486, guid: ae7ef43f62c0d8f4caedfddbc661dc5a, type: 2}
 --- !u!1 &1128405184
 GameObject:
