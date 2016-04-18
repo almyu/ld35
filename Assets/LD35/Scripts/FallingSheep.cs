@@ -10,8 +10,8 @@ namespace LD35 {
 
         private void Start() {
             var sheep = GetComponent<Sheep>();
-            if (sheep)
-            {
+            if (sheep) {
+                GameRun.OnLost(Herd.instance.InferType(sheep));
                 SheepCounter.instance.LoseSheep();
                 Sfx.Play("SheepFalls");
                 Destroy(sheep);

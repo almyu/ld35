@@ -73,7 +73,14 @@ namespace LD35 {
             var sheepModel = spawnedSheep.GetComponentInChildren<SheepModel>();
             sheepModel.PaintSheep(material);
 
+            ToggleMaterialSwap(spawnedSheep, material == DefautSheepMaterial);
+
             return spawnedSheep;
+        }
+
+        private void ToggleMaterialSwap(Sheep sheep, bool allow) {
+            var swapper = sheep.GetComponentInChildren<WolfVisionMaterials>();
+            if (swapper) swapper.enabled = allow;
         }
 
         public Sheep SpawnSheep() {
@@ -87,8 +94,16 @@ namespace LD35 {
 
             Destroy(spawnedDeath.gameObject, 6f);
         }
+
+        public SheepType InferType(Sheep sheep) {
+            if (sheep == RedSheep) return SheepType.Red;
+            if (sheep == BlackSheep) return SheepType.Black;
+            if (sheep == YellowSheep) return SheepType.Yellow;
+            return SheepType.Regular;
+        }
         
         public void OnSheepKilled(Sheep sheep) {
+            GameRun.OnEaten(InferType(sheep));
             SpawnDeadSheep(sheep.gameObject.transform.position);
 
             if (sheep == RedSheep && (SheepCounter.instance.eatenSheep <= numSheep - 1)) {
