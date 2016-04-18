@@ -20,9 +20,13 @@ namespace LD35 {
             return true;
         }
 
+        public static void Unload() {
+            SceneManager.UnloadScene("PauseMenu");
+        }
+
         public static void Pause() {
             mode = Mode.Pause;
-            if (!Load()) SceneManager.UnloadScene("PauseMenu");
+            if (!Load()) Unload();
         }
 
         public static void Die() {
@@ -47,6 +51,14 @@ namespace LD35 {
 
         private void OnDisable() {
             Time.timeScale = 1f;
+        }
+
+        public void GoTo(string name) {
+            SceneManager.LoadScene(name);
+        }
+
+        public void Resume() {
+            Unload();
         }
     }
 }
