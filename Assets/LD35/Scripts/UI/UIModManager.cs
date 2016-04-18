@@ -23,8 +23,8 @@ namespace LD35 {
 
         private void OnSelectAll(bool value) {
             for (int i = transform.childCount; i-- > 0;) {
-                if (!Mods.modList[i].unlocked)
-                    continue;
+                //if (!Mods.modList[i].unlocked)
+                //    continue;
 
                 var child = transform.GetChild(i);
                 if (child != null) {
@@ -76,11 +76,11 @@ namespace LD35 {
 
             toogle.isOn = mod.active;
             
-#if UNITY_EDITOR
-            toogle.interactable = true;
-#else
-            toogle.interactable = mod.unlocked;
-#endif
+//#if UNITY_EDITOR
+//            toogle.interactable = true;
+//#else
+//            toogle.interactable = mod.unlocked;
+//#endif
         }
 
         protected override void Update() {
