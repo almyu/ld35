@@ -27,8 +27,8 @@ namespace LD35 {
         }
 
         private void Update() {
-            if (!shepherd.enabled) GameOver();
-            if (SheepCounter.instance.IsAllSheepDead()) GameOver();
+            if (!shepherd.enabled) PauseMenu.Die();
+            if (SheepCounter.instance.IsAllSheepDead()) PauseMenu.GameOver();
 
             if (!shepherd.isWolf) {
                 if (ModID.Diet.IsModActive()) {
@@ -54,7 +54,7 @@ namespace LD35 {
             }
 
             if (Input.GetKeyDown(KeyCode.Escape))
-                PauseMenu.Toggle();
+                PauseMenu.Pause();
 
 #if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.Tab))
@@ -89,10 +89,6 @@ namespace LD35 {
             UIManager.SetNormalizedTime(1f);
 
             shepherd.isWolf = false;
-        }
-
-        private void GameOver() {
-            UIManager.instance.ShowGameOverWindow();
         }
     }
 }

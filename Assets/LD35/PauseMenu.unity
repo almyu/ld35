@@ -586,6 +586,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344deba02b442e548ab10338348cedaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  labelPaused: {fileID: 606908655}
+  labelDied: {fileID: 538515796}
+  labelGameOver: {fileID: 313213087}
 --- !u!1 &1180986000
 GameObject:
   m_ObjectHideFlags: 0
