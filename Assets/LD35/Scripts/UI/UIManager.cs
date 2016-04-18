@@ -29,14 +29,26 @@ namespace LD35 {
         private float blinkTimer, blinkInterval;
 
         public GameObject challengeMessage;
-        public float messageShowTime = 10f;
-        public float messageFadeSpeed = 0.05f;
+        public GameObject failedChallengeIcon;
+        public GameObject completedChallengeIcon;
+        public float delayBetweenMessages = 1f;
+
+        private CanvasRenderer messagesCachedRenderer;
+        private AnimationCurve alphaCurve;
+        private float duration;
 
         private void Awake() {
             gameOverWindow.SetActive(false);
             restartButton.onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
 
             wolfPortrait.canvasRenderer.SetAlpha(0f);
+            messagesCachedRenderer = challengeMessage.GetComponent<CanvasRenderer>();
+            messagesCachedRenderer.SetAlpha(0f);
+            alphaCurve = UIFlash.instance.alphaCurve;
+            duration = UIFlash.instance.duration;
+
+            failedChallengeIcon.SetActive(false);
+            completedChallengeIcon.SetActive(false);
         }
 
         protected void Update() {
@@ -143,37 +155,27 @@ namespace LD35 {
             messageInProgress = true;
             messageText.text = msgText;
 
-            var elapsed = 0f;
-            var start = messageText.color;
-            var target = messageText.color.WithA(1f);
+            var failed = msgText.Contains("Failed");
+            failedChallengeIcon.SetActive(failed);
+            completedChallengeIcon.SetActive(!failed);
+            
+            var elapsed = duration;
+            messagesCachedRenderer.SetAlpha(0f);
 
-            while(elapsed < messageShowTime) {
+            while (elapsed >= 0f) {
 
-                var process = elapsed * messageFadeSpeed / Time.unscaledDeltaTime;
-                messageText.color = Color.Lerp(start, target, process);
+                messagesCachedRenderer.SetAlpha(alphaCurve.Evaluate(1f - Mathf.Clamp01(elapsed / duration)));
 
-                elapsed += Time.unscaledDeltaTime;
-
-                yield return new WaitForEndOfFrame();
-            }
-
-            messageText.color = target;
-
-            elapsed = 0f;
-            start = messageText.color;
-            target = messageText.color.WithA(0f);
-
-            while (elapsed < messageShowTime) {
-
-                var process = elapsed * messageFadeSpeed / Time.unscaledDeltaTime;
-                messageText.color = Color.Lerp(start, target, process);
-
-                elapsed += Time.unscaledDeltaTime;
+                elapsed -= Time.unscaledDeltaTime;
 
                 yield return new WaitForEndOfFrame();
             }
 
-            messageText.color = target;
+            yield return new WaitForSeconds(delayBetweenMessages);
+
+            messagesCachedRenderer.SetAlpha(0f);
+            
+
             messageInProgress = false;
         }
     }
