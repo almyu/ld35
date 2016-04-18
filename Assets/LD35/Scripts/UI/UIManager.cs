@@ -52,7 +52,7 @@ namespace LD35 {
 
         public void RefreshPortrait() {
             var alpha = Shepherd.instance.isWolf ? 1f : 0f;
-            wolfPortrait.color = wolfPortrait.color.WithA(alpha);
+            wolfPortrait.canvasRenderer.SetAlpha(alpha);
         }
         
         public static void SetStomach(float stomach) {
