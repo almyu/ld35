@@ -53,6 +53,9 @@ namespace LD35 {
                 }
             }
 
+            if (Input.GetKeyDown(KeyCode.Escape))
+                PauseMenu.Toggle();
+
 #if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.Tab))
                 stomach = 1f - stomach;
