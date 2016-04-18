@@ -52,6 +52,10 @@ namespace LD35 {
             if (buttonResume) buttonResume.interactable = mode == Mode.Pause;
         }
 
+        private void Update() {
+            Time.timeScale = 0f;
+        }
+
         private void OnDisable() {
             Time.timeScale = 1f;
         }
