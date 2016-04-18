@@ -18,11 +18,17 @@ namespace LD35 {
         private Vector3 waypoint;
 
         public static Sheep GetAnyInRange(Vector3 point, float range) {
-            foreach (var sheep in Sheep.sheepList)
-                if (Vector3.Distance(sheep.planarPosition, point) <= range)
-                    return sheep;
+            var closest = default(Sheep);
+            var minDistSq = range * range;
 
-            return null;
+            foreach (var sheep in Sheep.sheepList) {
+                var distSq = (sheep.planarPosition - point).sqrMagnitude;
+                if (distSq > minDistSq) continue;
+
+                minDistSq = distSq;
+                closest = sheep;
+            }
+            return closest;
         }
 
         public static void JumpAll(float minSpeed, float maxSpeed) {
