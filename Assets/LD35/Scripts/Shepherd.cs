@@ -107,7 +107,8 @@ namespace LD35 {
             if (!attackArea.Attack()) return false;
 
             transform.rotation = Quaternion.LookRotation(dir);
-            
+
+            Screenshake.Activate();
 
             //dirty hack to increase scary on eating
             power *= sheepKilledScareFactor;
