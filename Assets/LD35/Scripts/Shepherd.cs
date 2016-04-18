@@ -100,6 +100,10 @@ namespace LD35 {
 
             transform.rotation = Quaternion.LookRotation(dir);
             werewolfAnimator.SetTrigger("Punch");
+
+            //dirty hack to increase scary on eating
+            power *= 1.5f;
+
             return true;
         }
 
