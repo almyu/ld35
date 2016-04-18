@@ -11,7 +11,7 @@ namespace LD35 {
         }
 
         public float manSpeed = 4.5f, manScareRadius = 3f, manScariness = 0.7f, manAnimationSpeed = 1f; 
-        public float wolfSpeed = 4.5f, wolfScareRadius = 6f, wolfScariness = 1f, wolfAnimationSpeed = 1f;
+        public float wolfSpeed = 4.5f, wolfScareRadius = 6f, wolfScariness = 1f, wolfAnimationSpeed = 1f, sheepKilledScareFactor = 1.5f;
         public float PauseAfterDeadInSec = 5f;
 
         public AttackArea attackArea;
@@ -108,7 +108,7 @@ namespace LD35 {
             
 
             //dirty hack to increase scary on eating
-            power *= 1.5f;
+            power *= sheepKilledScareFactor;
 
             return true;
         }
