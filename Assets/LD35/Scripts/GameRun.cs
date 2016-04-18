@@ -8,27 +8,21 @@ namespace LD35 {
         public int current;
 
         public string name { get { return mod != null ? mod.name : "<missing>"; } }
-        public int max { get { return mod.num; } }
+        public int max { get { return mod != null ? mod.num : 0; } }
         public SheepEvent evt { get { return mod.evt; } }
         public SheepType type { get { return mod.type; } }
     }
 
     public class GameRun : MonoSingleton<GameRun> {
 
-        public ModTrial[] trials;
-        public int total, eaten, lost;
+        public ModTrial[] trials = System.Array.ConvertAll(Mods.modList, mod => new ModTrial {
+            mod = mod,
+            status = mod.active ? ModStatus.Active : ModStatus.Inactive
+        });
+        public int total = 30, eaten, lost;
 
         private void Start() {
             total = Herd.instance.numSheep;
-            trials = new ModTrial[ModID.MaxID];
-
-            for (int i = 0; i < ModID.MaxID; ++i) {
-                var mod = Mods.modList[i];
-                var trial = trials[i] = new ModTrial();
-
-                trial.mod = mod;
-                trial.status = mod.active ? ModStatus.Active : ModStatus.Inactive;
-            }
         }
 
         public static void OnEaten(SheepType type) {
@@ -54,7 +48,7 @@ namespace LD35 {
                     Fail(trial);
                     continue;
                 }
-                if (trial.type == SheepType.Red && (trial.evt != evt || trial.type != type)) {
+                if (trial.type == SheepType.Red && trial.evt == evt && trial.type != type) {
                     Fail(trial);
                     continue;
                 }

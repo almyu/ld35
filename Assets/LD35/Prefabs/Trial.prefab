@@ -11,7 +11,7 @@ GameObject:
   - 222: {fileID: 22211570}
   - 114: {fileID: 11494340}
   m_Layer: 5
-  m_Name: EmptyCheckbox
+  m_Name: CheckboxActive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ GameObject:
   - 222: {fileID: 22270192}
   - 114: {fileID: 11478646}
   m_Layer: 5
-  m_Name: FailedCheckbox
+  m_Name: CheckboxFailed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ GameObject:
   - 222: {fileID: 22283550}
   - 114: {fileID: 11445368}
   m_Layer: 5
-  m_Name: CompleteCheckbox
+  m_Name: CheckboxCompleted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ GameObject:
   - 222: {fileID: 22235016}
   - 114: {fileID: 11459636}
   m_Layer: 5
-  m_Name: LockedCheckbox
+  m_Name: CheckboxInactive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,7 +355,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22484260}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 10.000009, y: -0.0000076293945}
@@ -372,7 +372,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22484260}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 10.000009, y: -0.000015258789}
@@ -423,7 +423,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22484260}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 10, y: 0}
@@ -439,10 +439,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 22465436}
-  - {fileID: 22416654}
-  - {fileID: 22401436}
   - {fileID: 22419408}
+  - {fileID: 22465436}
+  - {fileID: 22401436}
+  - {fileID: 22416654}
   - {fileID: 22420276}
   - {fileID: 22462734}
   m_Father: {fileID: 0}
