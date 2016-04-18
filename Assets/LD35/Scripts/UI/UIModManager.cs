@@ -13,7 +13,7 @@ namespace LD35 {
 
         protected void Start() {
             startButton.onClick.AddListener(OnStartClicked);
-            scrollRect.verticalScrollbar.value = 1f; //scroll on top
+            //scrollRect.verticalScrollbar.value = 1f; //scroll on top
         }
 
         private void OnStartClicked() {
