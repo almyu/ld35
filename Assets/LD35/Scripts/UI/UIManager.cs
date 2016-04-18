@@ -33,7 +33,7 @@ namespace LD35 {
         public GameObject completedChallengeIcon;
         public float delayBetweenMessages = 1f;
 
-        private CanvasRenderer messagesCachedRenderer;
+        private CanvasGroup messagesCachedRenderer;
         private AnimationCurve alphaCurve;
         private float duration;
 
@@ -42,8 +42,8 @@ namespace LD35 {
             restartButton.onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
 
             wolfPortrait.canvasRenderer.SetAlpha(0f);
-            messagesCachedRenderer = challengeMessage.GetComponent<CanvasRenderer>();
-            messagesCachedRenderer.SetAlpha(0f);
+            messagesCachedRenderer = challengeMessage.GetComponent<CanvasGroup>();
+            messagesCachedRenderer.alpha = 0f;
             alphaCurve = UIFlash.instance.alphaCurve;
             duration = UIFlash.instance.duration;
 
@@ -159,12 +159,12 @@ namespace LD35 {
             failedChallengeIcon.SetActive(failed);
             completedChallengeIcon.SetActive(!failed);
             
-            var elapsed = duration;
-            messagesCachedRenderer.SetAlpha(0f);
+            var elapsed = duration * delayBetweenMessages;
+            messagesCachedRenderer.alpha = 0f;
 
             while (elapsed >= 0f) {
 
-                messagesCachedRenderer.SetAlpha(alphaCurve.Evaluate(1f - Mathf.Clamp01(elapsed / duration)));
+                messagesCachedRenderer.alpha = alphaCurve.Evaluate(1f - Mathf.Clamp01(elapsed / duration));
 
                 elapsed -= Time.unscaledDeltaTime;
 
@@ -173,7 +173,7 @@ namespace LD35 {
 
             yield return new WaitForSeconds(delayBetweenMessages);
 
-            messagesCachedRenderer.SetAlpha(0f);
+            messagesCachedRenderer.alpha = 0f;
             
 
             messageInProgress = false;

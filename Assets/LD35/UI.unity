@@ -874,6 +874,7 @@ MonoBehaviour:
   challengeMessage: {fileID: 1436610998}
   failedChallengeIcon: {fileID: 817604643}
   completedChallengeIcon: {fileID: 1620645285}
+  delayBetweenMessages: 3
 --- !u!1 &1128405184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1166,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 1436610999}
   - 222: {fileID: 1436611000}
+  - 225: {fileID: 1436611001}
   m_Layer: 5
   m_Name: ChallengeMessage
   m_TagString: Untagged
@@ -1200,6 +1202,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1436610998}
+--- !u!225 &1436611001
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436610998}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1460693119
 GameObject:
   m_ObjectHideFlags: 0
