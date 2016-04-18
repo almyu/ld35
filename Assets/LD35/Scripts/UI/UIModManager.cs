@@ -9,9 +9,11 @@ namespace LD35 {
     public class UIModManager : HierarchyBuilder<Mod> {
 
         public Button startButton;
+        public ScrollRect scrollRect;
 
         protected void Start() {
             startButton.onClick.AddListener(OnStartClicked);
+            scrollRect.verticalScrollbar.value = 1f; //scroll on top
         }
 
         private void OnStartClicked() {
