@@ -117,9 +117,10 @@ namespace LD35
         {
             var polarPosition = World.GetPolar(planarPosition);
             var herdingTarget = HerdingTactics.FindTarget(polarPosition, herdingRadiusPrio, herdingDistPrio);
+            var desiredRadius = Mathf.Min(herdingTarget.polarPosition.x + herdingExtraRadius, World.instance.radius + 0.3f);
 
             var polarSpeed = new Vector2(
-                Mathf.Abs(herdingTarget.polarPosition.x + herdingExtraRadius - polarPosition.x),
+                Mathf.Abs(desiredRadius - polarPosition.x),
                 World.AngularDistance(polarPosition.y, herdingTarget.polarPosition.y));
 
             polarSpeed.y *= Mathf.Deg2Rad * polarPosition.x;
@@ -130,7 +131,7 @@ namespace LD35
             polarSpeed.y *= Mathf.Rad2Deg / polarPosition.x;
             polarSpeed *= runSpeed * Time.deltaTime;
 
-            polarPosition.x = Mathf.MoveTowards(polarPosition.x, herdingTarget.polarPosition.x + herdingExtraRadius, polarSpeed.x);
+            polarPosition.x = Mathf.MoveTowards(polarPosition.x, desiredRadius, polarSpeed.x);
             polarPosition.y = Mathf.MoveTowardsAngle(polarPosition.y, herdingTarget.polarPosition.y, polarSpeed.y);
 
             var nextPlanarPosition = World.GetPlanar(polarPosition);
