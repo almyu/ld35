@@ -96,6 +96,8 @@ namespace LD35 {
 
             shepherdGO.SetActive(!isWolf);
             werewolfGO.SetActive(isWolf);
+
+            WolfVisionMaterials.SwapAll();
         }
 
         public bool AttackClosestSheep() {
