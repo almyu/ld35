@@ -28,7 +28,7 @@ namespace JamSuite.Audio {
         }
 
         public void Play(string clipName, float volumeScale) {
-            var clip = TryPlaying(clipName);
+            var clip = TryPlaying(clipName, ref volumeScale);
             if (clip) source.PlayOneShot(clip, volumeScale);
         }
 
@@ -37,12 +37,12 @@ namespace JamSuite.Audio {
         }
 
         public void Play(string clipName, Vector3 position, float volumeScale) {
-            var clip = TryPlaying(clipName);
+            var clip = TryPlaying(clipName, ref volumeScale);
             if (clip) AudioSource.PlayClipAtPoint(clip, position, source.volume * volumeScale);
         }
 
-        private AudioClip TryPlaying(string clipName) {
-            var clip = list.LookupClip(clipName);
+        private AudioClip TryPlaying(string clipName, ref float volumeScale) {
+            var clip = list.LookupClip(clipName, ref volumeScale);
             if (!clip) return null;
 
             var lastPlay = 0f;
