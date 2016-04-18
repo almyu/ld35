@@ -589,6 +589,7 @@ MonoBehaviour:
   labelPaused: {fileID: 606908655}
   labelDied: {fileID: 538515796}
   labelGameOver: {fileID: 313213087}
+  buttonResume: {fileID: 1472701308}
 --- !u!1 &1180986000
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +661,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1180986003}
+  m_TargetGraphic: {fileID: 1904162173}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -781,7 +782,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1460693122}
+  m_TargetGraphic: {fileID: 1882843097}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -902,7 +903,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1472701309}
+  m_TargetGraphic: {fileID: 1658142848}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1023,9 +1024,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'CONTINUE
-
-'
+  m_Text: RESUME
 --- !u!222 &1658142849
 CanvasRenderer:
   m_ObjectHideFlags: 0
