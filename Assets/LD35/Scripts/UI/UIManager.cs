@@ -28,6 +28,8 @@ namespace LD35 {
             gameOverWindow.SetActive(false);
             restartButton.onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
 
+            wolfPortrait.color = wolfPortrait.color.WithA(0f);
+
             if (ModID.Wind.IsModActive()) {
                 //Instantiate(NotCalmWind);
             }
@@ -36,13 +38,26 @@ namespace LD35 {
             }
         }
 
+        private float blinkTimer = 0f;
+        private float blinkInterval;
+        private float maxBlinkInterval = 0f;
+        private float minBlinkInterval = 1f;
         protected void Update() {
             if (Shepherd.instance.isWolf) {
-                wolfPortrait.color = wolfPortrait.color.WithA(0f);
+                wolfPortrait.color = wolfPortrait.color.WithA(1f);
                 return;
             }
-            
-            wolfPortrait.color = wolfPortrait.color.WithA(Mathf.PingPong(Time.unscaledTime * (1 - GameManager.instance.stomach), 1f));
+
+            if (GameManager.instance.stomach > 0.8f)
+                return;
+
+            if (blinkTimer < 0f)
+                blinkTimer = blinkInterval = Mathf.Lerp(maxBlinkInterval, minBlinkInterval, GameManager.instance.stomach * 2);
+
+            blinkInterval = Mathf.Clamp(blinkInterval, 0.5f, 5f);
+
+            wolfPortrait.color = wolfPortrait.color.WithA(blinkTimer / blinkInterval);
+            blinkTimer -= Time.unscaledDeltaTime;
         }
         
         public static void SetStomach(float stomach) {
