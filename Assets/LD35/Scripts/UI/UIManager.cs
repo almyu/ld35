@@ -20,9 +20,18 @@ namespace LD35 {
 
         public Color baseSheepColor = Color.white, eatenSheepColor = Color.red, lostSheepColor = Color.grey;
 
+        public GameObject WindCalm;
+
         private void Awake() {
             gameOverWindow.SetActive(false);
             restartButton.onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
+
+            if (ModID.Wind.IsModActive()) {
+                //Instantiate(NotCalmWind);
+            }
+            else {
+                Instantiate(WindCalm);
+            }
         }
 
         public static void SetStomach(float stomach) {
