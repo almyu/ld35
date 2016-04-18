@@ -31,7 +31,7 @@ namespace LD35
             target = planarPosition;
 
             if (ModID.Faster.IsModActive()) {
-                runSpeed *= 2;
+                runSpeed *= Mods.Faster.factor;
             }
         }
 

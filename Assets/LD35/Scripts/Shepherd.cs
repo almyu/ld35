@@ -33,7 +33,7 @@ namespace LD35 {
             werewolfAnimator = werewolfGO.GetComponent<Animator>();
 
             if (ModID.Faster.IsModActive()) {
-                speed *= 2;
+                speed *= Mods.Faster.factor;
             }
         }
 
@@ -47,7 +47,7 @@ namespace LD35 {
                 power = value ? wolfScariness : manScariness;
 
                 if (ModID.Faster.IsModActive()) {
-                    speed *= 2;
+                    speed *= Mods.Faster.factor;
                 }
 
                 ShiftShape();
