@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using JamSuite.Audio;
 
 namespace LD35 {
 
@@ -33,6 +34,7 @@ namespace LD35 {
             SheepCounter.instance.EatSheep();
             Herd.instance.OnSheepKilled(this);
             Destroy(gameObject);
+            Sfx.Play("SheepGetsEaten");
         }
 
         private void Update() {
