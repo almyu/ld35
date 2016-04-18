@@ -3,7 +3,7 @@
 namespace LD35 {
 
     public class Mod {
-        public bool active;
+        public bool unlocked, active;
         public string name, desc;
     }
 
@@ -37,9 +37,9 @@ namespace LD35 {
         public static readonly Mod[] modList = new Mod[ModID.MaxID];
 
         static Mods() {
-            modList[ModID.EatAll] = new Mod { name = "Eat All" };
-            modList[ModID.LoseAll] = new Mod { name = "Lose All" };
-            modList[ModID.RedSheep] = new Mod { name = "Red Sheep", desc = "Eat 10 red sheep" };
+            modList[ModID.EatAll] = new Mod { unlocked = true, name = "Eat All" };
+            modList[ModID.LoseAll] = new Mod { unlocked = true, name = "Lose All" };
+            modList[ModID.RedSheep] = new Mod { unlocked = true, name = "Red Sheep", desc = "Eat 10 red sheep" };
             modList[ModID.BlackSheep] = new Mod { name = "Black Sheep", desc = "Eat the black sheep last" };
             modList[ModID.YellowSheep] = new Mod { name = "Yellow Sheep", desc = "Eat the yellow sheep" };
             modList[ModID.Wind] = new Mod { name = "Wind", desc = "Eat 20 sheep" };
@@ -47,18 +47,24 @@ namespace LD35 {
             modList[ModID.Scarier] = new Mod { name = "Scarier!", desc = "Eat 20 sheep" };
             modList[ModID.Diet] = new Mod { name = "Diet", desc = "Eat 20 sheep" };
             modList[ModID.UndertrainedDog] = new Mod { name = "Undertrained Dog", desc = "Eat 15 sheep" };
+
+            Load();
         }
 
         public static void Save() {
-            var bits = new string(System.Array.ConvertAll(modList, mod => mod.active ? '1' : '0'));
-            PlayerPrefs.SetString("ActiveMods", bits);
+            var bits = new string(System.Array.ConvertAll(modList, mod =>
+                mod.unlocked ? mod.active ? 'a' : 'u' : '-'));
+
+            PlayerPrefs.SetString("Mods", bits);
         }
 
         public static void Load() {
-            var bits = PlayerPrefs.GetString("ActiveMods", "");
+            var bits = PlayerPrefs.GetString("Mods", "");
 
-            for (int i = 0, n = Mathf.Min(bits.Length, ModID.MaxID); i < n; ++i)
-                modList[i].active = bits[i] == '1';
+            for (int i = 0, n = Mathf.Min(bits.Length, ModID.MaxID); i < n; ++i) {
+                modList[i].active = bits[i] == 'a';
+                modList[i].unlocked = bits[i] == 'u' || modList[i].active;
+            }
         }
 
 
