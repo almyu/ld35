@@ -622,6 +622,8 @@ MonoBehaviour:
   lostSheepIcons: {fileID: 689632038}
   gameOverWindow: {fileID: 465549121}
   restartButton: {fileID: 1180986002}
+  challengesContainer: {fileID: 0}
+  challengePrefab: {fileID: 0}
   baseSheepColor: {r: 1, g: 1, b: 1, a: 1}
   eatenSheepColor: {r: 1, g: 0, b: 0, a: 1}
   lostSheepColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
