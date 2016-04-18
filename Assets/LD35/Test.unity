@@ -471,6 +471,9 @@ MonoBehaviour:
   bulletTimeScale: 0.1
   bulletTime: 2
   hellTime: 3
+  zeroWindPrefab: {fileID: 143486, guid: ae7ef43f62c0d8f4caedfddbc661dc5a, type: 2}
+  leftWindPrefab: {fileID: 148946, guid: c7d7e8748d1e83048a2a8805dcab46ed, type: 2}
+  rightWindPrefab: {fileID: 193430, guid: ea6a18048a518df4d9e83de4c426ad90, type: 2}
 --- !u!4 &1538427298
 Transform:
   m_ObjectHideFlags: 0

@@ -81,10 +81,15 @@ namespace LD35 {
 
         public class Wind : Mod {
 
-            public static Vector3 windSpeed;
+            public static float speed = 0.1f;
+            public static bool left;
+
+            public static Vector3 GetWindVelocity() {
+                return new Vector3(left ? -speed : speed, 0f, 0f);
+            }
 
             public static void Init() {
-                windSpeed = Random.onUnitSphere.WithY(0f).normalized * 0.1f;
+                left = Random.value < 0.5f;
             }
         }
 

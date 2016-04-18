@@ -13,12 +13,17 @@ namespace LD35 {
         public float manualShapeshiftThreshold = 0.5f;
         public bool canShapeshift { get { return stomach <= manualShapeshiftThreshold; } }
         public float bulletTimeScale = 0.1f, bulletTime = 2f, hellTime = 3f;
+
+        public GameObject zeroWindPrefab, leftWindPrefab, rightWindPrefab;
         
         private void Start() {
             UIManager.SetupSheep(Herd.instance.numSheep);
 
-            if (ModID.Wind.IsModActive())
+            if (ModID.Wind.IsModActive()) {
                 Mods.Wind.Init();
+                Instantiate(Mods.Wind.left ? leftWindPrefab : rightWindPrefab);
+            }
+            else Instantiate(zeroWindPrefab);
         }
 
         private void Update() {
