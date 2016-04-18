@@ -36,7 +36,7 @@ namespace LD35 {
 
         protected override void Tune(Transform spawn, Mod mod) {
             var unlockableText = spawn.FindChild("Label").GetComponent<Text>();
-            unlockableText.text = mod.name;
+            unlockableText.text = mod.name + "\n" + mod.desc;
 
             var toogle = spawn.GetComponent<Toggle>();
             toogle.onValueChanged.AddListener((value) => mod.active = value);
