@@ -17,6 +17,7 @@ namespace LD35 {
         protected void Start() {
             startButton.onClick.AddListener(OnStartClicked);
             selectAll.onValueChanged.AddListener((value) => OnSelectAll(value));
+            LoadSelectedMods();
             //scrollRect.verticalScrollbar.value = 1f; //scroll on top
         }
 
@@ -28,6 +29,15 @@ namespace LD35 {
                 var child = transform.GetChild(i);
                 if (child != null) {
                     child.GetComponent<Toggle>().isOn = value;
+                }
+            }
+        }
+
+        private void LoadSelectedMods() {
+            for (int i = transform.childCount; i-- > 0;) {
+                var child = transform.GetChild(i);
+                if (child != null) {
+                    child.GetComponent<Toggle>().isOn = Mods.modList[i].active;
                 }
             }
         }
@@ -48,6 +58,8 @@ namespace LD35 {
             foreach (var mod in Mods.modList) {
                 Spawn(mod);
             }
+
+            //LoadSelectedMods();
         }
 
         protected override void Tune(Transform spawn, Mod mod) {
@@ -58,9 +70,11 @@ namespace LD35 {
             toogle.onValueChanged.AddListener((value) => mod.active = value);
 
             toogle.isOn = mod.active;
-            toogle.interactable = mod.unlocked;
+            
 #if UNITY_EDITOR
             toogle.interactable = true;
+#else
+            toogle.interactable = mod.unlocked;
 #endif
         }
 
