@@ -24,7 +24,7 @@ namespace LD35 {
     }
 
     public class Mod {
-        public bool unlocked, active;
+        public bool unlocked, completed, active;
         public string name, desc;
         public SheepEvent evt;
         public SheepType type;
@@ -72,22 +72,38 @@ namespace LD35 {
             modList[ModID.Diet] = new Mod { name = "Diet", desc = "Eat 20 sheep", num = 20 };
             modList[ModID.UndertrainedDog] = new Mod { name = "Undertrained Dog", desc = "Eat 15 sheep", num = 15 };
 
-            Load();
+            try { Load(); }
+            catch {}
         }
 
         public static void Save() {
-            var bits = new string(System.Array.ConvertAll(modList, mod =>
-                mod.unlocked ? mod.active ? 'a' : 'u' : '-'));
+            int unlocked = 0, completed = 0, activated = 0;
 
-            PlayerPrefs.SetString("Mods", bits);
+            for (int i = 0; i < ModID.MaxID; ++i) {
+                var mod = modList[i];
+                var bit = 1 << i;
+
+                if (mod.unlocked) unlocked |= bit;
+                if (mod.completed) completed |= bit;
+                if (mod.active) activated |= bit;
+            }
+            PlayerPrefs.SetInt("Unlocked", unlocked);
+            PlayerPrefs.SetInt("Completed", completed);
+            PlayerPrefs.SetInt("Activated", activated);
         }
 
         public static void Load() {
-            var bits = PlayerPrefs.GetString("Mods", "");
+            var unlocked = PlayerPrefs.GetInt("Unlocked", 7);
+            var completed = PlayerPrefs.GetInt("Completed", 0);
+            var activated = PlayerPrefs.GetInt("Activated", 0);
 
-            for (int i = 0, n = Mathf.Min(bits.Length, ModID.MaxID); i < n; ++i) {
-                modList[i].active = bits[i] == 'a';
-                modList[i].unlocked = bits[i] == 'u' || modList[i].active;
+            for (int i = 0; i < ModID.MaxID; ++i) {
+                var mod = modList[i];
+                var bit = 1 << i;
+
+                mod.unlocked = (unlocked & bit) != 0;
+                mod.completed = (completed & bit) != 0;
+                mod.active = (activated & bit) != 0;
             }
         }
 

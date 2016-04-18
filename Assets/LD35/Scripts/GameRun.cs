@@ -75,8 +75,13 @@ namespace LD35 {
 
             Notify("Completed: {0}", trial.name);
 
-            var next = Mods.UnlockNext();
-            if (next != null) Notify("Unlocked: {0}", next.name);
+            if (!trial.mod.completed) {
+                trial.mod.completed = true;
+
+                var next = Mods.UnlockNext();
+                if (next != null) Notify("Unlocked: {0}", next.name);
+            }
+            Mods.Save();
         }
 
         public void Fail(ModTrial trial) {

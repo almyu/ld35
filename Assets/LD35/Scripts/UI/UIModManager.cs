@@ -15,6 +15,8 @@ namespace LD35 {
         public Toggle selectAll;
 
         protected void Start() {
+            Mods.Load();
+
             startButton.onClick.AddListener(OnStartClicked);
             selectAll.onValueChanged.AddListener((value) => OnSelectAll(value));
             LoadSelectedMods();
@@ -23,8 +25,8 @@ namespace LD35 {
 
         private void OnSelectAll(bool value) {
             for (int i = transform.childCount; i-- > 0;) {
-                //if (!Mods.modList[i].unlocked)
-                //    continue;
+                if (!Mods.modList[i].unlocked)
+                    continue;
 
                 var child = transform.GetChild(i);
                 if (child != null) {
@@ -43,7 +45,6 @@ namespace LD35 {
         }
 
         private void OnStartClicked() {
-
             for (int i = transform.childCount; i-- > 0;) {
                 var child = transform.GetChild(i);
                 if (child != null) {
@@ -51,6 +52,7 @@ namespace LD35 {
                 }
             }
 
+            Mods.Save();
             SceneManager.LoadScene("Test");
         }
 
@@ -71,15 +73,20 @@ namespace LD35 {
 
             unlockableText.text = text;
 
-            var toogle = spawn.GetComponent<Toggle>();
-            toogle.onValueChanged.AddListener((value) => mod.active = value);
+            if (mod.completed) {
+                unlockableText.color = Color.white;
+                unlockableText.fontStyle = FontStyle.Bold;
+            }
 
-            toogle.isOn = mod.active;
+            var toggle = spawn.GetComponent<Toggle>();
+            toggle.onValueChanged.AddListener((value) => mod.active = value);
+
+            toggle.isOn = mod.active;
             
 //#if UNITY_EDITOR
 //            toogle.interactable = true;
 //#else
-//            toogle.interactable = mod.unlocked;
+            toggle.interactable = mod.unlocked;
 //#endif
         }
 
