@@ -35,6 +35,7 @@ namespace LD35
 
         protected void Awake()
         {
+            AngryDogIcon.SetActive(false);
             target = planarPosition;
             _lastPosition = planarPosition;
 
@@ -47,25 +48,27 @@ namespace LD35
             if (_gameOver)
                 return;
 
-            if (Shepherd.instance.isWolf)
-            {
-                if (WerewolfKilledByDog())
-                {
+            if (Shepherd.instance.isWolf) {
+                if (WerewolfKilledByDog()) {
                     Shepherd.instance.Die();
                     _gameOver = true;
                     return;
                 }
 
                 aggroTimer -= Time.deltaTime;
-                
+
                 if (aggroTimer < 0f) {
                     if (aggroTimer + Time.deltaTime >= 0f) {
                         Sfx.Play("DogGetsAngry");
+                        AngryDogIcon.SetActive(true);
                     }
                     target = Shepherd.instance.planarPosition;
                 }
             }
-            else aggroTimer = attackDelay;
+            else {
+                aggroTimer = attackDelay;
+                AngryDogIcon.SetActive(false);
+            }
 
             if (Input.GetButton("Fire2") || Input.GetButton("Fire1"))
             {
