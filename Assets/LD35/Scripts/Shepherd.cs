@@ -92,7 +92,8 @@ namespace LD35 {
         private void ShiftShape() {
             if (isDead) return;
 
-            Sfx.Play("ShapeShiftRoar");
+            if (isWolf) Sfx.Play("ShapeShiftRoar");
+            // TODO: anti-roar transition SFX to human form
 
             shepherdGO.SetActive(!isWolf);
             werewolfGO.SetActive(isWolf);
