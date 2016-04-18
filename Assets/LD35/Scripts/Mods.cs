@@ -70,5 +70,10 @@ namespace LD35 {
                 windSpeed = Random.onUnitSphere.WithY(0f).normalized * 0.1f;
             }
         }
+
+        public class Diet : Mod {
+
+            public static float dietValue = 0.5f;
+        }
     }
 }
