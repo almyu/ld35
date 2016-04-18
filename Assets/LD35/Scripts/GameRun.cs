@@ -7,6 +7,7 @@ namespace LD35 {
         public ModStatus status;
         public int current;
 
+        public string name { get { return mod != null ? mod.name : "<missing>"; } }
         public int max { get { return mod.num; } }
         public SheepEvent evt { get { return mod.evt; } }
         public SheepType type { get { return mod.type; } }
@@ -74,15 +75,15 @@ namespace LD35 {
         public void Complete(ModTrial trial) {
             trial.status = ModStatus.Completed;
 
-            Notify("Completed: {0}", trial.mod.name);
+            Notify("Completed: {0}", trial.name);
 
             var next = Mods.UnlockNext();
-            if (next != null) Notify("Unlocked: {1}", next.name);
+            if (next != null) Notify("Unlocked: {0}", next.name);
         }
 
         public void Fail(ModTrial trial) {
             trial.status = ModStatus.Failed;
-            Notify("Failed: {0}", trial.mod.name);
+            Notify("Failed: {0}", trial.name);
         }
 
         public void Notify(string format, params object[] args) {
