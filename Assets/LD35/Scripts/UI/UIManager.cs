@@ -46,11 +46,7 @@ namespace LD35 {
                 messagesQueue.Dequeue()();
                 elapsed = messageShowTime * 2.5f;
             }
-
-            if (Input.GetKeyDown(KeyCode.M)) {
-                SpawnMessage("WHATA FUCK!&&!&!" + Time.deltaTime);
-            }
-
+            
             if (Shepherd.instance.isWolf) {
                 return;
             }
