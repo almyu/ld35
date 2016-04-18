@@ -47,6 +47,11 @@ namespace LD35 {
                     UIManager.SetShapeshiftAvailable(canShapeshift);
                 }
             }
+
+#if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.Tab))
+                stomach = 1f - stomach;
+#endif
         }
 
         private void OnDestroy() {
