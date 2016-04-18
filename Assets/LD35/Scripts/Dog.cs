@@ -13,6 +13,8 @@ namespace LD35
         public float attackDelay = 1f;
         public float attackRange = 0.5f;
 
+        private float aggroTimer;
+
         public Vector3 target
         {
             get { return _target; }
@@ -51,8 +53,12 @@ namespace LD35
                     return;
                 }
 
-                StartCoroutine(WaitAndAttackShepherd());
+                aggroTimer -= Time.deltaTime;
+
+                if (aggroTimer < 0f)
+                    target = Shepherd.instance.planarPosition;
             }
+            else aggroTimer = attackDelay;
 
             if (Input.GetButton("Fire2") || Input.GetButton("Fire1"))
             {
@@ -77,12 +83,6 @@ namespace LD35
             return Vector3.Distance(planarPosition, Shepherd.instance.planarPosition) <= attackRange;
         }
 
-        private IEnumerator WaitAndAttackShepherd()
-        {
-            yield return new WaitForSeconds(attackDelay);
-            target = Shepherd.instance.planarPosition;
-        }
-        
         private void RefreshTarget()
         {
             if (Shepherd.instance.isWolf) return;
