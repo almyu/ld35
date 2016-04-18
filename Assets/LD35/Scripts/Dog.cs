@@ -29,6 +29,10 @@ namespace LD35
         protected void Awake()
         {
             target = planarPosition;
+
+            if (ModID.Faster.IsModActive()) {
+                runSpeed *= 2;
+            }
         }
 
         protected void Update()

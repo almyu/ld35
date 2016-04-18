@@ -87,6 +87,10 @@ namespace LD35 {
         }
 
         protected override void OnEnable() {
+            if (ModID.Faster.IsModActive()) {
+                speed *= 2;
+            }
+
             base.OnEnable();
             sheepList.Add(this);
         }

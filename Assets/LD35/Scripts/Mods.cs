@@ -84,5 +84,8 @@ namespace LD35 {
 
         public class Scarier : Mod {
         }
+
+        public class Faster : Mod {
+        }
     }
 }

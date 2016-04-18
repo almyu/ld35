@@ -31,6 +31,10 @@ namespace LD35 {
 
             shepherdAnimator = shepherdGO.GetComponent<Animator>();
             werewolfAnimator = werewolfGO.GetComponent<Animator>();
+
+            if (ModID.Faster.IsModActive()) {
+                speed *= 2;
+            }
         }
 
         public bool isWolf {
@@ -41,6 +45,10 @@ namespace LD35 {
                 speed = value ? wolfSpeed : manSpeed;
                 radius = value ? wolfScareRadius : manScareRadius;
                 power = value ? wolfScariness : manScariness;
+
+                if (ModID.Faster.IsModActive()) {
+                    speed *= 2;
+                }
 
                 ShiftShape();
             }
