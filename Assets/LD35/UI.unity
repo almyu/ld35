@@ -660,6 +660,7 @@ MonoBehaviour:
   eatenSheepColor: {r: 0.5411765, g: 0.11764706, b: 0.1764706, a: 1}
   lostSheepColor: {r: 0.08369378, g: 0.117380895, b: 0.13235295, a: 1}
   blinkIntervalRange: {x: 0.1, y: 2}
+  challengeMessage: {fileID: 124204, guid: 58464c76d104f48478091393a97930b2, type: 2}
 --- !u!1 &1128405184
 GameObject:
   m_ObjectHideFlags: 0

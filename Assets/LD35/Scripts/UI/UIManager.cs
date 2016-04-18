@@ -25,6 +25,8 @@ namespace LD35 {
 
         private float blinkTimer, blinkInterval;
 
+        public GameObject challengeMessage;
+
         private void Awake() {
             gameOverWindow.SetActive(false);
             restartButton.onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
