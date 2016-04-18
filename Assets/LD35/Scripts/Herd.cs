@@ -35,6 +35,7 @@ namespace LD35 {
         public int numSheep = 10;
         public float spawnRadius = 5f;
         public Sheep sheepPrefab;
+        public GameObject sheepDeathPrefab;
 
         public Material RedSheepMaterial;
         public Material BlackSheepMaterial;
