@@ -9,7 +9,12 @@ namespace JamSuite.Audio {
         [System.Serializable]
         public class ClipBinding {
             public string name;
+
+            [Range(0f, 1f)]
+            public float volumeScale;
+
             public AudioClip clip;
+            public AudioClip[] extraClips;
         }
 
         public bool reserveMissing = true;
