@@ -47,7 +47,8 @@ namespace LD35
 
             if (Input.GetButton("Fire2") || Input.GetButton("Fire1"))
             {
-                RefreshTarget();
+                if (!ModID.UndertrainedDog.IsModActive())
+                    RefreshTarget();
             }
 
             Run();
@@ -109,7 +110,17 @@ namespace LD35
 
             polarPosition.x = Mathf.MoveTowards(polarPosition.x, herdingTarget.polarPosition.x + herdingExtraRadius, polarSpeed.x);
             polarPosition.y = Mathf.MoveTowardsAngle(polarPosition.y, herdingTarget.polarPosition.y, polarSpeed.y);
-            transform.position = World.GetPlanar(polarPosition);
+
+            var nextPlanarPosition = World.GetPlanar(polarPosition);
+            var planarDirection = nextPlanarPosition - planarPosition;
+
+            transform.position = nextPlanarPosition;
+
+            if (planarDirection != Vector3.zero)
+            {
+                var desiredRotation = Quaternion.LookRotation(planarDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * 7f);
+            }
         }
 
 #if UNITY_EDITOR

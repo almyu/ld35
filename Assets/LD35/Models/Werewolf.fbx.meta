@@ -34,6 +34,7 @@ ModelImporter:
     100052: Werewolf
     100054: Wrist.l
     100056: Wrist.l_end
+    100058: WerewolfEyes
     400000: ArmatureWerewolf
     400002: Base
     400004: Bone.017
@@ -63,9 +64,12 @@ ModelImporter:
     400052: Werewolf
     400054: Wrist.l
     400056: Wrist.l_end
+    400058: WerewolfEyes
     4300000: Werewolf
+    4300002: WerewolfEyes
     9500000: //RootNode
     13700000: Werewolf
+    13700002: WerewolfEyes
   materials:
     importMaterials: 1
     materialName: 1

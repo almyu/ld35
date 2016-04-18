@@ -85,11 +85,14 @@ namespace LD35 {
         }
 
         public bool AttackClosestSheep() {
-            var hit = attackArea.Attack();
-            if (hit) {
-                werewolfAnimator.SetTrigger("Punch");
-            }
-            return hit;
+            if (!attackArea.victim) return false;
+
+            var dir = attackArea.victim.planarPosition - planarPosition;
+            if (!attackArea.Attack()) return false;
+
+            transform.rotation = Quaternion.LookRotation(dir);
+            werewolfAnimator.SetTrigger("Punch");
+            return true;
         }
 
         public void Die() {
