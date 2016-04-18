@@ -1946,6 +1946,7 @@ MonoBehaviour:
   wolfScareRadius: 6
   wolfScariness: 1
   wolfAnimationSpeed: 1.5
+  sheepKilledScareFactor: 6
   PauseAfterDeadInSec: 5
   attackArea: {fileID: 11412582}
   shepherdGO: {fileID: 136552}
