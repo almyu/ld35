@@ -322,16 +322,16 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4278227033
+          rgba: 4282810474
         key1:
           serializedVersion: 2
-          rgba: 4283160247
+          rgba: 4283922031
         key2:
           serializedVersion: 2
-          rgba: 3315380
+          rgba: 6194834
         key3:
           serializedVersion: 2
-          rgba: 1532466
+          rgba: 6188900
         key4:
           serializedVersion: 2
           rgba: 0
@@ -365,16 +365,16 @@ ParticleSystem:
       minGradient:
         key0:
           serializedVersion: 2
-          rgba: 4283345070
+          rgba: 4283590247
         key1:
           serializedVersion: 2
-          rgba: 4279925818
+          rgba: 4282739537
         key2:
           serializedVersion: 2
-          rgba: 3970751
+          rgba: 7442847
         key3:
           serializedVersion: 2
-          rgba: 34671
+          rgba: 5602934
         key4:
           serializedVersion: 2
           rgba: 0
@@ -4649,16 +4649,16 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4278227033
+          rgba: 4282810474
         key1:
           serializedVersion: 2
-          rgba: 4283160247
+          rgba: 4283922031
         key2:
           serializedVersion: 2
-          rgba: 3315380
+          rgba: 6194834
         key3:
           serializedVersion: 2
-          rgba: 1532466
+          rgba: 6188900
         key4:
           serializedVersion: 2
           rgba: 0
@@ -4692,16 +4692,16 @@ ParticleSystem:
       minGradient:
         key0:
           serializedVersion: 2
-          rgba: 4283345070
+          rgba: 4283590247
         key1:
           serializedVersion: 2
-          rgba: 4279925818
+          rgba: 4282739537
         key2:
           serializedVersion: 2
-          rgba: 3970751
+          rgba: 7442847
         key3:
           serializedVersion: 2
-          rgba: 34671
+          rgba: 5602934
         key4:
           serializedVersion: 2
           rgba: 0
