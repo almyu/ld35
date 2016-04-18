@@ -17,7 +17,15 @@ namespace LD35 {
                 if (Mathf.Approximately(distSq, 0f)) continue;
 
                 dir /= Mathf.Sqrt(distSq);
-                escape += (1f - Mathf.Clamp01(distSq / scare.sqrRadius)) * scare.power * dir;
+
+                var currentScarePower = scare.power;
+                var currentScareRadius = scare.sqrRadius;
+                if (ModID.Scarier.IsModActive()) {
+                    currentScarePower *= 2;
+                    currentScareRadius *= 2;
+                }
+
+                escape += (1f - Mathf.Clamp01(distSq / currentScareRadius)) * currentScarePower * dir;
             }
             return escape;
         }

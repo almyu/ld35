@@ -26,7 +26,13 @@ namespace LD35 {
             if (SheepCounter.instance.IsAllSheepDead()) GameOver();
 
             if (!shepherd.isWolf) {
-                stomach = Mathf.Clamp01(stomach - Time.deltaTime / hungerTime);
+                if (ModID.Diet.IsModActive()) {
+                    stomach = Mods.Diet.dietValue;
+                }
+                else {
+                    stomach = Mathf.Clamp01(stomach - Time.deltaTime / hungerTime);
+                }
+
                 UIManager.SetStomach(stomach);
                 UIManager.SetShapeshiftAvailable(canShapeshift);
                 UIManager.SetNormalizedTime(1f);
@@ -41,6 +47,11 @@ namespace LD35 {
                     UIManager.SetShapeshiftAvailable(canShapeshift);
                 }
             }
+
+#if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.Tab))
+                stomach = 1f - stomach;
+#endif
         }
 
         private void OnDestroy() {
