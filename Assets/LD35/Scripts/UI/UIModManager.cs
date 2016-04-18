@@ -3,6 +3,7 @@ using JamSuite.Generative;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 namespace LD35 {
 
@@ -11,9 +12,24 @@ namespace LD35 {
         public Button startButton;
         public ScrollRect scrollRect;
 
+        public Toggle selectAll;
+
         protected void Start() {
             startButton.onClick.AddListener(OnStartClicked);
+            selectAll.onValueChanged.AddListener((value) => OnSelectAll(value));
             //scrollRect.verticalScrollbar.value = 1f; //scroll on top
+        }
+
+        private void OnSelectAll(bool value) {
+            for (int i = transform.childCount; i-- > 0;) {
+                if (!Mods.modList[i].unlocked)
+                    continue;
+
+                var child = transform.GetChild(i);
+                if (child != null) {
+                    child.GetComponent<Toggle>().isOn = value;
+                }
+            }
         }
 
         private void OnStartClicked() {
