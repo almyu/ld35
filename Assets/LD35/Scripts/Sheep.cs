@@ -44,7 +44,6 @@ namespace LD35 {
             Sfx.Play("SheepGetsEaten");
         }
 
-        private static readonly string[] baas = new[] { "baa1", "baa2", "baa3"  };
         private void Update() {
             var vel = Scare.GetEscapeVector(transform.position) * cowardice;
 
@@ -62,8 +61,7 @@ namespace LD35 {
                     waypoint = planarPosition + wanderRadius * Random.onUnitSphere.WithY(0f);
                     chilloutTimer = Random.Range(wanderIntervalRange.x, wanderIntervalRange.y);
 
-                    var currentBaa = baas[Random.Range(0, baas.Length)];
-                    Sfx.Play(currentBaa);
+                    Sfx.Play("SheepBleats");
                 }
                 else vel = wanderSpeedup / Mathf.Sqrt(wpDistSq) * toWp;
             }
