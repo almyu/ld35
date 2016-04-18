@@ -27,10 +27,12 @@ namespace LD35 {
 
             if (!shepherd.isWolf) {
                 if (ModID.Diet.IsModActive()) {
-                    stomach = Mathf.Clamp(stomach, 0f, Mods.Diet.dietValue);
+                    stomach = Mods.Diet.dietValue;
+                }
+                else {
+                    stomach = Mathf.Clamp01(stomach - Time.deltaTime / hungerTime);
                 }
 
-                stomach = Mathf.Clamp01(stomach - Time.deltaTime / hungerTime);
                 UIManager.SetStomach(stomach);
                 UIManager.SetShapeshiftAvailable(canShapeshift);
                 UIManager.SetNormalizedTime(1f);
