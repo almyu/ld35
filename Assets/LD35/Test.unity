@@ -439,6 +439,7 @@ MonoBehaviour:
   spawnRadius: 7
   sheepPrefab: {fileID: 11452900, guid: faa16df414aaa6044944c13cbb7546c3, type: 2}
   sheepDeathPrefab: {fileID: 143900, guid: 331bc5d81b55fc5439b49f77ba1e5d37, type: 2}
+  DefautSheepMaterial: {fileID: 2100000, guid: eacfedaf90958bd4593b1b692477d242, type: 2}
   RedSheepMaterial: {fileID: 2100000, guid: dccae13215d0d2b4bbf26f3b340316c7, type: 2}
   BlackSheepMaterial: {fileID: 2100000, guid: b6c0a40417e0f134e9877905c8f6d19a, type: 2}
   YellowSheepMaterial: {fileID: 2100000, guid: a4ba34548f60b1b499fb94dabe620583, type: 2}

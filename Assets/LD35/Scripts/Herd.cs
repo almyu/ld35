@@ -37,6 +37,7 @@ namespace LD35 {
         public Sheep sheepPrefab;
         public GameObject sheepDeathPrefab;
 
+        public Material DefautSheepMaterial;
         public Material RedSheepMaterial;
         public Material BlackSheepMaterial;
         public Material YellowSheepMaterial;
@@ -98,6 +99,7 @@ namespace LD35 {
                 }
             }
             else {
+                PaintSheep(RedSheep, DefautSheepMaterial);
                 alwaysKilledRedSheep = false;
             }
 
