@@ -31,6 +31,7 @@ namespace LD35 {
 
         public void Eat() {
             SheepCounter.instance.EatSheep();
+            Herd.instance.OnSheepKilled(this);
             Destroy(gameObject);
         }
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace LD35 {
 
@@ -42,6 +43,8 @@ namespace LD35 {
         [HideInInspector]
         public Sheep RedSheep;
         [HideInInspector]
+        public bool alwaysKilledRedSheep = true;
+        [HideInInspector]
         public Sheep BlackSheep;
         [HideInInspector]
         public Sheep YellowSheep;
@@ -50,15 +53,15 @@ namespace LD35 {
             for (int i = 0; i < numSheep; ++i) {
                 var spawnedSheep = SpawnSheep();
 
-                if(i == 0) {
+                if(i == 0 && ModID.RedSheep.IsModActive()) {
                     RedSheep = PaintSheep(spawnedSheep, RedSheepMaterial);
                 }
 
-                if (i == numSheep / 2) {
+                if (i == numSheep / 2 && ModID.YellowSheep.IsModActive()) {
                     YellowSheep = PaintSheep(spawnedSheep, YellowSheepMaterial);
                 }
 
-                if (i == numSheep-1) {
+                if (i == numSheep-1 && ModID.BlackSheep.IsModActive()) {
                     BlackSheep = PaintSheep(spawnedSheep, BlackSheepMaterial);
                 }
             }
@@ -74,6 +77,28 @@ namespace LD35 {
         public Sheep SpawnSheep() {
             var pos = transform.position + Random.insideUnitSphere.WithY(0f) * spawnRadius;
             return Instantiate(sheepPrefab, pos, Quaternion.AngleAxis(Random.value * 360f, Vector3.up)) as Sheep;
+        }
+        
+        public void OnSheepKilled(Sheep sheep) {
+            if (sheep == RedSheep &&
+               (SheepCounter.instance.eatenSheep <= numSheep - 1)) {
+                var simpleSheep = Sheep.sheepList.FirstOrDefault(s => s != BlackSheep && s != YellowSheep && s != RedSheep);
+
+                if (simpleSheep != null) {
+                    RedSheep = PaintSheep(simpleSheep, RedSheepMaterial);
+                }
+            }
+            else {
+                alwaysKilledRedSheep = false;
+            }
+
+            if (sheep == YellowSheep) {
+                Sheep.JumpAll(5f, 10f);
+            }
+
+            if (sheep == BlackSheep) {
+                Shepherd.instance.power = 1000f;
+            }
         }
     }
 }
