@@ -36,6 +36,15 @@ namespace LD35 {
             }
         }
 
+        protected void Update() {
+            if (Shepherd.instance.isWolf) {
+                wolfPortrait.color = wolfPortrait.color.WithA(0f);
+                return;
+            }
+            
+            wolfPortrait.color = wolfPortrait.color.WithA(Mathf.PingPong(Time.unscaledTime * (1 - GameManager.instance.stomach), 1f));
+        }
+        
         public static void SetStomach(float stomach) {
             if (instance && instance.stomachFill)
                 instance.stomachFill.anchorMax = instance.stomachVertical
