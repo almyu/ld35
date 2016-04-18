@@ -11,7 +11,6 @@ namespace LD35 {
         public bool stomachVertical;
         public UICircle timer;
         public GameObject portrait;
-        public Text eatenSheepText, lostSheepText, totalSheepText;
         public Graphic sheepIconPrefab;
         public LayoutGroup eatenSheepIcons, lostSheepIcons;
 
@@ -22,30 +21,33 @@ namespace LD35 {
 
         public Color baseSheepColor = Color.white, eatenSheepColor = Color.red, lostSheepColor = Color.grey;
 
+        public Vector2 blinkIntervalRange = new Vector2(0.1f, 2f);
+
+        private float blinkTimer, blinkInterval;
+
         private void Awake() {
             gameOverWindow.SetActive(false);
             restartButton.onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
 
-            wolfPortrait.color = wolfPortrait.color.WithA(0f);
+            wolfPortrait.canvasRenderer.SetAlpha(0f);
         }
 
-        private float blinkTimer = 0f;
-        private float blinkInterval;
-        private float maxBlinkInterval = 0f;
-        private float minBlinkInterval = 1f;
         protected void Update() {
             if (Shepherd.instance.isWolf) {
                 return;
             }
 
-            if (GameManager.instance.stomach > 0.8f)
-                return;
+            var gmgr = GameManager.instance;
+            if (gmgr.canShapeshift) {
+                if (blinkTimer < 0f) {
+                    blinkTimer = blinkInterval = Mathf.Lerp(blinkIntervalRange.x, blinkIntervalRange.y,
+                        gmgr.stomach / gmgr.manualShapeshiftThreshold);
+                }
+            }
+            else blinkTimer = 0f;
 
-            if (blinkTimer < 0f)
-                blinkTimer = blinkInterval = Mathf.Lerp(maxBlinkInterval, minBlinkInterval, GameManager.instance.stomach * 2);                      
-
-            wolfPortrait.color = wolfPortrait.color.WithA(blinkTimer / blinkInterval);
-            blinkTimer -= Time.unscaledDeltaTime / 2;
+            wolfPortrait.canvasRenderer.SetAlpha(blinkTimer / blinkInterval);
+            blinkTimer -= Time.unscaledDeltaTime;
         }
 
         public void RefreshPortrait() {
@@ -72,20 +74,8 @@ namespace LD35 {
                 instance.portrait.SetActive(really);
         }
 
-        public static void SetSheepStats(int eaten, int lost) {
-            if (!instance) return;
-
-            if (instance.eatenSheepText) instance.eatenSheepText.text = eaten.ToString();
-            if (instance.lostSheepText) instance.lostSheepText.text = lost.ToString();
-        }
-
         public static void SetupSheep(int numSheep) {
-            if (!instance) return;
-
-            if (instance.totalSheepText)
-                instance.totalSheepText.text = numSheep.ToString();
-            
-            if (!instance.eatenSheepIcons || !instance.lostSheepIcons) return;
+            if (!instance || !instance.eatenSheepIcons || !instance.lostSheepIcons) return;
 
             var eatenXf = instance.eatenSheepIcons.transform;
 
