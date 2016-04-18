@@ -22,7 +22,7 @@ namespace LD35 {
 
         private void Awake() {
             gameOverWindow.SetActive(false);
-            restartButton.onClick.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
+            restartButton.onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
         }
 
         public static void SetStomach(float stomach) {
