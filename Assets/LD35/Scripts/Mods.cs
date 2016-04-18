@@ -67,6 +67,17 @@ namespace LD35 {
             }
         }
 
+        public static bool UnlockNext() {
+            foreach (var mod in modList) {
+                if (mod.unlocked) continue;
+
+                mod.unlocked = true;
+                Save();
+                return true;
+            }
+            return false;
+        }
+
 
         public class Wind : Mod {
 
