@@ -9,6 +9,7 @@ namespace LD35 {
         public static List<Sheep> sheepList = new List<Sheep>(16);
 
         public float speed = 5f;
+        public float cowardice = 1f;
 
         public float chilloutThreshold = 0.1f, chilloutTime = 2f;
         public float wanderSpeedup = 0.25f, wanderRadius = 3f;
@@ -45,7 +46,7 @@ namespace LD35 {
 
         private static readonly string[] baas = new[] { "baa1", "baa2", "baa3"  };
         private void Update() {
-            var vel = Scare.GetEscapeVector(transform.position);
+            var vel = Scare.GetEscapeVector(transform.position) * cowardice;
 
             var worry = vel.magnitude;
             if (worry > chilloutThreshold) chilloutTimer = chilloutTime;
@@ -78,10 +79,15 @@ namespace LD35 {
             }
         }
 
+#if UNITY_EDITOR
         private void OnDrawGizmos() {
             Gizmos.color = Color.red;
             Gizmos.DrawRay(transform.position, Scare.GetEscapeVector(transform.position));
+
+            UnityEditor.Handles.color = Color.white;
+            UnityEditor.Handles.Label(planarPosition.WithY(3f), cowardice.ToString("p"));
         }
+#endif
 
         protected override void OnEnable() {
             if (ModID.Faster.IsModActive()) {

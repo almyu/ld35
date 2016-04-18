@@ -1943,10 +1943,10 @@ MonoBehaviour:
   manScariness: 0.7
   manAnimationSpeed: 1.5
   wolfSpeed: 5.5
-  wolfScareRadius: 6
-  wolfScariness: 1
+  wolfScareRadius: 5
+  wolfScariness: 0.5
   wolfAnimationSpeed: 1.5
-  sheepKilledScareFactor: 6
+  sheepKilledScareFactor: 1.5
   PauseAfterDeadInSec: 5
   attackArea: {fileID: 11412582}
   shepherdGO: {fileID: 136552}

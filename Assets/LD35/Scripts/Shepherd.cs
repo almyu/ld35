@@ -117,6 +117,16 @@ namespace LD35 {
             //dirty hack to increase scary on eating
             power *= sheepKilledScareFactor;
 
+            var fearRange = attackArea.range * 2f;
+            var fearRangeSq = fearRange * fearRange;
+
+            foreach (var sheep in Sheep.sheepList) {
+                var distSq = (sheep.planarPosition - planarPosition).sqrMagnitude;
+                if (distSq > fearRangeSq) continue;
+
+                sheep.cowardice += 1f - distSq / fearRangeSq;
+            }
+
             return true;
         }
 
