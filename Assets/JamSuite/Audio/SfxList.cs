@@ -21,10 +21,21 @@ namespace JamSuite.Audio {
         public List<ClipBinding> clips;
 
 
-        public AudioClip LookupClip(string name) {
-            foreach (var binding in clips)
-                if (binding.name == name)
-                    return binding.clip;
+        public AudioClip RollClip(ClipBinding binding) {
+            if (binding.extraClips == null || binding.extraClips.Length == 0)
+                return binding.clip;
+
+            var index = Random.Range(-1, binding.extraClips.Length);
+            return index < 0 ? binding.clip : binding.extraClips[index];
+        }
+
+        public AudioClip LookupClip(string name, ref float volumeScale) {
+            foreach (var binding in clips) {
+                if (binding.name != name) continue;
+
+                volumeScale *= binding.volumeScale;
+                return RollClip(binding);
+            }
 
             if (reserveMissing)
                 clips.Add(new ClipBinding { name = name });
