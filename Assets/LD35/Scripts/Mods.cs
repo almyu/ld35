@@ -7,7 +7,7 @@ namespace LD35 {
         public string name, desc;
     }
 
-    public class ModID {
+    public static class ModID {
         public const int
             None = -1,
             EatAll = 0,
@@ -21,6 +21,10 @@ namespace LD35 {
             Diet = 8,
             UndertrainedDog = 9,
             MaxID = 10;
+
+        public static bool IsModActive(this int modID) {
+            return modID >= 0 && modID < MaxID && Mods.modList[modID].active;
+        }
     }
 
 
@@ -43,6 +47,28 @@ namespace LD35 {
             modList[ModID.Scarier] = new Mod { name = "Scarier!", desc = "Eat 20 sheep" };
             modList[ModID.Diet] = new Mod { name = "Diet", desc = "Eat 20 sheep" };
             modList[ModID.UndertrainedDog] = new Mod { name = "Undertrained Dog", desc = "Eat 15 sheep" };
+        }
+
+        public static void Save() {
+            var bits = new string(System.Array.ConvertAll(modList, mod => mod.active ? '1' : '0'));
+            PlayerPrefs.SetString("ActiveMods", bits);
+        }
+
+        public static void Load() {
+            var bits = PlayerPrefs.GetString("ActiveMods", "");
+
+            for (int i = 0, n = Mathf.Min(bits.Length, ModID.MaxID); i < n; ++i)
+                modList[i].active = bits[i] == '1';
+        }
+
+
+        public class Wind : Mod {
+
+            public static Vector3 windSpeed;
+
+            public static void Init() {
+                windSpeed = Random.onUnitSphere.WithY(0f).normalized * 0.1f;
+            }
         }
     }
 }

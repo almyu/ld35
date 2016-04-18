@@ -16,6 +16,9 @@ namespace LD35 {
         
         private void Start() {
             UIManager.SetupSheep(Herd.instance.numSheep);
+
+            if (ModID.Wind.IsModActive())
+                Mods.Wind.Init();
         }
 
         private void Update() {

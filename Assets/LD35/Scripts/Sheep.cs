@@ -64,6 +64,9 @@ namespace LD35 {
                 else vel = wanderSpeedup / Mathf.Sqrt(wpDistSq) * toWp;
             }
 
+            if (ModID.Wind.IsModActive())
+                vel += Mods.Wind.windSpeed;
+
             if (vel != Vector3.zero) {
                 transform.position += speed * Time.deltaTime * vel;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vel), Time.deltaTime * 7f);
