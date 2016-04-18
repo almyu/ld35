@@ -75,5 +75,8 @@ namespace LD35 {
 
             public static float dietValue = 0.5f;
         }
+
+        public class Scarier : Mod {
+        }
     }
 }
