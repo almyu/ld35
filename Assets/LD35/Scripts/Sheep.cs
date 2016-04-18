@@ -10,6 +10,7 @@ namespace LD35 {
 
         public float speed = 5f;
         public float cowardice = 1f;
+        public float bleatChance = 0.15f;
 
         public float chilloutThreshold = 0.1f, chilloutTime = 2f;
         public float wanderSpeedup = 0.25f, wanderRadius = 3f;
@@ -61,7 +62,7 @@ namespace LD35 {
                     waypoint = planarPosition + wanderRadius * Random.onUnitSphere.WithY(0f);
                     chilloutTimer = Random.Range(wanderIntervalRange.x, wanderIntervalRange.y);
 
-                    Sfx.Play("SheepBleats");
+                    if (Random.value < bleatChance) Sfx.Play("SheepBleats");
                 }
                 else vel = wanderSpeedup / Mathf.Sqrt(wpDistSq) * toWp;
             }
