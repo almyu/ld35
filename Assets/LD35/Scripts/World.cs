@@ -9,7 +9,7 @@ namespace LD35 {
         public static Vector3 Clamp(Vector3 pos) {
             var lenSq = pos.sqrMagnitude;
             var radiusSq = instance.radius * instance.radius;
-            return lenSq > radiusSq ? pos * radiusSq / lenSq : pos;
+            return lenSq > radiusSq ? pos * (instance.radius / Mathf.Sqrt(lenSq)) : pos;
         }
 
         public static Vector2 GetPolar(Vector3 planar) {
@@ -27,13 +27,23 @@ namespace LD35 {
         }
 
 
-        public float radius = 20.5f;
+        public float radius = 14.5f, fallOffset = 1f;
+
+        public float fallRadius {
+            get { return radius + fallOffset; }
+        }
+        public float fallRadiusSq {
+            get {
+                var edge = fallRadius;
+                return edge * edge;
+            }
+        }
 
         private void Update() {
-            var radiusSq = radius * radius;
+            var edgeSq = fallRadiusSq;
 
             foreach (var sheep in Sheep.sheepList)
-                if (sheep.planarPosition.sqrMagnitude > radiusSq)
+                if (sheep.planarPosition.sqrMagnitude > edgeSq)
                     sheep.gameObject.AddComponent<FallingSheep>();
         }
 

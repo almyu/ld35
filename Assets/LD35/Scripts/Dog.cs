@@ -143,6 +143,9 @@ namespace LD35
 #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(target, 0.5f);
+
             var polarPosition = World.GetPolar(planarPosition);
             var herdingTarget = HerdingTactics.FindTarget(polarPosition, herdingRadiusPrio, herdingDistPrio);
 
