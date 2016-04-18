@@ -158,7 +158,9 @@ namespace LD35 {
             var failed = msgText.Contains("Failed");
             failedChallengeIcon.SetActive(failed);
             completedChallengeIcon.SetActive(!failed);
-            
+
+            messageText.color = failed ? Color.red : Color.green;
+
             var elapsed = duration * delayBetweenMessages;
             messagesCachedRenderer.alpha = 0f;
 
