@@ -8,7 +8,7 @@ namespace LD35 {
         public Slider sfxSlider;
         public float defaultVolume = 0.5f;
 
-        private const string volumeKey = "volume";
+        private const string volumeKey = "Volume";
 
         protected void Awake() {
             AudioListener.volume = PlayerPrefs.GetFloat(volumeKey, defaultVolume);
