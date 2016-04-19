@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stomach: 1
-  hungerTime: 30
+  hungerTime: 20
   manualShapeshiftThreshold: 0.5
   bulletTimeScale: 0.1
   bulletTime: 2
