@@ -33,17 +33,16 @@ namespace LD35 {
 
     public static class ModID {
         public const int
-            None = -1,
-            EatAll = 0,
-            LoseAll = 1,
-            RedSheep = 2,
-            BlackSheep = 3,
-            YellowSheep = 4,
-            Wind = 5,
-            Faster = 6,
-            Scarier = 7,
-            Diet = 8,
-            UndertrainedDog = 9,
+            YellowSheep = 0,
+            UndertrainedDog = 1,
+            LoseAll = 2,
+            Diet = 3,
+            EatAll = 4,
+            BlackSheep = 5,
+            RedSheep = 6,
+            Faster = 7,
+            Wind = 8,
+            Scarier = 9,
             MaxID = 10;
 
         public static bool IsModActive(this int modID) {
@@ -61,17 +60,18 @@ namespace LD35 {
         public static readonly Mod[] modList = new Mod[ModID.MaxID];
 
         static Mods() {
-            modList[ModID.EatAll] = new Mod { unlocked = true, name = "Eat All", num = 30 };
-            modList[ModID.LoseAll] = new Mod { unlocked = true, name = "Lose All", evt = SheepEvent.Lost, num = 30 };
-            modList[ModID.RedSheep] = new Mod { unlocked = true, name = "Red Sheep", desc = "Eat 10 red sheep", type = SheepType.Red, num = 10 };
-            modList[ModID.BlackSheep] = new Mod { name = "Black Sheep", desc = "Eat the black sheep last", type = SheepType.Black, num = 1 };
             modList[ModID.YellowSheep] = new Mod { name = "Yellow Sheep", desc = "Eat the yellow sheep", type = SheepType.Yellow, num = 1 };
-            modList[ModID.Wind] = new Mod { name = "Wind", desc = "Eat 20 sheep", num = 20 };
-            modList[ModID.Faster] = new Mod { name = "Faster!", desc = "Eat 20 sheep", num = 20 };
-            modList[ModID.Scarier] = new Mod { name = "Scarier!", desc = "Eat 20 sheep", num = 20 };
-            modList[ModID.Diet] = new Mod { name = "Diet", desc = "Eat 20 sheep", num = 20 };
             modList[ModID.UndertrainedDog] = new Mod { name = "Undertrained Dog", desc = "Eat 15 sheep", num = 15 };
-
+            modList[ModID.LoseAll] = new Mod { unlocked = true, name = "Lose All", evt = SheepEvent.Lost, num = 30 };
+            modList[ModID.Diet] = new Mod { name = "Diet", desc = "Eat 20 sheep", num = 20 };
+            modList[ModID.EatAll] = new Mod { unlocked = true, name = "Eat All", num = 30 };
+            modList[ModID.BlackSheep] = new Mod { name = "Black Sheep", desc = "Eat the black sheep last", type = SheepType.Black, num = 1 };
+            modList[ModID.RedSheep] = new Mod { unlocked = true, name = "Red Sheep", desc = "Eat 10 red sheep", type = SheepType.Red, num = 10 };
+            modList[ModID.Faster] = new Mod { name = "Faster!", desc = "Eat 20 sheep", num = 20 };
+            modList[ModID.Wind] = new Mod { name = "Wind", desc = "Eat 20 sheep", num = 20 };
+            modList[ModID.Scarier] = new Mod { name = "Scarier!", desc = "Eat 20 sheep", num = 20 };
+            
+            
             try { Load(); }
             catch {}
         }
