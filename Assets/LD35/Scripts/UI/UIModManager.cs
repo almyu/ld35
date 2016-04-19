@@ -67,9 +67,8 @@ namespace LD35 {
         protected override void Tune(Transform spawn, Mod mod) {
             var unlockableText = spawn.FindChild("Label").GetComponent<Text>();
             var text = mod.name.ToUpperInvariant();
-            if (!string.IsNullOrEmpty(mod.desc)) {
-                text += " (" + mod.desc + ")";
-            }
+            if (!string.IsNullOrEmpty(mod.desc))
+                text += " - " + mod.desc;
 
             unlockableText.text = text;
 

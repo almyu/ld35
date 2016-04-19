@@ -27,20 +27,9 @@ namespace LD35 {
                 if (text.name == "Text") text.text = data.name;
                 else if (text.name == "Counter") text.text = string.Format("{0}/{1}", data.current, data.max);
 
-                switch (data.status) {
-                case ModStatus.Active:
-                case ModStatus.Failed:
-                    text.color = activeColor;
-                    break;
-
-                case ModStatus.Completed:
-                    text.color = completedColor;
-                    break;
-
-                default:
-                    text.color = inactiveColor;
-                    break;
-                }
+                if (data.mod.completed) text.color = completedColor;
+                else if (!data.mod.unlocked) text.color = inactiveColor;
+                else text.color = activeColor;
             }
         }
 
