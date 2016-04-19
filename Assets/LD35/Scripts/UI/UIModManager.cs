@@ -94,6 +94,9 @@ namespace LD35 {
 
             if (Input.GetKeyDown(KeyCode.BackQuote) && Input.GetKey(KeyCode.LeftControl))
                 PlayerPrefs.DeleteAll();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+                Application.Quit();
         }
     }
 }
