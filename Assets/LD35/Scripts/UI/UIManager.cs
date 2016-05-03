@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.UI.Extensions;
 
 namespace LD35 {
 
@@ -12,7 +11,7 @@ namespace LD35 {
 
         public RectTransform stomachFill;
         public bool stomachVertical;
-        public UICircle timer;
+        public Image timer;
         public GameObject portrait;
         public Graphic sheepIconPrefab;
         public LayoutGroup eatenSheepIcons, lostSheepIcons;
@@ -86,10 +85,8 @@ namespace LD35 {
         }
 
         public static void SetNormalizedTime(float t) {
-            if (instance && instance.timer) {
-                instance.timer.fillPercent = Mathf.RoundToInt((1f - t) * 100f);
-                instance.timer.SetVerticesDirty();
-            }
+            if (instance && instance.timer)
+                instance.timer.fillAmount = Mathf.Clamp01(1f - t);
         }
 
         public static void SetShapeshiftAvailable(bool really) {
