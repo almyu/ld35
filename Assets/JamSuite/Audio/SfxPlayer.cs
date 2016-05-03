@@ -10,16 +10,12 @@ namespace JamSuite.Audio {
         public SfxList list;
         public float throttle = 0.1f;
 
-        private Dictionary<AudioClip, float> lastPlays = new Dictionary<AudioClip, float>();
 
+        private void Reset() {
+            source = GetComponent<AudioSource>();
 
-        private void OnValidate() {
-            if (!list) {
-                var lists = Resources.FindObjectsOfTypeAll<SfxList>();
-                if (lists.Length > 0)
-                    list = lists[0];
-            }
-            if (!source) source = GetComponent<AudioSource>();
+            var lists = Resources.FindObjectsOfTypeAll<SfxList>();
+            if (lists.Length > 0) list = lists[0];
         }
 
 
@@ -42,18 +38,14 @@ namespace JamSuite.Audio {
         }
 
         private AudioClip TryPlaying(string clipName, ref float volumeScale) {
-            var clip = list.LookupClip(clipName, ref volumeScale);
-            if (!clip) return null;
+            var binding = list.Lookup(clipName);
+            if (binding == null) return null;
 
-            var lastPlay = 0f;
-            var everPlayed = lastPlays.TryGetValue(clip, out lastPlay);
+            if (binding.lastPlay + throttle > Time.unscaledTime) return null;
+            binding.lastPlay = Time.unscaledTime;
 
-            if (lastPlay + throttle > Time.realtimeSinceStartup) return null;
-
-            if (everPlayed) lastPlays[clip] = Time.realtimeSinceStartup;
-            else lastPlays.Add(clip, Time.realtimeSinceStartup);
-
-            return clip;
+            volumeScale *= binding.volumeScale;
+            return binding.variants.Roll();
         }
     }
 }

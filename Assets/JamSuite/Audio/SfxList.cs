@@ -13,33 +13,28 @@ namespace JamSuite.Audio {
             [Range(0f, 4f)]
             public float volumeScale = 1f;
 
-            public AudioClip clip;
-            public AudioClip[] extraClips;
+            public AudioClip[] variants;
+
+            [System.NonSerialized]
+            public float lastPlay;
         }
 
         public bool reserveMissing = true;
         public List<ClipBinding> clips;
 
 
-        public AudioClip RollClip(ClipBinding binding) {
-            if (binding.extraClips == null || binding.extraClips.Length == 0)
-                return binding.clip;
+        public ClipBinding Lookup(string name) {
+            foreach (var binding in clips)
+                if (binding.name == name)
+                    return binding;
 
-            var index = Random.Range(-1, binding.extraClips.Length);
-            return index < 0 ? binding.clip : binding.extraClips[index];
-        }
-
-        public AudioClip LookupClip(string name, ref float volumeScale) {
-            foreach (var binding in clips) {
-                if (binding.name != name) continue;
-
-                volumeScale *= binding.volumeScale;
-                return RollClip(binding);
-            }
-
-            if (reserveMissing)
+            if (reserveMissing) {
                 clips.Add(new ClipBinding { name = name });
 
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(this);
+#endif
+            }
             return null;
         }
     }
