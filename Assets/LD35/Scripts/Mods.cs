@@ -10,11 +10,6 @@ namespace LD35 {
         Completed = 'C'
     }
 
-    public enum SheepEvent {
-        Eaten,
-        Lost
-    }
-
     public enum SheepType {
         Any,
         Regular,
@@ -26,9 +21,17 @@ namespace LD35 {
     public class Mod {
         public bool unlocked, completed, active;
         public string name, desc;
-        public SheepEvent evt;
-        public SheepType type;
-        public int num;
+        public string winCounter, failCounter;
+        public int winCount, failCount;
+
+        public Mod(string name, string desc, string winCounter, int winCount, string failCounter, int failCount) {
+            this.name = name;
+            this.desc = desc;
+            this.winCounter = winCounter;
+            this.winCount = winCount;
+            this.failCounter = failCounter;
+            this.failCount = failCount;
+        }
     }
 
     public static class ModID {
@@ -53,25 +56,20 @@ namespace LD35 {
 
     public class Mods {
 
-        public static int numMods {
-            get { return ModID.MaxID; }
-        }
-
         public static readonly Mod[] modList = new Mod[ModID.MaxID];
 
         static Mods() {
-            modList[ModID.YellowSheep] = new Mod { name = "Yellow Sheep", desc = "Eat the yellow sheep", type = SheepType.Yellow, num = 1 };
-            modList[ModID.UndertrainedDog] = new Mod { name = "Undertrained Dog", desc = "Eat 15 sheep", num = 15 };
-            modList[ModID.LoseAll] = new Mod { unlocked = true, name = "Lose All", evt = SheepEvent.Lost, num = 30 };
-            modList[ModID.Diet] = new Mod { name = "Diet", desc = "Eat 20 sheep", num = 20 };
-            modList[ModID.EatAll] = new Mod { unlocked = true, name = "Eat All", num = 30 };
-            modList[ModID.BlackSheep] = new Mod { name = "Black Sheep", desc = "Eat the black sheep last", type = SheepType.Black, num = 1 };
-            modList[ModID.RedSheep] = new Mod { unlocked = true, name = "Red Sheep", desc = "Eat 10 red sheep", type = SheepType.Red, num = 10 };
-            modList[ModID.Faster] = new Mod { name = "Faster!", desc = "Eat 20 sheep", num = 20 };
-            modList[ModID.Wind] = new Mod { name = "Wind", desc = "Eat 20 sheep", num = 20 };
-            modList[ModID.Scarier] = new Mod { name = "Scarier!", desc = "Eat 20 sheep", num = 20 };
-            
-            
+            modList[ModID.YellowSheep]      = new Mod("Yellow Sheep",       "Eat the yellow sheep",     "YellowEaten", 1,   "YellowLost", 1);
+            modList[ModID.UndertrainedDog]  = new Mod("Undertrained Dog",   "Eat 15 sheep",             "Eaten", 15,        "Lost", 16);
+            modList[ModID.LoseAll]          = new Mod("Lose All",           "",                         "Lost", 30,         "Eaten", 1);
+            modList[ModID.Diet]             = new Mod("Diet",               "Eat 20 sheep",             "Eaten", 20,        "Lost", 11);
+            modList[ModID.EatAll]           = new Mod("Eat All",            "",                         "Eaten", 30,        "Lost", 1);
+            modList[ModID.BlackSheep]       = new Mod("Black Sheep",        "Eat the black sheep last", "Gone", 30,         "BlackGone", 1);
+            modList[ModID.RedSheep]         = new Mod("Red Sheep",          "Eat 10 red sheep",         "RedEaten", 10,     "RedFailed", 1);
+            modList[ModID.Faster]           = new Mod("Faster",             "Eat 20 sheep",             "Eaten", 20,        "Lost", 11);
+            modList[ModID.Wind]             = new Mod("Wind",               "Eat 20 sheep",             "Eaten", 20,        "Lost", 11);
+            modList[ModID.Scarier]          = new Mod("Scarier",            "Eat 20 sheep",             "Eaten", 20,        "Lost", 11);
+
             try { Load(); }
             catch {}
         }
@@ -119,8 +117,7 @@ namespace LD35 {
         }
 
 
-        public class Wind : Mod {
-
+        public class Wind {
             public static float speed = 0.1f;
             public static bool left;
 
@@ -133,16 +130,15 @@ namespace LD35 {
             }
         }
 
-        public class Diet : Mod {
-
+        public class Diet {
             public static float dietValue = 0.5f;
         }
 
-        public class Scarier : Mod {
+        public class Scarier {
             public static float factor = 2f;
         }
 
-        public class Faster : Mod {
+        public class Faster {
             public static float factor = 2f;
         }
     }

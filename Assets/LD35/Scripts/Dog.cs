@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-using JamSuite.Audio;
+﻿using JamSuite.Audio;
+using UnityEngine;
 
 namespace LD35
 {

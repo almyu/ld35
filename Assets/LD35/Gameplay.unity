@@ -474,7 +474,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1538427298}
   - 114: {fileID: 1538427297}
-  - 114: {fileID: 1538427296}
   - 114: {fileID: 1538427299}
   m_Layer: 0
   m_Name: GameManager
@@ -483,20 +482,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1538427296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11465210, guid: bd29cff761cf34344928a179c54d38bc,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1538427295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6018b361173c83418d8aa52b4a9d4f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eatenSheep: 0
-  lostSheep: 0
 --- !u!114 &1538427297
 MonoBehaviour:
   m_ObjectHideFlags: 0

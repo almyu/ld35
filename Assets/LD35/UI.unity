@@ -810,7 +810,29 @@ MonoBehaviour:
   challengeMessage: {fileID: 1436610998}
   failedChallengeIcon: {fileID: 817604643}
   completedChallengeIcon: {fileID: 1620645285}
-  delayBetweenMessages: 3
+  delayBetweenMessages: 0.2
+  messageLifetime: 1.5
+  messageAlphaCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.7289187
+      value: 0.6549971
+      inSlope: -1.616729
+      outSlope: -1.616729
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: -0.41907147
+      outSlope: -0.41907147
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1128405184
 GameObject:
   m_ObjectHideFlags: 0

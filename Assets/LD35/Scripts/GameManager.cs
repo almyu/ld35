@@ -1,7 +1,6 @@
-﻿using UnityEngine;
+﻿using JamSuite.Logic;
 using System.Collections;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine;
 
 namespace LD35 {
 
@@ -15,7 +14,7 @@ namespace LD35 {
         public float bulletTimeScale = 0.1f, bulletTime = 2f, hellTime = 3f;
 
         public GameObject zeroWindPrefab, leftWindPrefab, rightWindPrefab;
-        
+
         private void Start() {
             UIManager.SetupSheep(Herd.instance.numSheep);
 
@@ -28,7 +27,7 @@ namespace LD35 {
 
         private void Update() {
             if (!shepherd.enabled) PauseMenu.Die();
-            if (SheepCounter.instance.IsAllSheepDead()) PauseMenu.GameOver();
+            if (Counters.Get("Eaten") + Counters.Get("Lost") >= Herd.instance.numSheep) PauseMenu.GameOver();
 
             if (!shepherd.isWolf) {
                 if (ModID.Diet.IsModActive()) {
@@ -72,12 +71,13 @@ namespace LD35 {
 
             UIManager.SetShapeshiftAvailable(false);
 
-            var lastEatenSheep = SheepCounter.instance.eatenSheep;
+            var counter = Counters.Find("Eaten");
+            var lastEatenSheep = counter.Value;
 
             for (var t = 0f; t <= bulletTime; t += Time.unscaledDeltaTime) {
                 UIManager.SetNormalizedTime(t / bulletTime);
                 yield return null;
-                if (SheepCounter.instance.eatenSheep != lastEatenSheep) break;
+                if (counter.Value != lastEatenSheep) break;
             }
             Time.timeScale = 1f;
 

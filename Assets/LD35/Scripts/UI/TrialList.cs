@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using JamSuite.Generative;
+using JamSuite.Logic;
+using UnityEngine;
 using UnityEngine.UI;
-using JamSuite.Generative;
 
 namespace LD35 {
 
@@ -25,16 +26,12 @@ namespace LD35 {
 
             foreach (var text in spawn.GetComponentsInChildren<Text>()) {
                 if (text.name == "Text") text.text = data.name;
-                else if (text.name == "Counter") text.text = string.Format("{0}/{1}", data.current, data.max);
+                else if (text.name == "Counter") text.text = string.Format("{0}/{1}", data.progress, data.mod.winCount);
 
                 if (data.mod.completed) text.color = completedColor;
                 else if (!data.mod.unlocked) text.color = inactiveColor;
                 else text.color = activeColor;
             }
-        }
-
-        private void OnEnable() {
-            if (Application.isPlaying) Rebuild();
         }
     }
 }

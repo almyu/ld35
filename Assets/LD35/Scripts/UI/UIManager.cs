@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JamSuite.Logic;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,10 +32,10 @@ namespace LD35 {
         public GameObject failedChallengeIcon;
         public GameObject completedChallengeIcon;
         public float delayBetweenMessages = 1f;
+        public float messageLifetime = 1f;
+        public AnimationCurve messageAlphaCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
 
         private CanvasGroup messagesCachedRenderer;
-        private AnimationCurve alphaCurve;
-        private float duration;
 
         private void Awake() {
             gameOverWindow.SetActive(false);
@@ -43,17 +44,14 @@ namespace LD35 {
             wolfPortrait.canvasRenderer.SetAlpha(0f);
             messagesCachedRenderer = challengeMessage.GetComponent<CanvasGroup>();
             messagesCachedRenderer.alpha = 0f;
-            alphaCurve = UIFlash.instance.alphaCurve;
-            duration = UIFlash.instance.duration;
 
             failedChallengeIcon.SetActive(false);
             completedChallengeIcon.SetActive(false);
         }
 
         protected void Update() {
-            if (!messageInProgress && messagesQueue.Count > 0) {
-                messagesQueue.Dequeue()();
-            }
+            if (!messageInProgress && messagesQueue.Count > 0)
+                StartCoroutine(DoShowMessage(messagesQueue.Dequeue()));
             
             if (Shepherd.instance.isWolf) {
                 return;
@@ -70,6 +68,17 @@ namespace LD35 {
 
             wolfPortrait.canvasRenderer.SetAlpha(blinkTimer / blinkInterval);
             blinkTimer -= Time.unscaledDeltaTime;
+        }
+
+        private Action unsub;
+
+        private void OnEnable() {
+            unsub = Counters.Subscribe("Eaten", _ => EatSheep());
+            unsub += Counters.Subscribe("Lost", _ => LoseSheep());
+        }
+
+        private void OnDisable() {
+            unsub();
         }
 
         public void RefreshPortrait() {
@@ -139,42 +148,31 @@ namespace LD35 {
             gameOverWindow.SetActive(true);
         }
 
-        private Queue<Action> messagesQueue = new Queue<Action>();
+        private Queue<string> messagesQueue = new Queue<string>();
         private bool messageInProgress = false;
-        public void SpawnMessage(string text) {
-            var msgText = challengeMessage.GetComponentInChildren<Text>();
-            var txt = text;
 
-            messagesQueue.Enqueue(() => StartCoroutine(ShowMessage(msgText, txt)));            
+        public void SpawnMessage(string message) {
+            messagesQueue.Enqueue(message);
         }
 
-        private IEnumerator ShowMessage(Text messageText, string msgText) {
+        private IEnumerator DoShowMessage(string message) {
             messageInProgress = true;
-            messageText.text = msgText;
 
-            var failed = msgText.Contains("Failed");
+            var failed = message.Contains("Failed");
             failedChallengeIcon.SetActive(failed);
             completedChallengeIcon.SetActive(!failed);
 
-            messageText.color = failed ? Color.red : Color.green;
+            var text = challengeMessage.GetComponentInChildren<Text>();
+            text.color = failed ? Color.red : Color.green;
+            text.text = message;
 
-            var elapsed = duration * delayBetweenMessages;
-            messagesCachedRenderer.alpha = 0f;
-
-            while (elapsed >= 0f) {
-
-                messagesCachedRenderer.alpha = alphaCurve.Evaluate(1f - Mathf.Clamp01(elapsed / duration));
-
-                elapsed -= Time.unscaledDeltaTime;
-
-                yield return new WaitForEndOfFrame();
+            for (var t = 0f; t <= messageLifetime; t += Time.unscaledDeltaTime) {
+                messagesCachedRenderer.alpha = messageAlphaCurve.Evaluate(t / messageLifetime);
+                yield return null;
             }
+            messagesCachedRenderer.alpha = 0f;
 
             yield return new WaitForSeconds(delayBetweenMessages);
-
-            messagesCachedRenderer.alpha = 0f;
-            
-
             messageInProgress = false;
         }
     }

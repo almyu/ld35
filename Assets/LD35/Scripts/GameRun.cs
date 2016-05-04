@@ -1,16 +1,14 @@
-﻿using UnityEngine;
+﻿using JamSuite.Logic;
+using UnityEngine;
 
 namespace LD35 {
 
     public class ModTrial {
         public Mod mod;
         public ModStatus status;
-        public int current;
+        public int progress;
 
         public string name { get { return mod != null ? mod.name : "<missing>"; } }
-        public int max { get { return mod != null ? mod.num : 0; } }
-        public SheepEvent evt { get { return mod.evt; } }
-        public SheepType type { get { return mod.type; } }
     }
 
     public class GameRun : MonoSingleton<GameRun> {
@@ -19,54 +17,54 @@ namespace LD35 {
             mod = mod,
             status = mod.active ? ModStatus.Active : ModStatus.Inactive
         });
-        public int total = 30, eaten, lost;
 
         private void Start() {
-            total = Herd.instance.numSheep;
+            Counters.ResetAll();
+        }
+
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                var str = new System.Text.StringBuilder();
+
+                foreach (var pair in Counters.All)
+                    str.AppendFormat("{0}:{1} ", pair.Key, pair.Value.Value);
+
+                Debug.Log(str);
+            }
         }
 
         public static void OnEaten(SheepType type) {
-            if (instance) instance.Poke(SheepEvent.Eaten, type);
+            if (!instance) return;
+
+            if (type != SheepType.Red) Counters.Increase("RedFailed");
+
+            Counters.Increase(type + "Eaten");
+            Counters.Increase(type + "Gone");
+            Counters.Increase("Eaten");
+            Counters.Increase("Gone");
+            instance.Check();
         }
 
         public static void OnLost(SheepType type) {
-            if (instance) instance.Poke(SheepEvent.Lost, type);
+            if (!instance) return;
+
+            if (type == SheepType.Red) Counters.Increase("RedFailed");
+
+            Counters.Increase(type + "Lost");
+            Counters.Increase(type + "Gone");
+            Counters.Increase("Lost");
+            Counters.Increase("Gone");
+            instance.Check();
         }
 
-        public void Poke(SheepEvent evt, SheepType type) {
-            if (evt == SheepEvent.Lost) ++lost;
-            else ++eaten;
-            --total;
-
-            /*Debug.LogFormat("{0} {1}: {2} eaten, {3} lost, {4} left",
-                evt, type, eaten, lost, total);*/
-
+        public void Check() {
             foreach (var trial in trials) {
                 if (trial.status != ModStatus.Active) continue;
 
-                if (trial.type == SheepType.Black && type == SheepType.Black && total > 0) {
-                    Fail(trial);
-                    continue;
-                }
-                if (trial.type == SheepType.Red && (trial.evt == evt) != (trial.type == type)) {
-                    Fail(trial);
-                    continue;
-                }
-                if (trial.type == SheepType.Yellow && trial.evt != evt && trial.type == type) {
-                    Fail(trial);
-                    continue;
-                }
-                if (trial.evt == evt && (trial.type == SheepType.Any || trial.type == type))
-                    ++trial.current;
+                trial.progress = Counters.Get(trial.mod.winCounter);
 
-                if (trial.current >= trial.max) {
-                    Complete(trial);
-                    continue;
-                }
-                if (total < trial.max - trial.current) {
-                    Fail(trial);
-                    continue;
-                }
+                if (trial.progress >= trial.mod.winCount) Complete(trial);
+                else if (Counters.Get(trial.mod.failCounter) >= trial.mod.failCount) Fail(trial);
             }
         }
 

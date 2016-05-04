@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using JamSuite.Logic;
+using System.Linq;
 using UnityEngine;
 
 namespace LD35 {
@@ -118,7 +119,7 @@ namespace LD35 {
                 scare.radius = 100f;
             }
 
-            if (sheep == RedSheep && (SheepCounter.instance.eatenSheep <= numSheep - 1)) {
+            if (sheep == RedSheep && Counters.Get("Eaten") <= numSheep - 1) {
                 var simpleSheep = Sheep.sheepList.FirstOrDefault(s => s != BlackSheep && s != YellowSheep && s != RedSheep);
 
                 if (simpleSheep != null) {

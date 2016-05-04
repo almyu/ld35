@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using JamSuite.Audio;
+﻿using JamSuite.Audio;
+using UnityEngine;
 
 namespace LD35 {
 
@@ -12,7 +11,6 @@ namespace LD35 {
             var sheep = GetComponent<Sheep>();
             if (sheep) {
                 GameRun.OnLost(Herd.instance.InferType(sheep));
-                SheepCounter.instance.LoseSheep();
                 Sfx.Play("SheepFalls");
                 Destroy(sheep);
             }
