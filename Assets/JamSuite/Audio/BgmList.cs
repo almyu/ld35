@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace JamSuite.Audio {
 
@@ -33,6 +33,9 @@ namespace JamSuite.Audio {
             var newPlaylist = new Playlist { name = name };
             playlists.Add(newPlaylist);
 
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
             return newPlaylist;
         }
     }
